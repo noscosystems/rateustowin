@@ -21,7 +21,6 @@
         <!-- Bootstrap CSS framework -->
         <?php
             $bootstrap = Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist'));
-            $datepicker = Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('composer.eternicode.bootstrap-datepicker'));
         ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" media="all" />
         <!-- <link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('themes.classic.assets') . '/css/styles.css'); ?>" media="all" /> -->
@@ -29,8 +28,6 @@
         <script src="<?php echo $bootstrap; ?>/js/bootstrap.min.js"></script>
         <link href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
-        <script src="<?php echo $datepicker; ?>/js/bootstrap-datepicker.js"></script>
-        <link href="<?php echo $datepicker; ?>/css/datepicker.css" rel="stylesheet" type="text/css" media="all" />
         <title>
             <?php
                 if(is_string($this->pageTitle) && $this->pageTitle) {
@@ -47,12 +44,6 @@
                 // Enable all elements with the class "pop" to enable twbs popovers
                 $('.pop').popover('hide');
 
-                // Load the basic datepicker
-                $(".input-group .date").datepicker({ autoclose: true, todayHighlight: true, format: "dd/mm/yyyy" });
-                // Load a view that looks at the years
-                $(".date-year").datepicker({ autoclose: true, todayHighlight: false, startView: "decade", format: "dd/mm/yyyy" });
-                // Load a view that looks at the months
-                $(".date-month").datepicker({ autoclose: true, todayHighlight: false, startView: "year", format: "dd/mm/yyyy" });
             })
         </script>
 
