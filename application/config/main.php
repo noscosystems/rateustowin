@@ -125,7 +125,7 @@
                         'levels' => 'error, warning',
                     ),
                 ),
-            ),s
+            ),
 
             // Application Component: HTTP Request.
             'request' => array(
