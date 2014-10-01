@@ -84,7 +84,7 @@
                 array('password', 'length', 'max' => 60),
                 array('firstname, nickname, lastname', 'length', 'max' => 128),
                 array('active', 'boolean'),
-                array('mobile', 'length', 'max'=>20),
+                array('mobile', 'length', 'max' => 20),
                 // The following rule is used by search().
                 // @todo Please remove those attributes that should not be searched.
                 array('id, username, email, password, branch, firstname, nickname, lastname, created, lastLogin, active', 'safe', 'on' => 'search'),
@@ -123,21 +123,19 @@
         public function attributeLabels()
         {
             return array(
-                'id'         => Yii::t('app', 'User ID'),
-                'username'   => Yii::t('app', 'Username'),
-                'email'      => Yii::t('app', 'Email Address'),
-                'password'   => Yii::t('app', 'Password'),
-                'branch'     => Yii::t('app', 'Branch'),
-                'firstname'  => Yii::t('app', 'Firstname'),
-                'nickname'   => Yii::t('app', 'Nickname'),
-                'lastname'   => Yii::t('app', 'Lastname'),
-                'created'    => Yii::t('app', 'Created'),
-                'lastLogin'  => Yii::t('app', 'Last Login'),
-                'active'     => Yii::t('app', 'Active?'),
-                'avatar' => 'Avatar',
-                'plaintextToBeDeleted' => 'Plaintext To Be Deleted',
-                'level' => 'Level',
-                'mobile' => 'Mobile',
+                'id'        => Yii::t('app', 'User ID'),
+                'username'  => Yii::t('app', 'Username'),
+                'email'     => Yii::t('app', 'Email Address'),
+                'password'  => Yii::t('app', 'Password'),
+                'branch'    => Yii::t('app', 'Branch'),
+                'firstname' => Yii::t('app', 'Firstname'),
+                'nickname'  => Yii::t('app', 'Nickname'),
+                'lastname'  => Yii::t('app', 'Lastname'),
+                'created'   => Yii::t('app', 'Created'),
+                'lastLogin' => Yii::t('app', 'Last Login'),
+                'active'    => Yii::t('app', 'Active?'),
+                'avatar'    => Yii::t('app', 'Avatar'),
+                'mobile'    => Yii::t('app', 'Mobile Number'),
             );
         }
 
