@@ -19,11 +19,11 @@
     - Legal notices (crypto stuff).
 -->
 
-Project Name
+Rate Us to Win
 ============
 
-<abbr title="Full Project Name">Simplied Project Name</abbr> project by [Nosco Systems](http://nosco-systems.com),
-authored by [Zander Baldwin](http://mynameis.zande.rs).
+<abbr title="Rate Us to Win">RUTW</abbr> project by [Nosco Systems](http://nosco-systems.com),
+authored by [Pavel Pravchev](https://github.com/pavelpravchev).
 
 License
 -------
@@ -33,6 +33,4 @@ Please see the [separate license file](LICENSE.md) included in this repository.
 Authors
 -------
 
-- [Zander Baldwin](http://mynameis.zande.rs); lead technical developer, data & application.
-- [Luke Scowen](https://github.com/scowen); lead front-end developer, design & interation.
-- [Clive Dann](https://github.com/clivedann); project manager.
+- [Pavel Pravchev](https://github.com/pavelpravchev); lead developer for this project.
