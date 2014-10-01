@@ -75,14 +75,15 @@
             // any rules associated with it, then its value will not be changed by mass-assignment (will have to be done
             // manually).
             return array(
-                array('username, email, password, firstname, lastname, created, level', 'required'),
+                array('username, email, password, firstname, lastname, created, priv', 'required'),
                 array('created', 'numerical', 'integerOnly' => true),
-                array('branch, level', 'numerical', 'integerOnly' => true, 'min' => 0),
+                array('branch', 'numerical', 'integerOnly' => true, 'min' => 0),
                 array('lastLogin', 'numerical'),
                 array('username', 'length', 'max' => 64),
                 array('email', 'length', 'max' => 255),
                 array('password', 'length', 'max' => 60),
                 array('firstname, nickname, lastname', 'length', 'max' => 128),
+                array('priv', 'numerical', 'min'=>0, 'max'=>1, 'integerOnly' => true ),
                 array('active', 'boolean'),
                 array('mobile', 'length', 'max' => 20),
                 // The following rule is used by search().

@@ -24,7 +24,7 @@
                     'lastname'      => 'VARCHAR(128)    NOT NULL                    COMMENT "The users last name, used for reporting data about users."',
                     'created'       => 'INT             NOT NULL                    COMMENT "The timestamp of when the users account was created."',
                     'lastLogin'     => 'DOUBLE                                      COMMENT "A micro timestamp of the users last successful login."',
-                    'priv'          => 'INT(11)         NOT NULL                    COMMENT "Used to determine a user\'s privilige level in the system."',
+                    'priv'          => 'INT(11)         NOT NULL    DEFAULT "0"    COMMENT "Used to determine a user\'s privilige level in the system."',
                     'active'        => 'BOOLEAN         NOT NULL    DEFAULT TRUE    COMMENT "A boolean flag as to whether the user is active within the system (switch to false to ban the user from logging in)."',
                 ),
                 implode(' ', array(
