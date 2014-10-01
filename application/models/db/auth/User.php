@@ -85,7 +85,6 @@
                 array('firstname, nickname, lastname', 'length', 'max' => 128),
                 array('priv', 'numerical', 'min'=>0, 'max'=>1, 'integerOnly' => true ),
                 array('active', 'boolean'),
-                array('mobile', 'length', 'max' => 20),
                 // The following rule is used by search().
                 // @todo Please remove those attributes that should not be searched.
                 array('id, username, email, password, branch, firstname, nickname, lastname, created, lastLogin, active', 'safe', 'on' => 'search'),
