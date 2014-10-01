@@ -107,7 +107,6 @@
             // class name for the relations automatically generated below.
             return array(
                 'AuthItems'     => array(self::MANY_MANY,   '\\application\\models\\db\\auth\\Item', '{{auth_assignments}}(user, item)'),
-                'Events'        => array(self::HAS_MANY,    '\\application\\models\\db\\calendar\\Event', 'creator'),
                 'FailedLogins'  => array(self::HAS_MANY,    '\\application\\models\\db\\auth\\FailedLogin', 'user'),
                 'Branch'        => array(self::BELONGS_TO,  '\\application\\models\\db\\Branch', 'branch'),
             );
