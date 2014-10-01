@@ -9,22 +9,10 @@
 
     "authors": [
         {
-            "name":                         "Zander Baldwin",
-            "email":                        "mynameiszanders@gmail.com",
-            "homepage":                     "http://mynameis.zande.rs/",
+            "name":                         "Pavel Pravchev",
+            "email":                        "pavel.pravchev@gmail.com",
+            "homepage":                     "https://github.com/pavelpravchev",
             "role":                         "Developer"
-        },
-        {
-            "name":                         "Luke Scowen",
-            "email":                        "lmscowen@gmail.com",
-            "homepage":                     "https://github.com/scowen",
-            "role":                         "Developer"
-        },
-        {
-            "name":                         "Clive Dann",
-            "email":                        "clive.dann@gmail.com",
-            "homepage":                     "http://clivedann.co.uk/",
-            "role":                         "Project Manager"
         }
     ],
 
