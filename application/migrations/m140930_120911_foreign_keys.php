@@ -11,7 +11,7 @@ class m140930_120911_foreign_keys extends CDbMigration
 		$this->addForeignKey('fk_survey_organasationId_organasation', '{{survey}}', 'organasationId', '{{organasation}}', 'id');
 		$this->addForeignKey('fk_question_surveyId_survey_id', '{{question}}', 'surveyId', '{{survey}}', 'id');
 		$this->addForeignKey('fk_question_answerType_answertype_id', '{{question}}', 'answerType', '{{answertype}}', 'id');
-		$this->addForeignKey('fk_answer_userId_user_id', '{{answer}}', 'userId', '{{user}}', 'id');
+		$this->addForeignKey('fk_answer_userId_user_id', '{{answer}}', 'userId', '{{users}}', 'id');
 		$this->addForeignKey('fk_answer_branchId_branch_id', '{{answer}}', 'branchId', '{{branch}}', 'id');
 		$this->addForeignKey('fk_answer_answerType_answertype_id', '{{answer}}', 'answerType', '{{answertype}}', 'id');
 

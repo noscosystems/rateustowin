@@ -247,6 +247,7 @@
                 // original user.
                 'loginIp'   => $_SERVER['REMOTE_ADDR'],
                 'userAgent' => $_SERVER['HTTP_USER_AGENT'],
+				'priv' => (int)$user->priv,
                 // Set this to false to quickly identify that the user is not a guest and is, in fact, an authenticated
                 // user. Yii doesn't seem to set this automatically, which is disappointing.
                 'isGuest'   => false,
