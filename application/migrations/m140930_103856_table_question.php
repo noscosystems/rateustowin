@@ -9,8 +9,8 @@ class m140930_103856_table_question extends CDbMigration
             array(
                 'id'         	=> 'pk             	COMMENT "The automatic, machine-readable identifier (integer) for an item  represented in this table."',
                 'surveyId'    	=> 'INT(11)			NOT NULL',
-                'questionTxt'	=> 'VARCHAR(128)    NOT NULL',
-                'answerType'	=> 'INT(11)         NOT NULL',
+                'questTxt'		=> 'VARCHAR(128)    NOT NULL COMMENT "The actual question."',
+                'answerType'	=> 'INT(11)         NOT NULL COMMENT "The answer type"',
             ),
             implode(' ', array(
                 'ENGINE          = InnoDB',

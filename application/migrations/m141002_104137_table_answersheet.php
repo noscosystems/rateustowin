@@ -1,19 +1,16 @@
 <?php
 
-class m140930_110213_table_answer extends CDbMigration
+class m141002_104137_table_answersheet extends CDbMigration
 {
 	public function up()
 	{
 		$this->createTable(
-            '{{answer}}',
+            '{{answersheet}}',
             array(
                 'id'         	=> 'pk              COMMENT "The automatic, machine-readable identifier (integer) for an item  represented in this table."',
+                'customerId'	=> 'INT(11)    		NOT NULL',
                 'branchId'    	=> 'INT(11) 		NOT NULL',
-                'userId'	    => 'INT(11)    		NOT NULL',
-                'branchId'		=> 'INT(11)         NOT NULL',
-                'questionId'    => 'INT(11)     		NOT NULL',
-                'answer'   		=> 'VARCHAR(255) 	DEFAULT NULL',
-                'answerType'    => 'INT(11) 		NOT NULL',
+                'surveyId'	    => 'INT(11)     	NOT NULL',
             ),
             implode(' ', array(
                 'ENGINE          = InnoDB',
@@ -27,7 +24,7 @@ class m140930_110213_table_answer extends CDbMigration
 
 	public function down()
 	{
-		echo "m140930_110213_table_answer does not support migration down.\n";
+		echo "m141002_104137_table_answersheet does not support migration down.\n";
 		return false;
 	}
 

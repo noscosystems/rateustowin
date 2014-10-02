@@ -19,6 +19,7 @@
                     'username'      => 'VARCHAR(64)                 UNIQUE          COMMENT "A unique alphanumeric string identifier unique to the user. This is optional (used for profile slugs when activated) and not required for authentication."',
                     'email'         => 'VARCHAR(255)    NOT NULL    UNIQUE          COMMENT "The email address of the user used to register within the system. This is the primary credential for the user, used for authentication."',
                     'password'      => 'CHAR(60)        NOT NULL                    COMMENT "A 60 character hash of the users password."',
+                    'branch'        => 'INT(11)         NOT NULL',
                     'firstname'     => 'VARCHAR(128)    NOT NULL                    COMMENT "The users first name, used for reporting data about user."',
                     'nickname'      => 'VARCHAR(128)                                COMMENT "The users preferred name, used for addressing the user."',
                     'lastname'      => 'VARCHAR(128)    NOT NULL                    COMMENT "The users last name, used for reporting data about users."',

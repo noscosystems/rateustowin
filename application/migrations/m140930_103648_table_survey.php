@@ -8,7 +8,7 @@ class m140930_103648_table_survey extends CDbMigration
             '{{survey}}',
             array(
                 'id'         	=> 'pk              COMMENT "The automatic, machine-readable identifier (integer) for an item  represented in this table."',
-                'organasationId'=> 'INT(11) 		NOT NULL',
+                'orgId'			=> 'INT(11) 		NOT NULL COMMENT "Organisation id"',
                 'name'	     	=> 'VARCHAR(128)    NOT NULL',
             ),
             implode(' ', array(

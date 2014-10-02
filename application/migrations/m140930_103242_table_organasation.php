@@ -5,7 +5,7 @@ class m140930_103242_table_organasation extends CDbMigration
 	public function up()
 	{
 		$this->createTable(
-            '{{organasation}}',
+            '{{organisation}}',
             array(
                 'id'         	=> 'pk              COMMENT "The automatic, machine-readable identifier (integer) for an item  represented in this table."',
                 'branchId'    	=> 'INT(11) 		NOT NULL',
