@@ -11,8 +11,8 @@ class m140930_103242_table_organasation extends CDbMigration
                 'branchId'    	=> 'INT(11) 		NOT NULL',
                 'name'	     	=> 'VARCHAR(128)    NOT NULL',
                 'address'		=> 'TEXT            NOT NULL',
-                'email'    		=> 'VARCHAR(64)     NOT NULL',
-                'phoneNumber'   => 'VARCHAR(255) 	NOT NULL',
+                'email'    		=> 'VARCHAR(255)    NOT NULL',
+                'phoneNumber'   => 'VARCHAR(11) 	NOT NULL',
                 'logoImg'      	=> 'INT(11) 		NOT NULL',
                 'prizeImg'      => 'INT(11) 		NOT NULL'
             ),

@@ -45,8 +45,8 @@ class Organisation extends ActiveRecord
 			array('branchId, name, address, email, phoneNumber, logoImg, prizeImg', 'required'),
 			array('branchId, logoImg, prizeImg', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>128),
-			array('email', 'length', 'max'=>64),
-			array('phoneNumber', 'length', 'max'=>255),
+			array('email', 'length', 'max'=>255),
+			array('phoneNumber', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, branchId, name, address, email, phoneNumber, logoImg, prizeImg', 'safe', 'on'=>'search'),

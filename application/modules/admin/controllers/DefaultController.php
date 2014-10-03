@@ -1,17 +1,19 @@
 <?php
 
-	namespace application\controllers;
-
 	use \Yii;
     use \CException as Exception;
 	use \application\components\Form;
 	use \application\components\Controller;
-	use \application\components\UserIdentity;
 
-class DefaultController extends Controller
-{
-	public function actionIndex()
-	{
-		$this->render('index');
+	class DefaultController extends Controller{
+
+		public function actionIndex(){
+
+			if (Yii::app()->user->isGuest)
+				$this->redirect(array('/home'));
+			//else
+			//$form = new Form('application.forms.organisation', new Organisation);
+
+			$this->render('index');
+		}
 	}
-}
