@@ -21,10 +21,9 @@
 	<div class="row">
 	    <div class="col-sm-3 control-label">Name:</div>
 	    <div class="col-sm-6">
-	        <?php echo $widget->input($form, 'name', array('class' => 'form-control') ); ?>
+	        <?php //echo $widget->input($form, 'name', array('class' => 'form-control') ); ?>
 	    </div>
 	</div>
-
 </div>
 
 
