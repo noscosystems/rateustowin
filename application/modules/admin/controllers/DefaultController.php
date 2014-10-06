@@ -1,8 +1,7 @@
 <?php
-	
+
 	//namespace application\modules\admin\controllers;
 
-	use Yii;
     use CException as Exception;
 	use application\components\Form;
 	use application\components\Controller;
