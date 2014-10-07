@@ -5,7 +5,7 @@
 		$this->module->id,
 	);
 
-	$form->attributes = array('class' => 'form-horizontal');
+	$form->attributes = array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data');
 	echo $form->renderBegin();
 	$widget = $form->activeFormWidget;
 ?>
@@ -20,7 +20,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-  
+
 
 
 <div class="container tab-pane active " id="home" style="/*background:#FF0000;*/ padding:5px;">
