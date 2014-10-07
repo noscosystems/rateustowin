@@ -5,7 +5,7 @@ class m141002_114141_table_foreign_keys extends CDbMigration
 	public function up()
 	{
 		// $this->addForeignKey('name_of_key', '{{table_from}}', 'column_from', '{{table_to}}', 'column_to');
-		$this->addForeignKey('fk_organasation_branchId_branch_id', '{{organisation}}', 'branchId', '{{branches}}', 'id');
+		$this->addForeignKey('fk_branches_organisationId_organisation_id', '{{branches}}', 'organisationId', '{{organisation}}', 'id');
 		$this->addForeignKey('fk_organasation_logoImg_Image_id', '{{organisation}}', 'logoImg', '{{image}}', 'id');
 		$this->addForeignKey('fk_organasation_prizeImg_Image_id', '{{organisation}}', 'prizeImg', '{{image}}', 'id');
 		$this->addForeignKey('fk_survey_orgId_organisation', '{{survey}}', 'orgId', '{{organisation}}', 'id');
