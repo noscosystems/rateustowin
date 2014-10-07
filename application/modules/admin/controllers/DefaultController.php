@@ -23,13 +23,15 @@
 
 			if ($form->submitted() && $form->validate()){
 
-				$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-				var_dump( $url );
+				echo'<pre>';
+				var_dump($_FILES['image']);
+				echo'</pre>';
 				exit;
-				
+
 				$organisation = new OrganisationDB;
 				$organisation->attributes = $frm->attributes;
-				$organisation->branchId = 1;
+				if ($organisation->save())
+					Yii::app()->user->setFlash('addSuccess','Added an organisation successfully.');
 			}
 
 			$this->render('index', array('form'=>$form));

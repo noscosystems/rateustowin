@@ -23,7 +23,13 @@
   
 
 
-<div class="container tab-pane active " id="home" style="background:#FF0000; padding:5px;">
+<div class="container tab-pane active " id="home" style="/*background:#FF0000;*/ padding:5px;">
+	<?php if(Yii::app()->user->hasFlash('changePassSuccess')): ?>
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <?php echo Yii::app()->user->getFlash('changePassSuccess'); ?>
+                    </div>
+                <?php endif; ?>
 	<div class="row">
 	    <div class="col-sm-1 control-label">Name:</div>
 	    <div class="col-sm-3">
@@ -31,7 +37,7 @@
 	    </div>
 	    <div class="col-sm-2 control-label">Prize image:</div>
 	    <div class="col-sm-3">
-	        <input type="file" name="image[]" class="from-control">
+	        <input type="file" name="image" class="from-control">
 	    </div>
 	</div>
 	<br>
@@ -42,7 +48,7 @@
 	    </div>
 	    <div class="col-sm-2 control-label">Logo image:</div>
 	    <div class="col-sm-3">
-	        <input type="file" name="image[]" class="from-control">
+	        <input type="file" name="image1" class="from-control">
 	    </div>
 	</div>
 	<br>
@@ -68,7 +74,7 @@
 <?php echo $form->renderEnd(); ?>
 <!-- <div class="tab-pane active" id="home">...</div> -->
   <div class="tab-pane" id="branch" style="background:#00FF00; width:500px; height200px;">...</div>
-  <div class="tab-pane" id="srvey">
+  <div class="tab-pane" id="survey">
 
   </div>
   <div class="tab-pane" id="settings">...</div>

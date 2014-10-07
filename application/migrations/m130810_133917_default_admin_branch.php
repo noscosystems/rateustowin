@@ -16,12 +16,7 @@
                 'company'       => null,
                 'address'       => '123 Fake Street',
                 'postcode'      => 'AB12 3CD',
-                'sales'         => '01234567890',
-                'internal'      => '01234567890',
-                'fax'           => '01234567890',
                 'email'         => 'admin@system62.com',
-                'vat'           => '123',
-                'reg'           => '123',
                 'active'        => 1,
             ));
         }
