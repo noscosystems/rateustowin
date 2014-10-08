@@ -104,7 +104,7 @@
                 <ol class="breadcrumb">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#">Library</a></li>
-                    <li><a href="#">Data</a></li>
+                    <li><a href="admin">Admin</a></li>
                 </ol>
             </div>
 
@@ -114,7 +114,7 @@
             </div>
 
             <!-- Footer -->
-            <footer id="footer">
+            <footer id="footer" style="left:0px; bottom:0px;">
                 <div class="container">
                     &copy; Nosco Systems 2014
                 </div>

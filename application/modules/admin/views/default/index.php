@@ -20,16 +20,16 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-
-
-
 <div class="container tab-pane active " id="home" style="/*background:#FF0000;*/ padding:5px;">
-	<?php if(Yii::app()->user->hasFlash('changePassSuccess')): ?>
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <?php echo Yii::app()->user->getFlash('changePassSuccess'); ?>
-                    </div>
-                <?php endif; ?>
+	<?php if(Yii::app()->user->hasFlash('addSuccess')): ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo Yii::app()->user->getFlash('addSuccess'); ?>
+    </div>
+    <?php endif; ?>
+    <?php if($widget->errorSummary($form)){
+        echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
+    } ?>
 	<div class="row">
 	    <div class="col-sm-1 control-label">Name:</div>
 	    <div class="col-sm-3">
@@ -37,7 +37,14 @@
 	    </div>
 	    <div class="col-sm-2 control-label">Prize image:</div>
 	    <div class="col-sm-3">
-	        <input type="file" name="image" class="from-control">
+	        <input type="file" name="image[]" class="form-control">
+	    </div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-6 control-label">Enter description for your image here to use as a caption (max. 255 characters).</div>
+		<div class="col-sm-3">
+	        <input type="text" name="desc[]" class="form-control">
 	    </div>
 	</div>
 	<br>
@@ -48,7 +55,14 @@
 	    </div>
 	    <div class="col-sm-2 control-label">Logo image:</div>
 	    <div class="col-sm-3">
-	        <input type="file" name="image1" class="from-control">
+	        <input type="file" name="image[]" class="form-control">
+	    </div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-6 control-label">Enter description for your image here to use as a caption (max. 255 characters).</div>
+		<div class="col-sm-3">
+	        <input type="text" name="desc[]" class="form-control">
 	    </div>
 	</div>
 	<br>
