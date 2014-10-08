@@ -6,13 +6,12 @@
 	);
 
 	$form->attributes = array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data');
-	echo $form->renderBegin();
-	$widget = $form->activeFormWidget;
+	
 ?>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#home" role="tab" data-toggle="tab">Organisation</a></li>
+  <li class="active"><a href="#organisation" role="tab" data-toggle="tab">Organisation</a></li>
   <li><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
   <li><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
   <li><a href="#settings" role="tab" data-toggle="tab">Selected survey to make live</a></li>
@@ -20,8 +19,13 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-<div class="container tab-pane active " id="home" style="/*background:#FF0000;*/ padding:5px;">
-	<?php if(Yii::app()->user->hasFlash('addSuccess')): ?>
+<div class="container tab-pane active " id="organisation" style="/*background:#FF0000;*/ padding:5px;">
+<?php
+	echo $form->renderBegin();
+	$widget = $form->activeFormWidget;
+
+	if(Yii::app()->user->hasFlash('addSuccess')):
+?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <?php echo Yii::app()->user->getFlash('addSuccess'); ?>

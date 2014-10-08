@@ -18,7 +18,11 @@
 			if (Yii::app()->user->isGuest)
 				$this->redirect(array('/home'));
 			else if (Yii::app()->user->priv<1)
+				$this->redirect(array('/home'));
+			else if (Yii::app()->user->priv==1){
 				$form = new Form('application.forms.organisation', new Organisation);
+				// $form1 = new Form('appliaction.forms.branch', new Branch);
+			}
 
 			$frm = $form->model;
 
