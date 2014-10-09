@@ -23,6 +23,7 @@
 			else if (Yii::app()->user->priv==1){
 				$form = new Form('application.forms.organisation', new Organisation);
 				$formBranch = new Form('application.forms.branch', new Branch);
+				$formSurvey = new Form('application.forms.survey', new Survey);
 			}
 
 			$frm = $form->model;
@@ -81,6 +82,10 @@
 					Yii::app()->user->setFlash('addBranchSucc','Added new branch successfully.');
 			}
 
-			$this->render('index', array('form'=>$form, 'formBranch' => $formBranch));
+			if ($formSurvey->submitted() && $formSurvey->validate()){
+
+			}
+
+			$this->render('index', array('form'=>$form, 'formBranch' => $formBranch, 'formSurvey' => $formSurvey));
 		}
 	}

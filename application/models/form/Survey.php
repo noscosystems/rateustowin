@@ -8,13 +8,14 @@
 
     class Survey extends FormModel
     {
-    	public $name;
+    	public $name,$organisationId;
 
 		public function rules()
         {
         	return array(
-	        	array('name', 'required'),
-				array('name', 'length', 'max'=>128)
+	        	array('name,organsationId', 'required'),
+				array('name', 'length', 'max'=>128),
+                array('organisationId', 'numerical')
 			);
         }
     }

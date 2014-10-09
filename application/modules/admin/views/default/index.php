@@ -152,11 +152,37 @@
 <div class="col-sm-3 col-sm-offset-1">
         <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
     </div>
-	<?php echo $form->renderEnd(); ?>
+	<?php echo $formBranch->renderEnd(); ?>
   </div>
-  <div class="tab-pane" id="survey">
 
-  </div>
+<div class="tab-pane" id="survey">
+
+  	<?php
+		$formSurvey->attributes = array('class' => 'form-horizontal');
+		echo $formSurvey->renderBegin();
+		$widget = $formSurvey->activeFormWidget;
+		if(Yii::app()->user->hasFlash('addSurveySucc')):
+	?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo Yii::app()->user->getFlash('addSurveySucc'); ?>
+    </div>
+    <?php endif; ?>
+    <?php if($widget->errorSummary($form)){
+        echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
+    } ?>
+	<div class="row">
+	    <div class="col-sm-1 control-label">Organisation:</div>
+	    <div class="col-sm-3">
+	        <?php echo $widget->input($formSurvey, 'organisationId', array('class' => 'form-control') ); ?>
+	    </div>
+	    <div class="col-sm-1 control-label">Name</div>
+	    <div class="col-sm-3">
+	        <?php echo $widget->input($formSurvey, 'name', array('class' => 'form-control') ); ?>
+	    </div>
+	</div>
+<?php echo $formSurvey->renderEnd(); ?>
+</div>
   <div class="tab-pane" id="settings">...</div>
 
 </div>

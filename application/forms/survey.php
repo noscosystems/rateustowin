@@ -1,14 +1,24 @@
 <?php
 
-	$organisations = \application\models\db\Organisation::model()->findAll();
-	// var_dump($organisations);
+    use \application\models\db\Organisation;
+
+    $organisation = Organisation::model()->findAll();
+    $orgArr = [];
+
+    foreach ($organisation as $org)
+        $orgArr[$org->id] = $org->name;
+
     return array(
         'elements' => array(
+            'organisationId' => array(
+                'type' => 'dropdownlist',
+                'items' => $orgArr,
+                'prompt' => 'Please Select'
+            ),
             'name' => array(
                 'type' => 'text',
-                'maxlength' => 128
-            )
-        ),
+                'maxlength' => 30
+            ),
 
         'buttons' => array(
             'submit' => array(
@@ -16,5 +26,5 @@
                 'label' => 'Add',
             ),
         ),
-
+        )
     );
