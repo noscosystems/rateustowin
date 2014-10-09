@@ -7,9 +7,10 @@
 	use \application\models\db\Survey as SurveyDB;
 	use \application\models\db\Question as QuestionDB;
 	use \application\models\db\Image;
-	use \application\models\db\Branch;
+	use \application\models\db\Branch as BranchDB;
 	use \application\models\form\Organisation;
 	use \application\models\form\Survey;
+	use \application\models\form\Branch;
 
 	class DefaultController extends Controller{
 
@@ -21,7 +22,7 @@
 				$this->redirect(array('/home'));
 			else if (Yii::app()->user->priv==1){
 				$form = new Form('application.forms.organisation', new Organisation);
-				// $form1 = new Form('appliaction.forms.branch', new Branch);
+				$formBranch = new Form('application.forms.branch', new Branch);
 			}
 
 			$frm = $form->model;
@@ -73,6 +74,13 @@
 			}
 			}
 
-			$this->render('index', array('form'=>$form));
+			if ($formBranch->submitted() && $formBranch->validate()){
+				$branch = new BranchDB;
+				$branch->attributes = $formBranch->model->attributes;
+				if ($branch->save())
+					Yii::app()->user->setFlash('addBranchSucc','Added new branch successfully.');
+			}
+
+			$this->render('index', array('form'=>$form, 'formBranch' => $formBranch));
 		}
 	}

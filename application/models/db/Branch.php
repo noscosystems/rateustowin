@@ -50,7 +50,7 @@ class Branch extends ActiveRecord
 			array('postcode', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, company, address, county, phoneNum, town, postcode, email, organisationId, active', 'safe', 'on'=>'search'),
+			array('id, name, address, county, phoneNum, town, postcode, email, organisationId, active', 'safe', 'on'=>'search'),
 		);
 	}
 
