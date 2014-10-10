@@ -155,7 +155,7 @@
 	<?php echo $formBranch->renderEnd(); ?>
   </div>
 
-<div class="tab-pane" id="survey">
+<div class="tab-pane" id="survey" style="padding:7px;">
 
   	<?php
 		$formSurvey->attributes = array('class' => 'form-horizontal');
@@ -181,6 +181,32 @@
 	        <?php echo $widget->input($formSurvey, 'name', array('class' => 'form-control') ); ?>
 	    </div>
 	</div>
+	<br>
+
+	<?php $answerTypes = \application\models\db\Answertype::model()->findAll(); ?>
+
+	<?php for ($i=0; $i<6; $i++):?>
+		<div class="row">
+		    <div class="col-sm-1 control-label">Question <?php echo$i+1; ?>:</div>
+		    <div class="col-sm-3">
+		        <input type="text" name="question[]" class="form-control">
+		    </div>
+		    <div class="col-sm-1 control-label">Answer Type</div>
+		    <div class="col-sm-3">
+		        <select class="form-control">
+		        	<option selected>Select please</option>
+			    	<?php foreach (	$answerTypes as $answertype): ?>
+			        	<option value="<?php echo $answertype->id; ?>"><?php echo $answertype->type; ?></option>
+			        <?php endforeach; ?>
+		        </select>
+
+		    </div>
+		</div>
+		<br>
+	<?php endfor; ?>
+	<div class="col-sm-3 col-sm-offset-1">
+        <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+    </div>
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
   <div class="tab-pane" id="settings">...</div>
