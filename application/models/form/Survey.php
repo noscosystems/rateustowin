@@ -13,9 +13,9 @@
 		public function rules()
         {
         	return array(
-	        	array('name,organsationId', 'required'),
+	        	array('name, organisationId', 'required'),
 				array('name', 'length', 'max'=>128),
-                array('organisationId', 'numerical')
+                array('organisationId', 'numerical', 'integerOnly'=>true)
 			);
         }
     }
