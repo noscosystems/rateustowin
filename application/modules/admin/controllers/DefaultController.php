@@ -43,6 +43,12 @@
             );
 		}
 
+        // HI PAV!
+        // The two methods above control who can access this controller. Basically you say that anyone who has a
+        // privilege above 1 are allowed. Everybody else are denied.
+        // This will automatically redirect anybody who isn't logged-in to the login page.
+        // You don't have to use it, but thought you might be interested in it :)
+
 		public function actionIndex(){
 
 			$form = new Form('application.forms.organisation', new Organisation);
