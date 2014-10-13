@@ -4,6 +4,7 @@
 
     use \Yii;
     use \CException;
+    use application\components\auth\Filter as AccessControlFilter;
 
     /**
      * Controller
@@ -31,5 +32,27 @@
          * The breadcrumbs of the current page. The value of this property will be assigned to CBreadcrumbs::links.
          */
         public $breadcrumbs = array();
+
+        /**
+         * Filter: Access Control
+         *
+         * @access public
+         * @param CFilterChain $filterChain
+         * @return void
+         */
+        public function filterAccessControl($filterChain)
+        {
+            // Make sure that the accessRules() method returns an array; we don't need to check if it exists because
+            // it's defined in CController.
+            if(!is_array($rules = $this->accessRules())) {
+                return;
+            }
+            // Create a new instance of the custom AccessControlFilter class.
+            $filter = new AccessControlFilter;
+            // Assign to it the rules defined in the Controller.
+            $filter->setRules($rules);
+            // Run the filter and the rest in the chain.
+            $filter->filter($filterChain);
+        }
 
     }

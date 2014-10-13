@@ -14,17 +14,40 @@
 
 	class DefaultController extends Controller{
 
+        /**
+         * Filters
+         *
+         * @access public
+         * @return array
+         */
+		public function filters()
+		{
+			return array(
+				'accessControl',
+			);
+		}
+
+        /**
+         * Access Rules
+         *
+         * @access public
+         * @return array
+         */
+		public function accessRules()
+		{
+			return array(
+			    array('allow',
+                    'priv' => 1,
+                ),
+                array('deny'),
+            );
+		}
+
 		public function actionIndex(){
 
-			if (Yii::app()->user->isGuest)
-				$this->redirect(array('/home'));
-			else if (Yii::app()->user->priv<1)
-				$this->redirect(array('/home'));
-			else if (Yii::app()->user->priv==1){
-				$form = new Form('application.forms.organisation', new Organisation);
-				$formBranch = new Form('application.forms.branch', new Branch);
-				$formSurvey = new Form('application.forms.survey', new Survey);
-			}
+			$form = new Form('application.forms.organisation', new Organisation);
+			$formBranch = new Form('application.forms.branch', new Branch);
+			$formSurvey = new Form('application.forms.survey', new Survey);
 
 			$frm = $form->model;
 
@@ -40,7 +63,7 @@
 				$organisation->attributes = $frm->attributes;
 
 				foreach($_FILES['image'] as $key1 => $value1){
-			        foreach($value1 as $key2 => $value2) 
+			        foreach($value1 as $key2 => $value2)
 			            $files[$key2][$key1] = $value2;
 			    }
 
@@ -67,7 +90,7 @@
 					}
 			    }
 
-				
+
 				if (empty($form->errors) && empty($organisation->errors)){
 					if ($organisation->save())
 						Yii::app()->user->setFlash('addSuccess','Added an organisation successfully.');
@@ -81,7 +104,7 @@
 				if ($branch->save())
 					Yii::app()->user->setFlash('addBranchSucc','Added new branch successfully.');
 			}
-			
+
 			if ($formSurvey->submitted()){
 				echo'yes';
 				exit;
