@@ -81,8 +81,10 @@
 				if ($branch->save())
 					Yii::app()->user->setFlash('addBranchSucc','Added new branch successfully.');
 			}
-
-			if ($formSurvey->submitted() && $formSurvey->validate()){
+			
+			if ($formSurvey->submitted()){
+				echo'yes';
+				exit;
 				$survey = new Survey;
 				$survey = $formSurvey->model->attributes;
 				$survey->save();
