@@ -103,8 +103,8 @@
         <?php echo Yii::app()->user->getFlash('addBranchSucc'); ?>
     </div>
     <?php endif; ?>
-    <?php if($widget->errorSummary($form)){
-        echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
+    <?php if($widget->errorSummary($formBranch)){
+        echo '<div class="alert alert-danger">' . $widget->errorSummary($formBranch) . '</div>';
     } ?>
 <div class="row">
     <div class="col-sm-1 control-label">Organisation the branch belongs to:</div>
@@ -168,13 +168,13 @@
         <?php echo Yii::app()->user->getFlash('addSurveySucc'); ?>
     </div>
     <?php endif; ?>
-    <?php if($widget->errorSummary($form)){
-        echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
+    <?php if($widget->errorSummary($formSurvey)){
+        echo '<div class="alert alert-danger">' . $widget->errorSummary($formSurvey) . '</div>';
     } ?>
 	<div class="row">
 	    <div class="col-sm-1 control-label">Organisation:</div>
 	    <div class="col-sm-3">
-	        <?php echo $widget->input($formSurvey, 'organisationId', array('class' => 'form-control') ); ?>
+	        <?php echo $widget->input($formSurvey, 'orgId', array('class' => 'form-control') ); ?>
 	    </div>
 	    <div class="col-sm-1 control-label">Name</div>
 	    <div class="col-sm-3">
@@ -193,7 +193,7 @@
 		    </div>
 		    <div class="col-sm-1 control-label">Answer Type</div>
 		    <div class="col-sm-3">
-		        <select class="form-control">
+		        <select name="answerType[]" class="form-control">
 		        	<option selected>Select please</option>
 			    	<?php foreach (	$answerTypes as $answertype): ?>
 			        	<option value="<?php echo $answertype->id; ?>"><?php echo $answertype->type; ?></option>
@@ -204,8 +204,9 @@
 		</div>
 		<br>
 	<?php endfor; ?>
+
 	<div class="col-sm-3 col-sm-offset-1">
-        <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+        <?php echo $widget->button($formSurvey, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
     </div>
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
@@ -213,7 +214,7 @@
 
 </div>
 <script>
-  $(function () {
+$(function () {
     $('#myTab a:last').tab('show')
   })
 </script>

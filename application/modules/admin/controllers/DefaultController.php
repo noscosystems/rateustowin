@@ -111,19 +111,18 @@
 					Yii::app()->user->setFlash('addBranchSucc','Added new branch successfully.');
 			}
 
-			if ($formSurvey->submitted()){
-				echo'yes';
-				exit;
-				$survey = new Survey;
-				$survey = $formSurvey->model->attributes;
+			if ($formSurvey->submitted() && $formSurvey->validate()){
+
+				$survey = new SurveyDB;
+				$survey->attributes = $formSurvey->model->attributes;
 				$survey->save();
 
 				for ($i=0; $i<count($_POST['question']); $i++){
 					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!=''){
-						$question = new Question;
-						$question->questionTxt = $_POST['question'][$i];
-						$question->sruveyId = $survey->id;
-						$question->answerType = $_POST['answerType'];
+						$question = new QuestionDB;
+						$question->questTxt = $_POST['question'][$i];
+						$question->surveyId = $survey->id;
+						$question->answerType = $_POST['answerType'][$i];
 						if ($question->validate())
 							$question->save();
 					}

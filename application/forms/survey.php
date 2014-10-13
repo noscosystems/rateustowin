@@ -10,7 +10,7 @@
 
     return array(
         'elements' => array(
-            'organisationId' => array(
+            'orgId' => array(
                 'type' => 'dropdownlist',
                 'items' => $orgArr,
                 'prompt' => 'Please Select'
@@ -19,12 +19,12 @@
                 'type' => 'text',
                 'maxlength' => 30
             ),
-
+        ),
         'buttons' => array(
             'submit' => array(
                 'type' => 'submit',
                 'label' => 'Add',
             ),
         ),
-        )
+        
     );
