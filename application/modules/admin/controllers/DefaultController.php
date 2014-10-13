@@ -129,11 +129,11 @@
 				}
 			}
 
-			$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-			$branch = substr($url, 0, strpos($url, '.'));
-			if ($branch)
-				$searchBranch = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
-			$organisations = $searchBranch->organisations;
+			// $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			// $branch = substr($url, 0, strpos($url, '.'));
+			// if ($branch)
+			// 	$searchBranch = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
+			// $organisations = $searchBranch->organisations;
 			
 			// echo'<pre>';
 			// var_dump($organisations);
