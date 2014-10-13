@@ -129,6 +129,17 @@
 				}
 			}
 
+			$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			$branch = substr($url, 0, strpos($url, '.'));
+			if ($branch)
+				$searchBranch = Branch::model()->findByAttributes(array ('name' => $branch));
+			$organisations = $searchBranch->organisations;
+			
+			// echo'<pre>';
+			// var_dump($organisations);
+			// echo'</pre>';
+			// exit;
+
 			$this->render('index', array('form'=>$form, 'formBranch' => $formBranch, 'formSurvey' => $formSurvey));
 		}
 	}
