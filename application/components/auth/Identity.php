@@ -189,10 +189,7 @@
                 // If we are going to throttle users that try login attempts too quickly, we need to determine what the
                 // timeout is that defines how quickly is "too quickly". Set a default of half a second.
                 $throttle = 0.5;
-                if(isset(Yii::app()->settings['login.throttle'])) {
-                    $throttle = Yii::app()->settings['login.throttle'];
-                }
-                elseif(isset(Yii::app()->params['login.throttle'])) {
+                if(isset(Yii::app()->params['login.throttle'])) {
                     $throttle = Yii::app()->params['login.throttle'];
                 }
                 // At what time does login throttling end?
