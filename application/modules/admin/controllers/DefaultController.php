@@ -118,7 +118,7 @@
 				$survey->save();
 
 				for ($i=0; $i<count($_POST['question']); $i++){
-					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!=''){
+					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!='' && $_POST['answerType'][$i]!='Please select' ){
 						$question = new QuestionDB;
 						$question->questTxt = $_POST['question'][$i];
 						$question->surveyId = $survey->id;
@@ -129,17 +129,18 @@
 				}
 			}
 
-			// $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-			// $branch = substr($url, 0, strpos($url, '.'));
-			// if ($branch)
-			// 	$searchBranch = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
-			// $organisations = $searchBranch->organisations;
-			
-			// echo'<pre>';
-			// var_dump($organisations);
-			// echo'</pre>';
-			// exit;
+			$organisation = \application\models\db\Organisation::model()->findAll();
 
-			$this->render('index', array('form'=>$form, 'formBranch' => $formBranch, 'formSurvey' => $formSurvey));
+			$this->render('index', array(
+									'form'=>$form,
+									'formBranch' => $formBranch,
+									'formSurvey' => $formSurvey,
+									'organisation' => $organisation
+								   )
+			);
+		}
+
+		public function actionsendArray(){
+			$this->renderPartial('sendArray');
 		}
 	}

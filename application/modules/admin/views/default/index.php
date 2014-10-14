@@ -14,7 +14,7 @@
   <li class="active"><a href="#organisation" role="tab" data-toggle="tab">Organisation</a></li>
   <li><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
   <li><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
-  <li><a href="#settings" role="tab" data-toggle="tab">Selected survey to make live</a></li>
+  <li><a href="#selectedSurvey" role="tab" data-toggle="tab">Selected survey to make live</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -194,7 +194,7 @@
 		    <div class="col-sm-1 control-label">Answer Type</div>
 		    <div class="col-sm-3">
 		        <select name="answerType[]" class="form-control">
-		        	<option selected>Select please</option>
+		        	<option value="Please select" selected>Please select</option>
 			    	<?php foreach (	$answerTypes as $answertype): ?>
 			        	<option value="<?php echo $answertype->id; ?>"><?php echo $answertype->type; ?></option>
 			        <?php endforeach; ?>
@@ -210,11 +210,84 @@
     </div>
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
-  <div class="tab-pane" id="settings">...</div>
+  <div class="tab-pane" id="selectedSurvey" style="padding:7px;">
+  	<div class="row">
+  		<div class="col-sm-1 control-label">Select organsation:</div>
+  		<div class="col-sm-3">
+	  		<select class="form-control" id="mySelect">
+	  			<option value="Please select" selected>Please select</option>
+	  			<?php for ($i=0; $i<count($organisation); $i++):?>
+	  			<option value="<?php echo$organisation[$i]->id;?>"> <?php echo$organisation[$i]->name;?></option>
+	  			<?php endfor; ?>
+	  		</select>
+  		</div>
+  	</div>
+  	<table class="table table-striped table-hover">
+  		<thead>
+  			<tr>
+  				<th>Survey name</th>
+  				<th>Survey Status</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  		</tbody>
+  	</table>
+  </div>
 
 </div>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script>
-$(function () {
-    $('#myTab a:last').tab('show')
-  })
+
+	var mySelect = document.getElementById('mySelect');
+	var tbody = document.getElementsByTagName('tbody');
+
+	mySelect.onchange = function(){
+
+		var xmlhttp = createXMLHttpObj();
+	        do {
+	            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/admin/default/sendArray',false);
+	            xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	            xmlhttp.send('send='+mySelect.value);
+	        }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
+			
+			if(xmlhttp.readyState==4 && xmlhttp.status==200){
+					// products=JSON.parse(xmlhttp.responseText);
+                    var products=[];
+                    tr = [];
+                    td = [];
+                    txt = [];
+                    a = [];
+
+                    products=JSON.parse(xmlhttp.responseText);
+                    console.log(products);
+                    tbody[0].innerHTML = '';
+
+                    for (var i=0; i<products.length; i++){ //Loop that rotates overall number of products.
+                    	console.log(products[i]);
+                        for (var j=0; j<products[i].length; j++){ // Loop for creating table rows
+                            tr[j] = document.createElement('TR');
+
+                            console.log('Value of j is: '+j);
+                     
+                            for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
+                                
+                                console.log('VALUE OF K IS: '+k);
+                                td[k] = document.createElement('TD');
+                            	tbody[0].appendChild(tr[j]);
+                                tr[j].appendChild(td[k]);
+                            	txt[k] = document.createTextNode(products[i][j][k]);
+                            	td[k].appendChild(txt[k]);
+                            }
+
+                        }
+                    }
+
+                }
+	        return false;
+	}
+
+	function createXMLHttpObj(){
+        return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
+    }
+
 </script>
