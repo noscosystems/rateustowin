@@ -37,9 +37,10 @@ class Survey extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('orgId, name', 'required'),
+			array('orgId, name, active', 'required'),
 			array('orgId', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>128),
+			array('active','boolean'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, orgId, name', 'safe', 'on'=>'search'),

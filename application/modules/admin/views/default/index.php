@@ -211,10 +211,11 @@
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
   <div class="tab-pane" id="selectedSurvey" style="padding:7px;">
+  	<form action="/rateustowin/public_html/admin" method="post">
   	<div class="row">
-  		<div class="col-sm-1 control-label">Select organsation:</div>
+  		<div class="col-sm-1 control-label">Select organisation:</div>
   		<div class="col-sm-3">
-	  		<select class="form-control" id="mySelect">
+	  		<select name="myOrganisation" class="form-control" id="mySelect">
 	  			<option value="Please select" selected>Please select</option>
 	  			<?php for ($i=0; $i<count($organisation); $i++):?>
 	  			<option value="<?php echo$organisation[$i]->id;?>"> <?php echo$organisation[$i]->name;?></option>
@@ -222,8 +223,9 @@
 	  		</select>
   		</div>
   	</div>
+  	
   	<table class="table table-striped table-hover">
-  		<thead>
+  		<thead >
   			<tr>
   				<th>Survey name</th>
   				<th>Survey Status</th>
@@ -232,6 +234,8 @@
   		<tbody>
   		</tbody>
   	</table>
+  	<button name="submit" type="submit" value="LiveSurvey" class="btn btn-sm btn-success">Submit</button>
+  </form>
   </div>
 
 </div>
@@ -252,11 +256,12 @@
 			
 			if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					// products=JSON.parse(xmlhttp.responseText);
-                    var products=[];
-                    tr = [];
-                    td = [];
-                    txt = [];
-                    a = [];
+                   var products= [];
+                   tr = [];
+                   td = [];
+                   txt = [];
+                   a = [];
+                   input = [];
 
                     products=JSON.parse(xmlhttp.responseText);
                     console.log(products);
@@ -274,9 +279,23 @@
                                 console.log('VALUE OF K IS: '+k);
                                 td[k] = document.createElement('TD');
                             	tbody[0].appendChild(tr[j]);
-                                tr[j].appendChild(td[k]);
-                            	txt[k] = document.createTextNode(products[i][j][k]);
-                            	td[k].appendChild(txt[k]);
+	                            tr[j].appendChild(td[k]);
+
+                            	if (k==1){
+                            		
+	                            		input[k] = document.createElement('input');
+	                            		input[k].setAttribute('type','checkbox');
+	                            		input[k].setAttribute('value',products[i][j][k]['id']);
+	                            		input[k].setAttribute('name','checkboxes[]');
+                            			if (products[i][j][k]['active']==1)
+                            				input[k].setAttribute('checked', true);
+	                            		td[k].appendChild(input[k]);
+                            		
+                            	}
+                            	else{
+	                            	txt[k] = document.createTextNode(products[i][j][k]);
+	                            	td[k].appendChild(txt[k]);
+                            	}
                             }
 
                         }
@@ -284,6 +303,15 @@
 
                 }
 	        return false;
+	}
+
+	var checkboxes = document.getElementsByName('checkboxes[]');
+
+	tbody[0].onchange = function(e){
+		//console.log(e);
+		for (var h=0; h<checkboxes.length; h++)
+			checkboxes[h].checked = false;
+		e.srcElement.checked = true;
 	}
 
 	function createXMLHttpObj(){

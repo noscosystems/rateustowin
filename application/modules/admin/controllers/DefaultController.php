@@ -115,6 +115,7 @@
 
 				$survey = new SurveyDB;
 				$survey->attributes = $formSurvey->model->attributes;
+				$survey->active = 0;
 				$survey->save();
 
 				for ($i=0; $i<count($_POST['question']); $i++){
@@ -131,6 +132,24 @@
 
 			$organisation = \application\models\db\Organisation::model()->findAll();
 
+			if (isset($_POST['submit'])){
+				if ($_POST['submit'] == 'LiveSurvey'){
+
+					$organisation = OrganisationDB::model()->findByAttributes(array('id'=>$_POST['myOrganisation']));
+					$surveys = $organisation->Surveys;
+
+					foreach ($surveys as $index => $currSurv){
+						if (isset($_POST['checkboxes'][$index])){
+							if ($currSurv->id == $_POST['checkboxes'][$index])
+								$currSurv->active = 1;
+							else 
+								$currSurv->active = 0;
+							// $currSurv->save();
+						}
+					}
+				}
+			}
+
 			$this->render('index', array(
 									'form'=>$form,
 									'formBranch' => $formBranch,
@@ -139,6 +158,8 @@
 								   )
 			);
 		}
+
+
 
 		public function actionsendArray(){
 			$this->renderPartial('sendArray');
