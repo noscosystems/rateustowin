@@ -211,6 +211,12 @@
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
   <div class="tab-pane" id="selectedSurvey" style="padding:7px;">
+<?php if(Yii::app()->user->hasFlash('ChangeSuccess')): ?>
+	<div class="alert alert-success">
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	    <?php echo Yii::app()->user->getFlash('ChangeSuccess'); ?>
+	</div>
+<?php endif; ?>
   	<form action="/rateustowin/public_html/admin" method="post">
   	<div class="row">
   		<div class="col-sm-1 control-label">Select organisation:</div>
@@ -249,7 +255,7 @@
 
 		var xmlhttp = createXMLHttpObj();
 	        do {
-	            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/admin/default/sendArray',false);
+	            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/admin/default/sendarray',false);
 	            xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 	            xmlhttp.send('send='+mySelect.value);
 	        }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
@@ -266,30 +272,28 @@
                     products=JSON.parse(xmlhttp.responseText);
                     console.log(products);
                     tbody[0].innerHTML = '';
+                    var productsLength = products.length;
 
-                    for (var i=0; i<products.length; i++){ //Loop that rotates overall number of products.
-                    	console.log(products[i]);
+                    for (var i=0; i<productsLength; i++){ //Loop that rotates overall number of products.
+                    	
                         for (var j=0; j<products[i].length; j++){ // Loop for creating table rows
                             tr[j] = document.createElement('TR');
-
-                            console.log('Value of j is: '+j);
-                     
-                            for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
+							
+							for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
                                 
-                                console.log('VALUE OF K IS: '+k);
                                 td[k] = document.createElement('TD');
                             	tbody[0].appendChild(tr[j]);
 	                            tr[j].appendChild(td[k]);
 
                             	if (k==1){
                             		
-	                            		input[k] = document.createElement('input');
-	                            		input[k].setAttribute('type','checkbox');
-	                            		input[k].setAttribute('value',products[i][j][k]['id']);
-	                            		input[k].setAttribute('name','checkboxes[]');
-                            			if (products[i][j][k]['active']==1)
-                            				input[k].setAttribute('checked', true);
-	                            		td[k].appendChild(input[k]);
+                            		input[k] = document.createElement('input');
+                            		input[k].setAttribute('type','checkbox');
+                            		input[k].setAttribute('value',products[i][j][k]['id']);
+                            		input[k].setAttribute('name','checkboxes[]');
+                        			if (products[i][j][k]['active']==1)
+                        				input[k].setAttribute('checked', true);
+                            		td[k].appendChild(input[k]);
                             		
                             	}
                             	else{

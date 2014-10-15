@@ -117,8 +117,9 @@
 				$survey->attributes = $formSurvey->model->attributes;
 				$survey->active = 0;
 				$survey->save();
+				$questionsCount = count($_POST['question']);
 
-				for ($i=0; $i<count($_POST['question']); $i++){
+				for ($i=0; $i<$questionsCount; $i++){
 					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!='' && $_POST['answerType'][$i]!='Please select' ){
 						$question = new QuestionDB;
 						$question->questTxt = $_POST['question'][$i];
@@ -135,18 +136,18 @@
 			if (isset($_POST['submit'])){
 				if ($_POST['submit'] == 'LiveSurvey'){
 
-					$organisation = OrganisationDB::model()->findByAttributes(array('id'=>$_POST['myOrganisation']));
-					$surveys = $organisation->Surveys;
+					$surveys = SurveyDB::model()->findAllByAttributes(array('orgId' => $_POST['myOrganisation']));
 
+					$checkbox = (isset($_POST['checkboxes']))?($_POST['checkboxes']):('');
 					foreach ($surveys as $index => $currSurv){
-						if (isset($_POST['checkboxes'][$index])){
-							if ($currSurv->id == $_POST['checkboxes'][$index])
-								$currSurv->active = 1;
-							else 
-								$currSurv->active = 0;
-							// $currSurv->save();
-						}
+						$currSurv->active = 0;
+						$currSurv->save();
 					}
+
+					$activeSurvey = SurveyDB::model()->findByPk($checkbox);
+					$activeSurvey->active = 1;
+					if ($activeSurvey->save())
+						Yii::app()->user->setFlash('ChangeSuccess','Active survey updated.');
 				}
 			}
 
@@ -161,7 +162,7 @@
 
 
 
-		public function actionsendArray(){
-			$this->renderPartial('sendArray');
+		public function actionSendarray(){
+			$this->renderPartial('sendarray');
 		}
 	}
