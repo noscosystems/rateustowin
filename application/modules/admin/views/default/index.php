@@ -255,7 +255,7 @@
 
 		var xmlhttp = createXMLHttpObj();
 	        do {
-	            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/admin/default/sendarray',false);
+	            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/admin/sendarray',false);
 	            xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 	            xmlhttp.send('send='+mySelect.value);
 	        }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
