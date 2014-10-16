@@ -54,10 +54,10 @@ class Answersheet extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'answers' => array(self::HAS_MANY, '\\application\\models\\db\\Answer', 'ansSheetId'),
-			'survey' => array(self::BELONGS_TO, '\\application\\models\\db\\Survey', 'surveyId'),
-			'branch' => array(self::BELONGS_TO, '\\application\\models\\db\\Branches', 'branchId'),
-			'customer' => array(self::BELONGS_TO, '\\application\\models\\db\\Users', 'customerId'),
+			'Answers' => array(self::HAS_MANY, '\\application\\models\\db\\Answer', 'ansSheetId'),
+			'Survey' => array(self::BELONGS_TO, '\\application\\models\\db\\Survey', 'surveyId'),
+			'Branch' => array(self::BELONGS_TO, '\\application\\models\\db\\Branches', 'branchId'),
+			'Customer' => array(self::BELONGS_TO, '\\application\\models\\db\\Users', 'customerId'),
 		);
 	}
 

@@ -59,8 +59,8 @@ class Organisation extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'prizeImg0' => array(self::BELONGS_TO, '\\application\\models\\db\\Image', 'prizeImg'),
-			'logoImg0' => array(self::BELONGS_TO, '\\application\\models\\db\\Image', 'logoImg'),
+			'PrizeImg' => array(self::BELONGS_TO, '\\application\\models\\db\\Image', 'prizeImg'),
+			'LogoImg' => array(self::BELONGS_TO, '\\application\\models\\db\\Image', 'logoImg'),
 			'Surveys' => array(self::HAS_MANY, '\\application\\models\\db\\Survey', 'orgId'),
 		);
 	}

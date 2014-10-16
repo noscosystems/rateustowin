@@ -53,8 +53,8 @@ class Answer extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'quest' => array(self::HAS_ONE, '\\application\\models\\db\\Question', 'questId'),
-			'ansSheet' => array(self::HAS_ONE, '\\application\\models\\db\\Answersheet', 'ansSheetId'),
+			'Quest' => array(self::HAS_ONE, '\\application\\models\\db\\Question', 'questId'),
+			'AnsSheet' => array(self::HAS_ONE, '\\application\\models\\db\\Answersheet', 'ansSheetId'),
 		);
 	}
 

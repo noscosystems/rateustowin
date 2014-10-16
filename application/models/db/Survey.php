@@ -55,9 +55,9 @@ class Survey extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'answersheets' => array(self::HAS_MANY, '\\application\\models\\db\\Answersheet', 'surveyId'),
-			'questions' => array(self::HAS_MANY, '\\application\\models\\db\\Question', 'surveyId'),
-			'org' => array(self::HAS_ONE, '\\application\\models\\db\\Organisation', 'orgId'),
+			'Answersheets' => array(self::HAS_MANY, '\\application\\models\\db\\Answersheet', 'surveyId'),
+			'Questions' => array(self::HAS_MANY, '\\application\\models\\db\\Question', 'surveyId'),
+			'Org' => array(self::HAS_ONE, '\\application\\models\\db\\Organisation', 'orgId'),
 		);
 	}
 

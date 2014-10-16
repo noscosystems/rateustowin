@@ -55,9 +55,9 @@ class Question extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'answers' => array(self::HAS_ONE, '\\application\\models\\db\\Answer', 'questId'),
-			'answerType0' => array(self::HAS_ONE, '\\application\\models\\db\\Answertype', 'answerType'),
-			'survey' => array(self::HAS_ONE, '\\application\\models\\db\\Survey', 'surveyId'),
+			'Answers' => array(self::HAS_ONE, '\\application\\models\\db\\Answer', 'questId'),
+			'AnswerType0' => array(self::HAS_ONE, '\\application\\models\\db\\Answertype', 'answerType'),
+			'Survey' => array(self::HAS_ONE, '\\application\\models\\db\\Survey', 'surveyId'),
 		);
 	}
 
