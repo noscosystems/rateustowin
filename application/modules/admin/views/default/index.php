@@ -270,7 +270,7 @@
                    input = [];
 
                     products=JSON.parse(xmlhttp.responseText);
-                    console.log(products);
+                    //console.log(products);
                     tbody[0].innerHTML = '';
                     var productsLength = products.length;
 
