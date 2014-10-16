@@ -162,7 +162,7 @@
 
 
 
-		public function actionsendarray(){
+		public function actionSendarray(){
 			$this->renderPartial('sendarray');
 		}
 	}

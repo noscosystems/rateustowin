@@ -217,13 +217,14 @@
 	    <?php echo Yii::app()->user->getFlash('ChangeSuccess'); ?>
 	</div>
 <?php endif; ?>
-  	<form action="/rateustowin/public_html/admin" method="post">
+  	<form action="<?php echo Yii::app()->baseUrl;?>/admin" method="post">
   	<div class="row">
   		<div class="col-sm-1 control-label">Select organisation:</div>
   		<div class="col-sm-3">
 	  		<select name="myOrganisation" class="form-control" id="mySelect">
 	  			<option value="Please select" selected>Please select</option>
-	  			<?php for ($i=0; $i<count($organisation); $i++):?>
+	  			<?php $organisationCount = count($organisation);
+	  			for ($i=0; $i<$organisationCount; $i++):?>
 	  			<option value="<?php echo$organisation[$i]->id;?>"> <?php echo$organisation[$i]->name;?></option>
 	  			<?php endfor; ?>
 	  		</select>
@@ -270,9 +271,9 @@
                    input = [];
 
                     products=JSON.parse(xmlhttp.responseText);
-                    //console.log(products);
-                    tbody[0].innerHTML = '';
                     var productsLength = products.length;
+                    console.log(productsLength);
+                    tbody[0].innerHTML = '';
 
                     for (var i=0; i<productsLength; i++){ //Loop that rotates overall number of products.
                     	
@@ -309,11 +310,13 @@
 	        return false;
 	}
 
-	var checkboxes = document.getElementsByName('checkboxes[]');
+	
 
 	tbody[0].onchange = function(e){
-		//console.log(e);
-		for (var h=0; h<checkboxes.length; h++)
+		var checkboxes = document.getElementsByName('checkboxes[]');
+		var checkboxLength = checkboxes.length;
+
+		for (var h=0; h<checkboxLength; h++)
 			checkboxes[h].checked = false;
 		e.srcElement.checked = true;
 	}
