@@ -60,17 +60,32 @@
     <!-- Tab panes -->
     <div class="tab-content row col-sm-8">
         <?php for ($i=0; $i<$questlength; $i++):?>
-        <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?>" id="<?php echo$i; ?>">
+        <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" value="<?php echo $question[$i]['id']; ?>" id="<?php echo$i; ?>">
             <p><?php echo $question[$i]['questTxt'] ; ?></p>
+            
             <?php for ($l=0; $l<3; $l++): ?>
                 <div class="col-sm-4">
-                    <a value="<?php echo ($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>" href="#<?php echo($i+1); ?>" role="tab" data-toggle="tab">
-                        <img class="img-responsive" src="<?php echo $assetMgr->publish( $pathSmileys . '/' . ($l == 0 ? 'negative.png' : ($l == 1 ? 'neutral.png' : 'positive.png')) );?>" >
+                    <a href="#<?php echo($i+1); ?>" role="tab" data-toggle="tab" onclick="return send(this.value)" value="<?php echo ($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>">
+                        <img class="img-responsive" src="<?php echo $assetMgr->publish( $pathSmileys . '/' . ($l == 0 ? 'negative.png' : ($l == 1 ? 'neutral.png' : 'positive.png')) );?>">
                     </a>
                 </div>
-                
             <?php endfor; ?>
     </div>
     <?php endfor; ?>
 </div>
+
+<script>
+    var answers = [];
+    var answersJSON;
+    var clicked = document.getElementsByClassName('clicked');
+
+    function send(el){
+        if (answers.push( el )){
+            answersJSON = JSON.stringify(answers);
+            console.log(answersJSON);
+            return true;
+        else
+            return false;
+    }
+</script>
 
