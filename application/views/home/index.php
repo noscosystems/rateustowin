@@ -4,14 +4,13 @@
      */
     $this->pageTitle = false;
     $assetMgr = Yii::app()->assetPublisher;
+    Yii::app()->theme->basePath . '/assets';
+    // $assetUrl = $assetMgr->publish();
 ?>
 
 <div class="row" align="center">
     <?php
-        $organisation = \application\models\db\Organisation::model()->findByPk(3);
-        $logoImg = $organisation->LogoImg;
-        $prizeImg = $organisation->PrizeImg;
-
+        
         echo CHtml::image(
             // The asset publisher requires that a filepath, not a URL, is supplied. It will then take that file and put
             // it in a folder that's accessible to website visitors (it returns the URL of the newly created, web-accessible file).
@@ -48,19 +47,28 @@
           </div>
         </div>
     </div>
-    <?php $surveys = $organisation->Surveys;?>
-    <pre>
-        <?php var_dump($surveys); ?>
-    </pre>
-<?php for ($i=0; $i<3; $i++):?>
-    <ul class="nav nav-tabs" role="tablist" style="display:none">
-      <li class="active">
-        <a href="#home" role="tab" data-toggle="tab">Home</a>
+    <?php $questlength = count($question); ?>
+    <ul class="nav nav-tabs" role="tablist"> <!-- class for navbar: nav nav-tabs -->
+        <?php for ($i=0; $i<$questlength; $i++):?>
+            <li class="<?php echo($i==0)?('active'):('');?>">
+            <!-- <a href="#<?php //echo$i; ?>" role="tab" data-toggle="tab">Home</a> -->
+        <?php endfor; ?>
     </li>
     <!-- Tab panes -->
     <div class="tab-content">
-      <div class="tab-pane active" id="home">A</div>
+        <?php for ($i=0; $i<$questlength; $i++):?>
+        <div class="tab-pane <?php echo($i==0)?('active'):('');?>" id="<?php echo$i; ?>">
+            <p><?php echo $question[$i]['questTxt'] ; ?></p>
+            <div class="col-sm-4">
+                <!-- <img src="<?php //echo $assetUrl; ?>/images/smileys/simley-sad.png?>" > -->
+            </div>
+            <div class="col-sm-4">
+                <img src="" >
+            </div>
+            <div class="col-sm-4">
+                <img src="" >
+            </div>
     </div>
-<?php endfor; ?>
+    <?php endfor; ?>
 </div>
 

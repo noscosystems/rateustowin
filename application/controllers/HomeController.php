@@ -17,7 +17,25 @@
          */
         public function actionIndex()
         {
-            $this->render('index');
+            $organisation = \application\models\db\Organisation::model()->findByPk(3);
+            $logoImg = $organisation->LogoImg;
+            $prizeImg = $organisation->PrizeImg;
+
+            $question = Yii::app()->db->createCommand()
+                            ->select('q.id, q.questTxt, anstyp.type')
+                            ->from('question q')
+                            ->join('survey s', 'q.surveyId=s.id')
+                            ->join('answertype anstyp', 'q.answerType=anstyp.id')
+                            ->join('organisation org', 's.orgId=org.id')
+                            ->where('s.active=1', array())
+                            ->andWhere('org.id=:orgId', array(':orgId' => $organisation->id))
+                            ->order('q.id')
+                            ->queryAll();
+            // echo'<pre>';                
+            // var_dump($question);
+            // echo'</pre>';
+
+            $this->render('index', array('prizeImg' => $prizeImg, 'logoImg' => $logoImg, 'question' => $question));
         }
 
     }
