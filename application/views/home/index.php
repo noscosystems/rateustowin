@@ -4,27 +4,14 @@
      */
     $this->pageTitle = false;
     $assetMgr = Yii::app()->assetPublisher;
-    // Yii::app()->theme->basePath . '/assets';
-    // $assetUrl = $assetMgr->publish();
 ?>
 
 <div class="row" align="center">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
-            // The asset publisher requires that a filepath, not a URL, is supplied. It will then take that file and put
-            // it in a folder that's accessible to website visitors (it returns the URL of the newly created, web-accessible file).
-            // For example, you could specify the application path of where the file is and pass it to the asset publisher:
-            // Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('application.views.Uploads.images') . '/image.png');
-            //
-            // If the file is already inside the webroot (public_html), then you don't need to use the asset publisher
-            // as it is already accessible to website visitors, just pass the URL directly to CHtml::image().
             Yii::app()->assetPublisher->publish( $path . '/'. $logoImg->url),
-
-            // Alternative text, required for accessibility-valid HTML.
             'Alternative Text',
-
-            // HTML Options.
             array('class' => 'img-responsive')
         );
     ?>
@@ -34,7 +21,7 @@
     <div class="col-md-4">
         <?php 
         echo CHtml::image(
-             Yii::app()->assetPublisher->publish( $path . '/'. $prizeImg->url),
+            Yii::app()->assetPublisher->publish( $path . '/'. $prizeImg->url),
             'Alternative Text',
             array('class' => 'img-responsive')
         );
@@ -58,18 +45,30 @@
         <?php endfor; ?>
     </li>
     <!-- Tab panes -->
-    <div class="tab-content row col-sm-8">
+    <div class="tab-content row col-sm-8" id="myClickable">
         <?php for ($i=0; $i<$questlength; $i++):?>
         <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" value="<?php echo $question[$i]['id']; ?>" id="<?php echo$i; ?>">
             <p><?php echo $question[$i]['questTxt'] ; ?></p>
-            
-            <?php for ($l=0; $l<3; $l++): ?>
-                <div class="col-sm-4">
-                    <a href="#<?php echo($i+1); ?>" role="tab" data-toggle="tab" onclick="return send(this.value)" value="<?php echo ($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>">
-                        <img class="img-responsive" src="<?php echo $assetMgr->publish( $pathSmileys . '/' . ($l == 0 ? 'negative.png' : ($l == 1 ? 'neutral.png' : 'positive.png')) );?>">
+            <?php if($question[$i]['type'] == 'freetext'): ?>
+                <div class="col-sm-12">
+                    <input type="text"
+                    alt="<?php echo $question[$i]['id'].',';?>"
+                    class="form-control">
+                    <a href="#<?php echo($i+1); ?>" role="tab" data-toggle="tab" >Next
                     </a>
                 </div>
-            <?php endfor; ?>
+            <?php else: ?>
+                <?php for ($l=0; $l<3; $l++): ?>
+                    <div class="col-sm-4">
+                        <a href="#<?php echo($i+1); ?>" role="tab" data-toggle="tab" >
+                            <input class="img-responsive"
+                            title="<?php echo $question[$i]['id'].',';echo($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>"
+                            type="image"
+                            src="<?php echo $assetMgr->publish( $pathSmileys . '/' . ($l == 0 ? 'negative.png' : ($l == 1 ? 'neutral.png' : 'positive.png')) );?>">
+                        </a>
+                    </div>
+                <?php endfor; ?>
+            <?php endif; ?>
     </div>
     <?php endfor; ?>
 </div>
@@ -77,15 +76,103 @@
 <script>
     var answers = [];
     var answersJSON;
-    var clicked = document.getElementsByClassName('clicked');
+    var myClickable = document.getElementById('myClickable');
+    var ocurredEvent;
 
+    myClickable.onclick = function(e){
+        if (e){
+            if (e.srcElement.alt!=''){
+                if (e.explicitOriginalTarget)
+                    var el = e.explicitOriginalTarget;
+                else
+                    var el = e.srcElement;
+
+                // var str = el.value;
+                // var el1 = str.split(',');
+                // console.log(el1);
+                // if (el1[1] == '')
+                    answers[el.alt] = el.value;
+                // answers[el1[0]] = el1[1];
+                console.log(answers);
+            }
+            else {
+               if (e.explicitOriginalTarget)
+                    var el = e.explicitOriginalTarget;
+                else
+                    var el = e.srcElement;
+
+                var str = el.title;
+                var el1 = str.split(',');
+                // console.log(el1);
+
+                answers[el1[0]] = el1[1];
+                console.log(answers); 
+            }
+        }
+        
+    }
+        
+    
+    // myClickable.onchange = function(e){
+
+    //         if (e.explicitOriginalTarget)
+    //             var el = e.explicitOriginalTarget;
+    //         else
+    //             var el = e.srcElement;
+
+    //         var str = el.title;
+    //         var el1 = str.split(',');
+
+    //         if (el1[1]=='')
+    //             answers[el1[0]] = el.value;
+    //         else
+    //             answers[el1[0]] = el1[1];
+    //         console.log(answers);
+    //         ocurredEvent = '';
+    // }
+
+        
+        
+    
+
+
+
+
+    function srcElem (e) {
+        return (e.explicitOriginalTarget)?(e.explicitOriginalTarget):(e.srcElement);
+    }
+
+//     if (e.explicitOriginalTarget)
+        //         var el = e.explicitOriginalTarget;
+        //     else
+        //         var el = e.srcElement;
+        //     var str = el.title;
+        //     var el1 = str.split(',');
+        //     console.log(el1);
+
+        //     answers[el1[0]] = el1[1];
+        //     console.log(answers);
+
+/****************************************************************
     function send(el){
         if (answers.push( el )){
-            answersJSON = JSON.stringify(answers);
+            answersJSON = JSON.(answers);
             console.log(answersJSON);
             return true;
+        }
         else
             return false;
     }
+****************************************************************/
+
+// srcElem1.onblur = function (event2){
+//             var srcElem2 = srcElem(event2);
+//             var str = srcElem2.title;
+//             var el1 = str.split(',');
+//             if (el1[1]=='')
+//                 el1[1] = srcElem2.value;
+//             answers[el1[0]] = el1[1];
+//             console.log(answers);
+//         }
 </script>
 

@@ -313,12 +313,20 @@
 	
 
 	tbody[0].onchange = function(e){
+		//var e = event;
+		//console.log(e);
 		var checkboxes = document.getElementsByName('checkboxes[]');
 		var checkboxLength = checkboxes.length;
 
 		for (var h=0; h<checkboxLength; h++)
 			checkboxes[h].checked = false;
-		e.srcElement.checked = true;
+		//e.preventDefault;
+
+		if (e.explicitOriginalTarget)
+			e.explicitOriginalTarget.checked = true;
+		else
+			e.srcElement.checked = true;
+		// (e.)?e.explicitOriginalTarget.checked = true;
 	}
 
 	function createXMLHttpObj(){

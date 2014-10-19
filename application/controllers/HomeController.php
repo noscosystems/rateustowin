@@ -31,9 +31,6 @@
                             ->andWhere('org.id=:orgId', array(':orgId' => $organisation->id))
                             ->order('q.id')
                             ->queryAll();
-            // echo'<pre>';                
-            // var_dump($question);
-            // echo'</pre>';
 
             $this->render('index', array('prizeImg' => $prizeImg, 'logoImg' => $logoImg, 'question' => $question));
         }
