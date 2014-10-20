@@ -1,35 +1,25 @@
 <?php
-	namespace application\models\db;
+namespace application\models\db;
 
     use \Yii;
     use \CException as Exception;
     use \application\components\db\ActiveRecord;
 /**
- * This is the model class for table "customer".
+ * This is the model class for table "option".
  *
- * The followings are the available columns in table 'customer':
+ * The followings are the available columns in table 'option':
  * @property integer $id
- * @property string $firstname
- * @property string $middlename
- * @property string $lastname
- * @property string $email
- * @property string $phoneNum
- * @property integer $created
- * @property integer $sex
- * @property integer $ageGroup
- * @property integer $optIn
- *
- * The followings are the available model relations:
- * @property Answersheet[] $answersheets
+ * @property string $column
+ * @property string $name
  */
-class Customer extends ActiveRecord
+class Option extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'customer';
+		return 'option';
 	}
 
 	/**
@@ -40,13 +30,12 @@ class Customer extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('firstname, lastname, email, phoneNum, created, sex, ageGroup, optIn', 'required'),
-			array('created, sex, ageGroup, optIn', 'numerical', 'integerOnly'=>true),
-			array('firstname, middlename, lastname', 'length', 'max'=>128),
-			array('email, phoneNum', 'length', 'max'=>255),
+			array('column, name', 'required'),
+			array('column', 'length', 'max'=>64),
+			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, firstname, middlename, lastname, email, phoneNum, created, sex, ageGroup, optIn', 'safe', 'on'=>'search'),
+			array('id, column, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +47,6 @@ class Customer extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'answersheets' => array(self::HAS_MANY, 'Answersheet', 'customerId'),
 		);
 	}
 
@@ -69,15 +57,8 @@ class Customer extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'firstname' => 'Firstname',
-			'middlename' => 'Middlename',
-			'lastname' => 'Lastname',
-			'email' => 'Email',
-			'phoneNum' => 'Phone Num',
-			'created' => 'Created',
-			'sex' => 'Sex',
-			'ageGroup' => 'Age Group',
-			'optIn' => 'Opt In',
+			'column' => 'Column',
+			'name' => 'Name',
 		);
 	}
 
@@ -100,15 +81,8 @@ class Customer extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('firstname',$this->firstname,true);
-		$criteria->compare('middlename',$this->middlename,true);
-		$criteria->compare('lastname',$this->lastname,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('phoneNum',$this->phoneNum,true);
-		$criteria->compare('created',$this->created);
-		$criteria->compare('sex',$this->sex);
-		$criteria->compare('ageGroup',$this->ageGroup);
-		$criteria->compare('optIn',$this->optIn);
+		$criteria->compare('column',$this->column,true);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -119,7 +93,7 @@ class Customer extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Customer the static model class
+	 * @return Option the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

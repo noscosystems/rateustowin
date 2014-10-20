@@ -20,6 +20,8 @@
             $organisation = \application\models\db\Organisation::model()->findByPk(3);
             $logoImg = $organisation->LogoImg;
             $prizeImg = $organisation->PrizeImg;
+            $ageGroup = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'ageGroup' ));
+            $sex = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'sex' ));
 
             $question = Yii::app()->db->createCommand()
                             ->select('q.id, q.questTxt, anstyp.type, s.id as surveyId')
@@ -32,7 +34,14 @@
                             ->order('q.id')
                             ->queryAll();
 
-            $this->render('index', array('prizeImg' => $prizeImg, 'logoImg' => $logoImg, 'question' => $question));
+            $this->render('index', array(
+                                        'prizeImg' => $prizeImg,
+                                        'logoImg' => $logoImg,
+                                        'question' => $question,
+                                        'sex' => $sex,
+                                        'ageGroup' => $ageGroup
+                                    )
+            );
         }
 
     }

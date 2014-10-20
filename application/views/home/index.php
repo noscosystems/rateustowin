@@ -83,9 +83,9 @@
         <div class="col-sm-2 col-sm-offset-2 control-label">Sex:</div>
             <div class="col-sm-6">
                 <select type="text" class="form-control" id="sex">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Transgender">Transgender</option>
+                    <?php foreach($sex as $s): ?>
+                        <option value="<?php echo$s->id; ?>"><?php echo$s->name; ?></option>
+                    <?php endforeach;?>
                 </select>
             </div>
         </div>
@@ -94,9 +94,9 @@
         <div class="col-sm-2 col-sm-offset-2 control-label">Age group:</div>
             <div class="col-sm-6">
                 <select type="text" class="form-control" id="ageGroup">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Transgender">Transgender</option>
+                    <?php foreach ($ageGroup as $age): ?>
+                        <option value="<?php echo$age->id;?>"><?php echo$age->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -136,15 +136,18 @@
         console.log(answers) ;
     }
 
-    function save(){
-        var firstName = document.getElementById('firstName');
-        var sex = document.getElementById('sex');
-        var ageGroup= document.getElementById('ageGroup');
-        var email = document.getElementById('email');
-        var save = document.getElementById('save');
+    // function save(){
+    //     var firstName = document.getElementById('firstName');
+    //     var sex = document.getElementById('sex');
+    //     var ageGroup= document.getElementById('ageGroup');
+    //     var email = document.getElementById('email');
+    //     var save = document.getElementById('save');
 
-
-    }
+    //     save.onclick = function(){
+    //         answers['customer'] = ['firstName':firstName.value];
+    //         console.log(answers);
+    //     }
+    // }
 
 
 </script>
