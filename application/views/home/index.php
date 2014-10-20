@@ -112,7 +112,7 @@
             <div class="col-sm-offset-8 control-label"></div>
             <div class="col-sm-4">
                 <input type="hidden" value="<?php echo$question[0]['surveyId']; ?>" id="surveyId">
-                <button class="btn btn-primary btn-sm" id="save">Save</button>
+                <button class="btn btn-primary btn-sm" onclick="javascript:save();"id="saveButt">Save</button>
             </div>
         </div>
     </div>
@@ -136,18 +136,22 @@
         console.log(answers) ;
     }
 
-    // function save(){
-    //     var firstName = document.getElementById('firstName');
-    //     var sex = document.getElementById('sex');
-    //     var ageGroup= document.getElementById('ageGroup');
-    //     var email = document.getElementById('email');
-    //     var save = document.getElementById('save');
-
-    //     save.onclick = function(){
-    //         answers['customer'] = ['firstName':firstName.value];
-    //         console.log(answers);
-    //     }
-    // }
+    function save(){
+        console.log('da');
+        var firstName = document.getElementById('firstName');
+        var sex = document.getElementById('sex');
+        var ageGroup= document.getElementById('ageGroup');
+        var email = document.getElementById('email');
+        var saveButt = document.getElementById('saveButt');
+        answers['customer'] = {'firstName':firstName.value, 'sex':sex.value};
+        console.log(answers['customer']);
+        // saveButt.onclick = function(){
+        //     return false;
+        //     console.log('da');
+        //     // answers['customer'] = {'firstName':firstName.value};
+        //     // console.log(answers);
+        // }
+    }
 
 
 </script>
