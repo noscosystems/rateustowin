@@ -22,7 +22,7 @@
             $prizeImg = $organisation->PrizeImg;
 
             $question = Yii::app()->db->createCommand()
-                            ->select('q.id, q.questTxt, anstyp.type')
+                            ->select('q.id, q.questTxt, anstyp.type, s.id as surveyId')
                             ->from('question q')
                             ->join('survey s', 'q.surveyId=s.id')
                             ->join('answertype anstyp', 'q.answerType=anstyp.id')
