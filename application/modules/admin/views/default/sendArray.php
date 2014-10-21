@@ -7,7 +7,8 @@
 	$survey = [];
 
 	foreach ($rawSurvey as $currSurv)
-		$survey[] =	array(array(0 => $currSurv->name, 1=> array('active'=>$currSurv->active, 'id' => $currSurv->id)));
+		$survey[] =	array(
+			array(3 => $currSurv->name, 4=> array('active'=>$currSurv->active, 'id' => $currSurv->id)));
 
 	$surveyJSON = json_encode($survey);
 		echo $surveyJSON;

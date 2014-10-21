@@ -109,10 +109,21 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-offset-8 control-label"></div>
-            <div class="col-sm-4">
+            <div class="col-sm-2 col-sm-offset-2">
+                <input type="checkbox" id="optIn">
+            </div>
+            <div class="col-sm-6 control-label" >
+                <p>
+                    Please  thick this checkbox so we can keep you informed of offers.
+                    We will not pass your information to other parties.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4" style="margin-left:507px;">
                 <input type="hidden" value="<?php echo$question[0]['surveyId']; ?>" id="surveyId">
-                <button class="btn btn-primary btn-sm" onclick="javascript:save();"id="saveButt">Save</button>
+                <button class="btn btn-primary btn-md" onclick="javascript:save();"id="saveButt">Save</button>
             </div>
         </div>
     </div>
@@ -120,7 +131,7 @@
 
 <script>
 
-    var answers = [];
+    var answers = {};
     var answersJSON;
     var myClickable = document.getElementById('myClickable');
     var panes       = document.getElementsByClassName('tab-pane');
@@ -129,6 +140,9 @@
     
     function fillAnswers (elem){
         answers[elem.alt] = elem.value;
+        // var key = ;
+        // var val = elem.value;
+        // answers.push({elem.alt:elem.value});
         var currProgBarVal = progBar[0].style.width;
         currProgBarVal = parseFloat(currProgBarVal.substring(0, currProgBarVal.length - 1));
         currProgBarVal = currProgBarVal+progBarThick;
@@ -137,20 +151,39 @@
     }
 
     function save(){
-        console.log('da');
+        
+        var surveyId = document.getElementById('surveyId');
         var firstName = document.getElementById('firstName');
         var sex = document.getElementById('sex');
         var ageGroup= document.getElementById('ageGroup');
         var email = document.getElementById('email');
+        var optIn = document.getElementById('optIn');
         var saveButt = document.getElementById('saveButt');
-        answers['customer'] = {'firstName':firstName.value, 'sex':sex.value};
-        console.log(answers['customer']);
-        // saveButt.onclick = function(){
-        //     return false;
-        //     console.log('da');
-        //     // answers['customer'] = {'firstName':firstName.value};
-        //     // console.log(answers);
-        // }
+
+        // var customer=
+       answers['customer']={
+            surveyId:surveyId.value,
+            firstName:firstName.value,
+            sex:sex.value,
+            ageGroup:ageGroup.value,
+            email:email.value,
+            optIn:optIn.checked
+        };
+
+        answersJSON = JSON.stringify(answers);
+        console.log(answersJSON);
+
+        var xmlhttp = xmlHttpReq();
+
+        do{
+            xmlhttp.open("POST","<?php echo Yii::app()->baseURL; ?>/home/fillanswersheet",false);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("answers="+answersJSON);
+        }while (xmlhttp.readyState!=4 && xmlhttp.status!=200);
+    }
+
+    function xmlHttpReq(){
+        return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject("Microsoft.XMLHTTP"));
     }
 
 

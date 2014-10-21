@@ -44,4 +44,65 @@
             );
         }
 
+        public function actionfillanswersheet(){
+            $answers = json_decode($_REQUEST['answers']);
+            $ansSheet = new \application\models\db\Answersheet;
+            $customer = new \application\models\db\Customer;
+            
+            $question = [];
+
+
+            foreach ($answers as $index => $answer){
+                if ($index == 'customer' ){
+                    foreach ($answer as $key => $attr){
+                        switch ($key){
+                            case 'surveyId':
+                                $ansSheet->surveyId = $attr;
+                                break;
+                            case 'firstName':
+                                $customer->firstname = $attr;
+                                break;
+                            case 'sex':
+                                $customer->sex = $attr;
+                                break;
+                            case 'ageGroup':
+                                $customer->ageGroup = $attr;
+                                break;
+                            case 'email':
+                                $customer->email = $attr;
+                                break;
+                            case 'optIn':
+                                $customer->optIn = $attr;
+                                break;
+                        }
+
+                    }
+                }
+                else{
+                    $question[$index] = $answer;
+                }
+            }
+            $customer->created = time();
+            if($customer->validate()){
+                if ($customer->save()){
+                    $ansSheet->customerId = $customer->id;
+                    $ansSheet->branchId = 1;
+
+                    if ($ansSheet->validate){
+                        if ($ansSheet->save()){
+                            foreach ($question as $key => $value){
+                                $answer = new \application\models\db\Answer;
+                                $answer->ansSheetId = $ansSheet->id;
+                                $answer->questId = $key;
+                                $answer->answerTxt = $value;
+                                $answer->save();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
+
+    
