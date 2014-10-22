@@ -214,7 +214,7 @@
                 else{
                     success.innerHTML = '';
                     success.innerHTML = errors;
-                    succes.appendChild(closeButt);
+                    success.appendChild(closeButt);
                     success.style.display = 'block';
                 }
             }
