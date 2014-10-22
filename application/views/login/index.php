@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-sm-offset-2 col-sm-6">
-            <span style="font-size:48px;">System 62</span>
+            <span style="font-size:48px;">Rate us to win!</span>
         </div>
     </div>
 

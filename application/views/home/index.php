@@ -43,11 +43,11 @@
     <!-- Tab panes -->
     <div class="tab-content col-sm-8">
         <div class="alert alert-danger" id="fail" style="display:none;">
-
+            <button type="button" class="close" aria-hidden="true">&times;</button>
             
         </div>
         <div class="alert alert-success" id="success" style="display:none;">
-
+            <button type="button" class="close" aria-hidden="true">&times;</button>
             
         </div>
         <?php for ($i=0; $i<$questlength; $i++):?>
@@ -119,7 +119,7 @@
         <br>
         <div class="row">
             <div class="col-sm-2 col-sm-offset-2">
-                <input type="checkbox" id="optIn">
+                <input type="checkbox" id="optIn" checked>
             </div>
             <div class="col-sm-6 control-label" >
                 <p>
@@ -170,9 +170,13 @@
         var saveButt = document.getElementById('saveButt');
         var success = document.getElementById('success');
         var fail = document.getElementById('fail');
-        var closeButt = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+        var myAlertDiv = document.getElementById('myAlertDiv');
+        var closeButt = document.createElement('BUTTON');
+            closeButt.innerHTML ='&times;';
+            closeButt.setAttribute('class','close');
+            closeButt.setAttribute('aria-hidden','true');
+            closeButt.setAttribute('onclick',"parentNode.style.display='none';parentNode.innerHTML = '';");
 
-        // var customer=
        answers['customer']={
             surveyId:surveyId.value,
             firstName:firstName.value,
@@ -202,13 +206,15 @@
                     fail.innerHTML = '';
                     var loopEnd = errors.length;
                     for (var i=0; i<loopEnd; i++){
-                        fail.innerHTML+=(i == loopEnd -1)?(errors[i]+closeButt):(errors[i]);
+                        fail.appendChild(closeButt);
+                        fail.innerHTML+=errors[i];
                         fail.style.display = 'block';
                     }
                 }
                 else{
                     success.innerHTML = '';
-                    success.innerHTML = errors+closeButt;
+                    success.innerHTML = errors;
+                    succes.appendChild(closeButt);
                     success.style.display = 'block';
                 }
             }
@@ -218,6 +224,8 @@
     function xmlHttpReq(){
         return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject("Microsoft.XMLHTTP"));
     }
+
+
 
 
 </script>

@@ -35,6 +35,9 @@
 
     <body>
         <div id="wrapper">
+            <div align="right">
+                <?php echo CHtml::link('Admin', array('/admin'), array('style'=>'color:#CCC;')); ?>
+            </div> 
             <!-- Navigation-- >
 <?php /****************************************************************************************************************
             <nav class="navbar navbar-default" role="navigation">
