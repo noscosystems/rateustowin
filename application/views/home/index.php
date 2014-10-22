@@ -71,8 +71,8 @@
         </div>
     <?php endfor; ?>
     <div class="tab-pane fade" id="Credentials">
-        <h4>Thank you for completing this survey.</h4>
-        <h3>Please enter the following information so we can inform you if you win</h3>
+        <h3>Thank you for completing this survey.</h3>
+        <h4>Please enter the following information so we can inform you if you win</h4>
         <div class="row">
         <div class="col-sm-2 col-sm-offset-2 control-label">First Name:</div>
             <div class="col-sm-6">
