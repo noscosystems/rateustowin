@@ -50,8 +50,8 @@
             $customer = new \application\models\db\Customer;
             
             $question = [];
-
-
+            $erros = [];
+            
             foreach ($answers as $index => $answer){
                 if ($index == 'customer' ){
                     foreach ($answer as $key => $attr){
@@ -82,25 +82,41 @@
                     $question[$index] = $answer;
                 }
             }
+            $customer->ipAddress = $_SERVER['REMOTE_ADDR'];
             $customer->created = time();
             if($customer->validate()){
                 if ($customer->save()){
                     $ansSheet->customerId = $customer->id;
                     $ansSheet->branchId = 1;
 
-                    if ($ansSheet->validate){
+                    if ($ansSheet->validate()){
                         if ($ansSheet->save()){
                             foreach ($question as $key => $value){
                                 $answer = new \application\models\db\Answer;
                                 $answer->ansSheetId = $ansSheet->id;
                                 $answer->questId = $key;
                                 $answer->answerTxt = $value;
-                                $answer->save();
+                                if ($answer->validate())
+                                    $answer->save();
+                                else{
+                                    foreach ($answer->errors as $error)
+                                        $error[] = $error;
+                                }
                             }
                         }
                     }
                 }
             }
+            else {
+                foreach($customer->errors as $error);
+                    $errors[] = $error;
+            }
+
+            if (!empty($errors))
+                echo$errorsJSON = json_encode($errors);
+            else
+                echo json_encode('Survey completed successfully!');
+
         }
 
     }

@@ -30,7 +30,7 @@
         ?>
     </div>
     <?php $questlength = count($question); ?>
-    <div class="col-md-8">
+    <div class="col-sm-8">
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo 100/$questlength;?>%;">
             <span class="sr-only">60% Complete</span>
@@ -41,7 +41,11 @@
         <?php $pathSmileys = Yii::getPathOfAlias('application.views.Uploads.images.smileys'); ?>
     
     <!-- Tab panes -->
-    <div class="tab-content row col-sm-8">
+    <div class="tab-content col-sm-8">
+        <div class="alert alert-danger" id="fail" style="display:none;">
+
+            
+        </div>
         <?php for ($i=0; $i<$questlength; $i++):?>
         <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" id="<?php echo$i; ?>">
             <p><?php echo $question[$i]['questTxt'] ; ?></p>
@@ -160,6 +164,8 @@
         var email = document.getElementById('email');
         var optIn = document.getElementById('optIn');
         var saveButt = document.getElementById('saveButt');
+        var fail = document.getElementById('fail');
+        var closeButt = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 
         // var customer=
        answers['customer']={
@@ -181,6 +187,25 @@
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send("answers="+answersJSON);
         }while (xmlhttp.readyState!=4 && xmlhttp.status!=200);
+
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+
+            if (xmlhttp.responseText){
+                var errors = JSON.parse(xmlhttp.responseText);
+                if (typeof(errors) == 'object'){
+                    console.log(typeof (errors));
+                    fail.innerHTML = '';
+                    var loopEnd = errors.length;
+                    for (var i=0; i<loopEnd; i++){
+                        fail.innerHTML+=(i == loopEnd -1)?(errors[i]+closeButt):(errors[i]);
+                        fail.style.display = 'block';
+                    }
+                }
+                else{
+                    alert(errors);
+                }
+            }
+        }
     }
 
     function xmlHttpReq(){
