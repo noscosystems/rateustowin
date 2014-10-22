@@ -46,7 +46,7 @@
 
             
         </div>
-        <div class="alert alert-danger" id="success" style="display:none;">
+        <div class="alert alert-success" id="success" style="display:none;">
 
             
         </div>
