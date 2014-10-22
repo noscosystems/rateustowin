@@ -46,6 +46,10 @@
 
             
         </div>
+        <div class="alert alert-danger" id="success" style="display:none;">
+
+            
+        </div>
         <?php for ($i=0; $i<$questlength; $i++):?>
         <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" id="<?php echo$i; ?>">
             <p><?php echo $question[$i]['questTxt'] ; ?></p>
@@ -164,6 +168,7 @@
         var email = document.getElementById('email');
         var optIn = document.getElementById('optIn');
         var saveButt = document.getElementById('saveButt');
+        var success = document.getElementById('success');
         var fail = document.getElementById('fail');
         var closeButt = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 
@@ -202,7 +207,9 @@
                     }
                 }
                 else{
-                    alert(errors);
+                    success.innerHTML = '';
+                    success.innerHTML = errors+closeButt;
+                    success.style.display = 'block';
                 }
             }
         }
