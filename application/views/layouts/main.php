@@ -36,6 +36,7 @@
     <body>
         <div id="wrapper">
             <!-- Navigation-- >
+<?php /****************************************************************************************************************
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -99,6 +100,7 @@
                 </div><!-- /.container-fluid -->
             </nav>
 
+
             <!-- Breadcrumbs -->
             <div class="container">
                 <ol class="breadcrumb">
@@ -107,7 +109,7 @@
                     <li><a href="admin">Admin</a></li>
                 </ol>
             </div>
-
+****************************************************************************************************************/?>
             <!-- Main Content -->
             <div class="content container" role="main">
                 <?php echo $content; ?>
