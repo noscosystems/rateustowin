@@ -17,19 +17,20 @@
          */
         public function actionIndex()
         {
-            $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $branch = substr($url, 0, strpos($url, '.'));
-            
-                // if ($branch)
-                //     $search = Branch::model()->findByAttributes(array ('name' => $branch));
 
-                // if ($search)
-                //     $organisation->branchId = $search->id;
-                // else
-                //     $frm->addError('No such branch', 'This branch does not exist');
-            $organisation = \application\models\db\Organisation::model()->findByPk(3);
+            if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
+                $search = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
+                $organisation = $search->Organisation;
+            }
+            else{
+                $organisation = \application\models\db\Organisation::model()->findByPk(3);
+            }
+
             $logoImg = $organisation->LogoImg;
             $prizeImg = $organisation->PrizeImg;
+            // $options = \application\models\db\Option::model()->findAllByAttributes(array('column' => array('sex','ageGroup') ));
             $ageGroup = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'ageGroup' ));
             $sex = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'sex' ));
 
