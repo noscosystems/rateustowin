@@ -30,7 +30,7 @@
         ?>
 
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-center">
                     <button
                         type="button"
                         id="pop"
