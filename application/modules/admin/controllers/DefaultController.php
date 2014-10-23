@@ -78,11 +78,13 @@
 			    		$imgType = exif_imagetype ($file['tmp_name']);
 			    		if ( $imgType == 2 || $imgType == 3 ){
 			    			$img = new Image;
-
-			    			$img->url = Yii::getPathOfAlias('application.views.Uploads.images').'/'.$file['name'];
+			    			$ext = strstr($file['name'], '.');
+			    			
+			    			$img->url = substr(md5(time()), 0, 7).$ext;
 			    			$img->desc = $_POST['desc'][$i];
+			    			$path = Yii::getPathOfAlias('application.views.Uploads.images').'/';
 
-			    			if (empty($form->errors) && empty($img->errors) && move_uploaded_file($file['tmp_name'], $img->url)){
+			    			if (empty($form->errors) && empty($img->errors) && move_uploaded_file($file['tmp_name'], $path.$img->url)){
 			    				$img->save();
 			    				if ($i==0)
 			    					$organisation->prizeImg=$img->id;
