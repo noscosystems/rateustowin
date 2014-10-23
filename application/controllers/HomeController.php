@@ -19,8 +19,10 @@
         {
             $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $branch = substr($url, 0, strpos($url, '.'));
+            var_dump($branch);
 
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
+                echo'DA!';
                 $search = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
                 echo'<pre>';
                 var_dump($search);
@@ -32,6 +34,7 @@
                 echo'</pre>';
             }
             else{
+                echo'NE';
                 $organisation = \application\models\db\Organisation::model()->findByPk(5);
             }
 
