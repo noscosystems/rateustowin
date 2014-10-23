@@ -19,8 +19,6 @@
         {
             $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $branch = substr($url, 0, strpos($url, '.'));
-            var_dump($branch);
-            exit;
 
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
                 echo'DA!';
@@ -33,6 +31,7 @@
                 echo'<pre>';
                 var_dump($organistion);
                 echo'</pre>';
+                exit;
             }
             else{
                 echo'NE';
