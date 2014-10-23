@@ -21,20 +21,10 @@
             $branch = substr($url, 0, strpos($url, '.'));
 
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
-                echo'DA!';
                 $search = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
-                echo'<pre>';
-                var_dump($search);
-                echo'</pre>';
-
                 $organisation = $search->Organisation;
-                echo'<pre>';
-                var_dump($organisation);
-                echo'</pre>';
-                exit;
             }
             else{
-                echo'NE';
                 $organisation = \application\models\db\Organisation::model()->findByPk(5);
             }
 
