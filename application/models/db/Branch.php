@@ -62,7 +62,7 @@ class Branch extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'Organisation' => array(self::HAS_ONE, '\\application\\models\\db\\Organisation', 'id'),
+			'Organisation' => array(self::HAS_ONE, '\\application\\models\\db\\Organisation', 'organisationId'),
 			'Answersheets' => array(self::HAS_MANY, '\\application\\models\\db\\Answersheet', 'branchId'),
 		);
 	}
