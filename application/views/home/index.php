@@ -5,9 +5,16 @@
     $this->pageTitle = false;
     $assetMgr = Yii::app()->assetPublisher;
 ?>
-
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+</style>
 <div class="row" align="center">
-    <div background-color: #b0c4de; class="col-md-offset-4 col-md-8">
+    <div id="header" class="col-md-offset-4 col-md-8">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
@@ -152,20 +159,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-4">
-        <button
-            type="button"
-            id="pop"
-            class="btn btn-default"
-            data-container="body"
-            data-toggle="popover"
-            data-placement="bottom"
-            data-content="<?php echo$terms;?>">
-          Terms & conditions
-        </button>
-    </div>
-</div>
+
 <script>
 
 $(function(){
