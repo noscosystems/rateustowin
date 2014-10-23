@@ -7,10 +7,10 @@
 ?>
 <style>
 #header {
-    background-color:black;
+    background-color:lightgray;
     color:white;
-    text-align:center;
-    padding:5px;
+    // text-align:center;
+    // padding:5px;
 }
 </style>
 <div class="row" align="center">
