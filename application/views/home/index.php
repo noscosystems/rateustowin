@@ -7,7 +7,7 @@
 ?>
 
 <div class="row" align="center">
-    <div class="col-md-offset-4 col-md-8">
+    <div background-color: #b0c4de; class="col-md-offset-4 col-md-8">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
