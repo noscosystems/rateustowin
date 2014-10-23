@@ -10,7 +10,7 @@
     background-color:lightgray;
     color:white;
     // text-align:center;
-    // padding:5px;
+     padding:1px;
 }
 </style>
 <div class="row" align="center">
