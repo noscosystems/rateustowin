@@ -13,6 +13,12 @@
      padding:1px;
 }
 </style>
+
+<?php if(empty($question)):?>
+    <div align="center">
+        <h3>No surveys available currently</h3>
+    </div>
+<?php else: ?>
 <div class="row" align="center">
     <div id="header" class="col-md-offset-4 col-md-8">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
@@ -255,4 +261,4 @@ $(function(){
 
 
 </script>
-
+<?php endif; ?>
