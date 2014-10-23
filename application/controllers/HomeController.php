@@ -22,7 +22,14 @@
 
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
                 $search = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
+                echo'<pre>';
+                var_dump($search);
+                echo'</pre>';
+
                 $organisation = $search->Organisation;
+                echo'<pre>';
+                var_dump($organistion);
+                echo'</pre>';
             }
             else{
                 $organisation = \application\models\db\Organisation::model()->findByPk(5);
