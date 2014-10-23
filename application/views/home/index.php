@@ -29,8 +29,7 @@
         );
         ?>
 
-            <div class="row">
-                <div class="col-sm-4 text-center">
+
                     <button
                         type="button"
                         id="pop"
@@ -41,8 +40,6 @@
                         data-content="<?php echo$terms;?>">
                       Terms & conditions
                     </button>
-                </div>
-            </div>
 
 
 
