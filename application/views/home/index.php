@@ -137,8 +137,25 @@
         </div>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-sm-4">
+        <button
+            type="button"
+            id="pop"
+            class="btn btn-default"
+            data-container="body"
+            data-toggle="popover"
+            data-placement="bottom"
+            data-content="<?php echo$terms;?>">
+          Terms & conditions
+        </button>
+    </div>
+</div>
 <script>
+
+$(function(){
+    $("#pop").popover('hide'); 
+});
 
     var answers = {};
     var answersJSON;

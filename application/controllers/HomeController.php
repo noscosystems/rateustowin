@@ -17,6 +17,16 @@
          */
         public function actionIndex()
         {
+            $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $branch = substr($url, 0, strpos($url, '.'));
+            
+                // if ($branch)
+                //     $search = Branch::model()->findByAttributes(array ('name' => $branch));
+
+                // if ($search)
+                //     $organisation->branchId = $search->id;
+                // else
+                //     $frm->addError('No such branch', 'This branch does not exist');
             $organisation = \application\models\db\Organisation::model()->findByPk(3);
             $logoImg = $organisation->LogoImg;
             $prizeImg = $organisation->PrizeImg;
@@ -35,6 +45,7 @@
                             ->queryAll();
 
             $this->render('index', array(
+                                        'terms' => $organisation->terms,
                                         'prizeImg' => $prizeImg,
                                         'logoImg' => $logoImg,
                                         'question' => $question,

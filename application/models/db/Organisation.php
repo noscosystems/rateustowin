@@ -40,8 +40,9 @@ class Organisation extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, address, email, phoneNumber, logoImg, prizeImg', 'required'),
+			array('name, address, email, phoneNumber, logoImg, prizeImg, terms', 'required'),
 			array('logoImg, prizeImg', 'numerical', 'integerOnly'=>true),
+			array('terms', 'length', 'max' => 65535),
 			array('name', 'length', 'max'=>128),
 			array('email', 'length', 'max'=>255),
 			array('phoneNumber', 'length', 'max'=>11),

@@ -75,6 +75,10 @@
 	    <div class="col-sm-3">
 	        <?php echo $widget->input($form, 'email', array('class' => 'form-control') ); ?>
 	    </div>
+	    <div class="col-sm-2 control-label">Terms & conditions:</div>
+	    <div class="col-sm-3">
+	        <?php echo $widget->input($form, 'terms', array('class' => 'form-control') ); ?>
+	    </div>
 	</div>
 	<br>
 	<div class="row">

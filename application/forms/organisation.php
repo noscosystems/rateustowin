@@ -16,6 +16,10 @@
             'phoneNumber' => array(
                 'type' => 'text',
                 'maxlength' => 11
+            ),
+            'terms' => array(
+                'type' => 'textarea',
+                'maxlength' => 65535
             )
         ),
 
