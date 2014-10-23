@@ -29,7 +29,7 @@
 
                 $organisation = $search->Organisation;
                 echo'<pre>';
-                var_dump($organistion);
+                var_dump($organisation);
                 echo'</pre>';
                 exit;
             }
