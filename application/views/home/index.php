@@ -28,6 +28,24 @@
             array('class' => 'img-responsive')
         );
         ?>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <button
+                        type="button"
+                        id="pop"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        data-content="<?php echo$terms;?>">
+                      Terms & conditions
+                    </button>
+                </div>
+            </div>
+
+
+
     </div>
     <?php $questlength = count($question); ?>
     <div class="col-sm-8">
