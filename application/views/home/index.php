@@ -27,7 +27,7 @@ display:block;
     </div>
 <?php else: ?>
 <div class="row" align="center">
-    <div id="myDiv" class="col-md-8">
+    <div id="myDiv" class="col-md-12">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
