@@ -20,6 +20,14 @@
 //margin:auto;
 //display:block;
 }
+#smiley img
+{
+    width:20px;
+//max-width:100%; 
+//max-height:auto;
+//margin:auto;
+//display:block;
+}
 </style>
 
 <?php if(empty($question)):?>
@@ -100,7 +108,7 @@
                 </div>
             <?php else: ?>
                 <?php for ($l=0; $l<3; $l++): ?>
-                    <div class="col-sm-4">
+                    <div id="smiley" class="col-sm-4">
                         <a href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>" role="tab" data-toggle="tab" >
                             <input class="img-responsive"
                             value="<?php echo($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>"
