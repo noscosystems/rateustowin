@@ -15,6 +15,7 @@
   <li><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
   <li><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
   <li><a href="#selectedSurvey" role="tab" data-toggle="tab">Selected survey to make live</a></li>
+  <li><a href="#editOrg" role="tab" data-toggle="tab">Edit Organisation</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -248,13 +249,58 @@
   	<button name="submit" type="submit" value="LiveSurvey" class="btn btn-sm btn-success">Submit</button>
   </form>
   </div>
-
+  <div class="tab-pane" id="editOrg" style="padding:7px;">
+  	<div class="row">
+  	<div class="col-sm-4">
+	  	<form method="post" action="<?php echo Yii::app()->baseUrl;?>/admin">
+	  		<?php
+	  			$organisation = \application\models\db\Organisation::model()->findAll();
+	  			$orgCount = count($organisation);
+	  		?>
+		  	<select name="selectOrg" onchange="form.submit()" class="form-control">
+		  	<?php for($i=0; $i<$orgCount; $i++ ): ?>
+		  		<option value="<?php echo$organisation[$i]->id;?>"><?php echo$organisation[$i]->name;?></option>
+		  	<?php endfor; ?>
+		  	</select>
+	  	</form>
+	</div>
 </div>
-<script src="https://code.jquery.com/jquery.js"></script>
+<?php
+	if (isset($formOrgEdit)):
+	$formOrgEdit->attributes = array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data');
+	echo $formOrgEdit->renderBegin();
+	$widget = $formOrgEdit->activeFormWidget;
+?>
+<br>
+	<div class="row">
+		<div class="control-label col-sm-3">Upload your new prizeImg here.</div>
+		<div class="col-sm-4">
+			<input type="file" name="prizeImg">
+		</div>
+		<div class="control-label col-sm-3">Enter desc for you image here.</div>
+			 <?php echo $widget->input($formOrgEdit, 'terms', array('class' => '') ); ?>
+			 <?php echo $widget->input($formOrgEdit, 'id', array('class' => '') ); ?>
+		<div class="col-sm-4">
+			
+		</div>
+	</div>
+	<div class="row">
+	<div class="control-label col-sm-3">Upload your new prizeImg here.</div>
+			 <?php echo $widget->button($formOrgEdit, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+		<div class="col-sm-4">
+  </div>
+</div>
+<?php 
+	$formOrgEdit->renderEnd();
+	endif;
+?>
+</div>
+
 <script>
 
 	var mySelect = document.getElementById('mySelect');
 	var tbody = document.getElementsByTagName('tbody');
+	var body = document.getElementsByTagName('body');
 
 	mySelect.onchange = function(){
 

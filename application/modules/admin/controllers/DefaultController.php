@@ -9,6 +9,7 @@
 	use \application\models\db\Image;
 	use \application\models\db\Branch as BranchDB;
 	use \application\models\form\Organisation;
+	use \application\models\form\OrganisationEdit;
 	use \application\models\form\Survey;
 	use \application\models\form\Branch;
 
@@ -153,10 +154,44 @@
 				}
 			}
 
+			if (isset($_POST['selectOrg'])){
+				$formOrgEdit = new Form('application.forms.organisationedit', new OrganisationEdit);
+
+				$organisation = OrganisationDB::model()->findByPk($_POST['selectOrg']);
+				// $formOrgEdit->model->attributes = $organisation->attributes;
+
+				if ($formOrgEdit->submitted() && $formOrgEdit->validate()){
+					echo 'da';
+					exit;
+					// $organiation = OrganisationDB::model()->findByPk($formOrgEdit->model->id);
+					echo'<pre>';
+					var_dump($organisation);
+					echo'</pre>';
+					exit;
+					// $organisation->$terms = $formOrgEdit->model->terms;
+					if ($_FILES['prizeImg']['size']>0 && $_FILES['prizeImg']['error'] == 0){
+				    		$imgType = exif_imagetype ($_FILES['prizeImg']['tmp_name']);
+			    			$ext = strstr($_FILES['prizeImg']['name'], '.');
+				    		if ( $imgType == 2 || $imgType == 3 ){
+				    			$img = Image::model()->findByPk($organisation->prizeImg);
+				    			
+				    			$img->url = substr(md5(time()), 0, 7).$ext;
+				    			$img->desc = $_POST['desc'][$i];
+				    			$path = Yii::getPathOfAlias('application.views.Uploads.images').'/';
+
+				    			if (empty($formOrgEdit->errors) && empty($img->errors) && move_uploaded_file($_FILES['prizeImg']['tmp_name'], $path.$img->url))
+				    				$img->save();
+				    		}
+				    }
+				}
+
+			}
+
 			$this->render('index', array(
 									'form'=>$form,
 									'formBranch' => $formBranch,
 									'formSurvey' => $formSurvey,
+									'formOrgEdit' => isset($formOrgEdit)?$formOrgEdit:null,
 									'organisation' => $organisation
 								   )
 			);
