@@ -14,7 +14,8 @@
 }
 #myDiv img
 {
-max-width:100%; 
+    width:100%;
+//max-width:100%; 
 //max-height:auto;
 //margin:auto;
 //display:block;
