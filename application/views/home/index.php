@@ -12,6 +12,13 @@
     // text-align:center;
      padding:1px;
 }
+#myDiv img
+{
+max-width:100%; 
+max-height:auto;
+margin:auto;
+display:block;
+}
 </style>
 
 <?php if(empty($question)):?>
@@ -20,7 +27,7 @@
     </div>
 <?php else: ?>
 <div class="row" align="center">
-    <div id="header" class="col-md-8">
+    <div id="myDiv" class="col-md-8">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
