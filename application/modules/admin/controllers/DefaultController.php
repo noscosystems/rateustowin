@@ -161,14 +161,9 @@
 				// $formOrgEdit->model->attributes = $organisation->attributes;
 
 				if ($formOrgEdit->submitted() && $formOrgEdit->validate()){
-					echo 'da';
-					exit;
-					// $organiation = OrganisationDB::model()->findByPk($formOrgEdit->model->id);
-					echo'<pre>';
-					var_dump($organisation);
-					echo'</pre>';
-					exit;
-					// $organisation->$terms = $formOrgEdit->model->terms;
+					$organiation = OrganisationDB::model()->findByPk($formOrgEdit->model->id);
+					
+					$organisation->$terms = $formOrgEdit->model->terms;
 					if ($_FILES['prizeImg']['size']>0 && $_FILES['prizeImg']['error'] == 0){
 				    		$imgType = exif_imagetype ($_FILES['prizeImg']['tmp_name']);
 			    			$ext = strstr($_FILES['prizeImg']['name'], '.');

@@ -212,7 +212,7 @@
 
 	<div class="col-sm-3 col-sm-offset-1">
         <?php echo $widget->button($formSurvey, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
-    </div>
+    </div>it 
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
   <div class="tab-pane" id="selectedSurvey" style="padding:7px;">
@@ -228,10 +228,10 @@
   		<div class="col-sm-3">
 	  		<select name="myOrganisation" class="form-control" id="mySelect">
 	  			<option value="Please select" selected>Please select</option>
-	  			<?php $organisationCount = count($organisation);
-	  			for ($i=0; $i<$organisationCount; $i++):?>
-	  			<option value="<?php echo$organisation[$i]->id;?>"> <?php echo$organisation[$i]->name;?></option>
-	  			<?php endfor; ?>
+	  			<?php //$organisationCount = count($organisation);
+	  			//for ($i=0; $i<$organisationCount; $i++):?>
+	  			<option value="<?php //echo$organisation[$i]->id;?>"> <?php //echo$organisation[$i]->name;?></option>
+	  			<?php //endfor; ?>
 	  		</select>
   		</div>
   	</div>
@@ -252,15 +252,15 @@
   <div class="tab-pane" id="editOrg" style="padding:7px;">
   	<div class="row">
   	<div class="col-sm-4">
-	  	<form method="post" action="<?php echo Yii::app()->baseUrl;?>/admin">
+	  	<form method="post" action="<?php echo Yii::app()->baseUrl;?>/admin/">
 	  		<?php
 	  			$organisation = \application\models\db\Organisation::model()->findAll();
 	  			$orgCount = count($organisation);
 	  		?>
 		  	<select name="selectOrg" onchange="form.submit()" class="form-control">
-		  	<?php for($i=0; $i<$orgCount; $i++ ): ?>
-		  		<option value="<?php echo$organisation[$i]->id;?>"><?php echo$organisation[$i]->name;?></option>
-		  	<?php endfor; ?>
+		  	<?php foreach($organisation as $org): ?>
+		  		<option value="<?php echo$org->id;?>"><?php echo$org->name;?></option>
+		  	<?php endforeach; ?>
 		  	</select>
 	  	</form>
 	</div>
