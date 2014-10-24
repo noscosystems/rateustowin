@@ -33,7 +33,7 @@
     <div class="col-md-offset-4 col-md-8">
         <h1 style="font-weight: bold; text-decoration: underline;">RATE US TO WIN !</h1>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-center">
         <?php 
         echo CHtml::image(
             Yii::app()->assetPublisher->publish( $path . '/'. $prizeImg->url),
