@@ -2,7 +2,7 @@
 	/* @var $this DefaultController */
 
 	$this->breadcrumbs=array(
-		$this->module->id,
+		//$this->module->id,
 	);
 
 	$form->attributes = array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data');
@@ -20,7 +20,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-<div class="container tab-pane active " id="organisation" style="/*background:#FF0000;*/ padding:5px;">
+<div class="container tab-pane active " id="organisation" style="padding:7px;">
 <?php
 	echo $form->renderBegin();
 	$widget = $form->activeFormWidget;
@@ -222,23 +222,24 @@
 	    <?php echo Yii::app()->user->getFlash('ChangeSuccess'); ?>
 	</div>
 <?php endif; ?>
+<?php if (isset($organisation) && !empty($organisation)): ?>
   	<form action="<?php echo Yii::app()->baseUrl;?>/admin" method="post">
   	<div class="row">
   		<div class="col-sm-1 control-label">Select organisation:</div>
   		<div class="col-sm-3">
 	  		<select name="myOrganisation" class="form-control" id="mySelect">
 	  			<option value="Please select" selected>Please select</option>
-	  			<?php //$organisationCount = count($organisation);
-	  			//for ($i=0; $i<$organisationCount; $i++):?>
-	  			<option value="<?php //echo$organisation[$i]->id;?>"> <?php //echo$organisation[$i]->name;?></option>
-	  			<?php //endfor; ?>
+		  			<?php $organisationCount = count($organisation);
+		  			foreach ($organisation as $org):?>
+		  				<option value="<?php echo$org->id;?>"> <?php echo$org->name;?></option>
+		  			<?php endforeach; ?>
 	  		</select>
   		</div>
   	</div>
-  	
+<?php endif; ?>  	
   	<table class="table table-striped table-hover">
   		<thead >
-  			<tr>
+  			<tr>   
   				<th>Survey name</th>
   				<th>Survey Status</th>
   			</tr>
@@ -254,11 +255,11 @@
   	<div class="col-sm-4">
 	  	<form method="post" action="<?php echo Yii::app()->baseUrl;?>/admin/">
 	  		<?php
-	  			$organisation = \application\models\db\Organisation::model()->findAll();
-	  			$orgCount = count($organisation);
+	  			$organisations = \application\models\db\Organisation::model()->findAll();
+	  			$orgCount = count($organisations);
 	  		?>
 		  	<select name="selectOrg" onchange="form.submit()" class="form-control">
-		  	<?php foreach($organisation as $org): ?>
+		  	<?php foreach($organisations as $org): ?>
 		  		<option value="<?php echo$org->id;?>"><?php echo$org->name;?></option>
 		  	<?php endforeach; ?>
 		  	</select>
@@ -269,26 +270,40 @@
 	if (isset($formOrgEdit)):
 	$formOrgEdit->attributes = array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data');
 	echo $formOrgEdit->renderBegin();
-	$widget = $formOrgEdit->activeFormWidget;
+	$widgetOrgEdit = $formOrgEdit->activeFormWidget;
 ?>
 <br>
+	<?php if(Yii::app()->user->hasFlash('succes')): ?>
+		<div class="alert alert-success">
+	        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	        <?php echo Yii::app()->user->getFlash('succes'); ?>
+    	</div>
+    <?php endif; ?>
+	<h1>Editting <?php echo$formOrgEdit->model->name; ?></h1>
 	<div class="row">
 		<div class="control-label col-sm-3">Upload your new prizeImg here.</div>
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<input type="file" name="prizeImg">
 		</div>
 		<div class="control-label col-sm-3">Enter desc for you image here.</div>
-			 <?php echo $widget->input($formOrgEdit, 'terms', array('class' => '') ); ?>
-			 <?php echo $widget->input($formOrgEdit, 'id', array('class' => '') ); ?>
+			<div class="col-sm-3">
+			<input type="text" name="desc" class="form-control">
+			</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="control-label col-sm-3">Terms & conditions.</div>
 		<div class="col-sm-4">
-			
+			<?php echo $widgetOrgEdit->input($formOrgEdit, 'terms', array('class' => 'form-control') ); ?>
+			 <?php echo $widgetOrgEdit->input($formOrgEdit, 'id', array('class' => '') ); ?>
 		</div>
 	</div>
+	<br>
 	<div class="row">
-	<div class="control-label col-sm-3">Upload your new prizeImg here.</div>
-			 <?php echo $widget->button($formOrgEdit, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+	<div class="control-label col-sm-3"></div>
 		<div class="col-sm-4">
-  </div>
+			<?php echo $widgetOrgEdit->button($formOrgEdit, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+  		</div>
 </div>
 <?php 
 	$formOrgEdit->renderEnd();
@@ -301,6 +316,7 @@
 	var mySelect = document.getElementById('mySelect');
 	var tbody = document.getElementsByTagName('tbody');
 	var body = document.getElementsByTagName('body');
+	var tabContent = document.getElementsByClassName('tab-content');
 
 	mySelect.onchange = function(){
 
@@ -360,8 +376,6 @@
 	        return false;
 	}
 
-	
-
 	tbody[0].onchange = function(e){
 		//var e = event;
 		//console.log(e);
@@ -377,6 +391,18 @@
 		else
 			e.srcElement.checked = true;
 		// (e.)?e.explicitOriginalTarget.checked = true;
+	}
+
+	tabContent.onchange = function(){
+		tabs = {};
+		tabs.push(document.getElementById('organisation'));
+		tabs.push(document.getElementById('branch'));
+		tabs.push(document.getElementById('survey'));
+		tabs.push(document.getElementById('survey'));
+		tabs.push(document.getElementById('orgEdit'));
+
+		console.log(tabs);
+
 	}
 
 	function createXMLHttpObj(){

@@ -2,6 +2,10 @@
 
     return array(
         'elements' => array(
+            'name' => array(
+                'type' => 'hidden',
+                'maxlength' => 128
+            ),
 			'terms' => array(
                 'type' => 'textarea',
                 'maxlength' => 65535

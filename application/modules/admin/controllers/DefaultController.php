@@ -137,6 +137,7 @@
 			$organisation = \application\models\db\Organisation::model()->findAll();
 
 			if (isset($_POST['submit'])){
+
 				if ($_POST['submit'] == 'LiveSurvey'){
 
 					$surveys = SurveyDB::model()->findAllByAttributes(array('orgId' => $_POST['myOrganisation']));
@@ -152,35 +153,44 @@
 					if ($activeSurvey->save())
 						Yii::app()->user->setFlash('ChangeSuccess','Active survey updated.');
 				}
+
 			}
 
+			$formOrgEdit = new Form('application.forms.organisationedit', new OrganisationEdit);
+
 			if (isset($_POST['selectOrg'])){
-				$formOrgEdit = new Form('application.forms.organisationedit', new OrganisationEdit);
 
-				$organisation = OrganisationDB::model()->findByPk($_POST['selectOrg']);
-				// $formOrgEdit->model->attributes = $organisation->attributes;
+				
 
-				if ($formOrgEdit->submitted() && $formOrgEdit->validate()){
-					$organiation = OrganisationDB::model()->findByPk($formOrgEdit->model->id);
+				$orgtoEdit = OrganisationDB::model()->findByPk($_POST['selectOrg']);
+				$formOrgEdit->model->attributes = $orgtoEdit->attributes;
+
+			}
+
+			if ($formOrgEdit->submitted() && $formOrgEdit->validate()){
+
+					$orgtoEdit = OrganisationDB::model()->findByPk($formOrgEdit->model->id);
 					
-					$organisation->$terms = $formOrgEdit->model->terms;
+					$orgtoEdit->terms = $formOrgEdit->model->terms;
+
 					if ($_FILES['prizeImg']['size']>0 && $_FILES['prizeImg']['error'] == 0){
+
 				    		$imgType = exif_imagetype ($_FILES['prizeImg']['tmp_name']);
 			    			$ext = strstr($_FILES['prizeImg']['name'], '.');
+			    			
 				    		if ( $imgType == 2 || $imgType == 3 ){
-				    			$img = Image::model()->findByPk($organisation->prizeImg);
-				    			
+				    			$img = Image::model()->findByPk($orgtoEdit->prizeImg);				    				
 				    			$img->url = substr(md5(time()), 0, 7).$ext;
-				    			$img->desc = $_POST['desc'][$i];
+				    			$img->desc = $_POST['desc'];
 				    			$path = Yii::getPathOfAlias('application.views.Uploads.images').'/';
 
-				    			if (empty($formOrgEdit->errors) && empty($img->errors) && move_uploaded_file($_FILES['prizeImg']['tmp_name'], $path.$img->url))
-				    				$img->save();
+				    			if (empty($formOrgEdit->errors) && empty($img->errors) && move_uploaded_file($_FILES['prizeImg']['tmp_name'], $path.$img->url)){
+				    				if ($img->save() && $orgtoEdit->save())
+				    					Yii::app()->user->setFlash('succes','Sccessfully editted organisation.');
+				    			}
 				    		}
 				    }
 				}
-
-			}
 
 			$this->render('index', array(
 									'form'=>$form,

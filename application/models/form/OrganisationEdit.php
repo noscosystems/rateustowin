@@ -8,14 +8,15 @@
 
     class OrganisationEdit extends FormModel
     {
-    	public $id,$terms;
+    	public $id,$terms,$name;
 
 		public function rules()
         {
         	return array(
 	        	array('terms', 'required'),
                 array('id', 'numerical'),
-                array('terms', 'length', 'max'=>65535)
+                array('terms', 'length', 'max'=>65535),
+                array('name', 'length', 'max'=>128),
 			);
         }
     }
