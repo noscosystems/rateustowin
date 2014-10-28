@@ -13,13 +13,7 @@
         <script src="<?php echo $bootstrap; ?>/js/bootstrap.min.js"></script>
         <link href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
-        <title>
-            <?php
-                if(is_string($this->pageTitle) && $this->pageTitle) {
-                    echo CHtml::encode($this->pageTitle) . ' &#8212; ';
-                }
-                echo CHtml::encode(Yii::app()->name);
-            ?>
+        <title>Rate us to win!
         </title>
 
         <script>

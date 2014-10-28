@@ -10,7 +10,7 @@
 ?>
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist" id="tabBar">
   <li class="active"><a href="#organisation" role="tab" data-toggle="tab">Organisation</a></li>
   <li><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
   <li><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
@@ -20,7 +20,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-<div class="container tab-pane active " id="organisation" style="padding:7px;">
+<div class="tab-pane active " id="organisation" style="padding:7px;">
 <?php
 	echo $form->renderBegin();
 	$widget = $form->activeFormWidget;
@@ -96,7 +96,7 @@
 </div>
 <?php echo $form->renderEnd(); ?>
 
-<div class="tab-pane container" id="branch" style="padding:7px;">
+<div class="tab-pane" id="branch" style="padding:7px;">
 <?php
 	$formBranch->attributes = array('class' => 'form-horizontal');
 	echo $formBranch->renderBegin();
@@ -316,7 +316,9 @@
 	var mySelect = document.getElementById('mySelect');
 	var tbody = document.getElementsByTagName('tbody');
 	var body = document.getElementsByTagName('body');
-	var tabContent = document.getElementsByClassName('tab-content');
+	var tabPane = document.getElementsByClassName('tab-pane');
+	var tabBar = document.getElementById('tabBar');
+	var li = document.getElementsByTagName('li');
 
 	mySelect.onchange = function(){
 
@@ -393,20 +395,70 @@
 		// (e.)?e.explicitOriginalTarget.checked = true;
 	}
 
-	tabContent.onchange = function(){
-		tabs = {};
-		tabs.push(document.getElementById('organisation'));
-		tabs.push(document.getElementById('branch'));
-		tabs.push(document.getElementById('survey'));
-		tabs.push(document.getElementById('survey'));
-		tabs.push(document.getElementById('orgEdit'));
+	tabBar.onclick = function(e){
+		var srcElem = sourceElement(e);
+		var tabId = srcElem.href.split('#');
+		tabId = tabId[1];
+		document.cookie = "tabId="+tabId;
+	}
 
-		console.log(tabs);
+	body[0].onload = function (){
+		var tabId = getCookie('tabId');
+		if (tabId != ''){
 
+			var liLength = li.length;
+
+			for (var i=0; i<liLength; i++){
+				window.tabPaneId = tabPane[i].id
+				
+				if ( tabId === tabPaneId ){
+					tabPane[i].className = 'tab-pane active';
+					console.log('da');
+				}
+				else
+					tabPane[i].className = 'tab-pane';
+
+
+				var child = li[i].childNodes;
+
+				if (strstr(child[0].href, tabId))
+					li[i].className = 'active';
+				else
+					li[i].className = '';
+			}
+		}
+		
+	}
+
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0; i<ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1);
+	        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+	    }
+    return "";
+	}
+
+	
+	function strstr(haystack, needle, bool) {
+		var pos = 0;
+		haystack += '';
+		pos = haystack.indexOf(needle);
+
+		if (pos == -1)
+			return false;
+		else 
+			return (bool)?(haystack.substr(0, pos)):(haystack.slice(pos));
 	}
 
 	function createXMLHttpObj(){
         return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
+    }
+
+    function sourceElement(e){
+    	return e.srcElement?e.srcElement:e.explicitOriginalTarget;
     }
 
 </script>

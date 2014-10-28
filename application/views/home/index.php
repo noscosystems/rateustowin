@@ -36,7 +36,7 @@
     </div>
 <?php else: ?>
 <div class="row" align="center">
-    <div id="myDiv" class="col-md-12">
+    <div id="myDiv" class="col-sm-12 col-xs-12">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
         echo CHtml::image(
@@ -46,10 +46,10 @@
         );
     ?>
     </div>
-    <div class="col-md-offset-4 col-md-8">
+    <div class="col-sm-offset-4 col-sm-8 col-xs-8">
         <h1 style="font-weight: bold; text-decoration: underline;">RATE US TO WIN !</h1>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-sm-4 col-xs-4" align="center">
         <?php 
         echo CHtml::image(
             Yii::app()->assetPublisher->publish( $path . '/'. $prizeImg->url),
@@ -57,7 +57,6 @@
             array('class' => 'img-responsive')
         );
         ?>
-
 
                     <button
                         type="button"
@@ -69,8 +68,6 @@
                         data-content="<?php echo$terms;?>">
                       Terms & conditions
                     </button>
-
-
 
     </div>
     <?php $questlength = count($question); ?>
@@ -96,19 +93,24 @@
         </div>
         <?php for ($i=0; $i<$questlength; $i++):?>
         <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" id="<?php echo$i; ?>">
-            <p><?php echo $question[$i]['questTxt'] ; ?></p>
+            <h1 style="text-decoration:underline;"><?php echo $question[$i]['questTxt'] ; ?></h1>
             <?php if($question[$i]['type'] == 'freetext'): ?>
                 <div class="col-sm-12">
                     <input type="text"
                     alt="<?php echo $question[$i]['id'];?>"
                     onchange="javascript:fillAnswers(this);"
                     class="form-control">
-                    <a href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>" role="tab" data-toggle="tab" >Next
+                    <a 
+                        href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>"
+                        role="tab"
+                        data-toggle="tab"
+                        class="btn btn-sm btn-xs btn-primary"
+                    >Next
                     </a>
                 </div>
             <?php else: ?>
                 <?php for ($l=0; $l<3; $l++): ?>
-                    <div id="smiley" class="col-sm-4">
+                    <div id="smiley" class="col-sm-4 col-xs-4">
                         <a href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>" role="tab" data-toggle="tab" >
                             <input class="img-responsive"
                             value="<?php echo($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>"
@@ -174,7 +176,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-4" style="margin-left:507px;">
+            <div class="col-sm-4 col-xs-4" align="center">
                 <input type="hidden" value="<?php echo$question[0]['surveyId']; ?>" id="surveyId">
                 <button class="btn btn-primary btn-md" onclick="javascript:save();"id="saveButt">Save</button>
             </div>
@@ -272,9 +274,6 @@ $(function(){
     function xmlHttpReq(){
         return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject("Microsoft.XMLHTTP"));
     }
-
-
-
 
 </script>
 <?php endif; ?>
