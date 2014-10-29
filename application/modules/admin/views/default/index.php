@@ -409,22 +409,12 @@
 			var liLength = li.length;
 
 			for (var i=0; i<liLength; i++){
+
 				window.tabPaneId = tabPane[i].id
-				
-				if ( tabId === tabPaneId ){
-					tabPane[i].className = 'tab-pane active';
-					console.log('da');
-				}
-				else
-					tabPane[i].className = 'tab-pane';
-
-
 				var child = li[i].childNodes;
 
-				if (strstr(child[0].href, tabId))
-					li[i].className = 'active';
-				else
-					li[i].className = '';
+				tabPane[i].className = (tabId === tabPaneId?'tab-pane active':'tab-pane');
+				li[i].className = (strstr(child[0].href, tabId)?'active':'');
 			}
 		}
 		
@@ -443,14 +433,12 @@
 
 	
 	function strstr(haystack, needle, bool) {
+
 		var pos = 0;
 		haystack += '';
 		pos = haystack.indexOf(needle);
 
-		if (pos == -1)
-			return false;
-		else 
-			return (bool)?(haystack.substr(0, pos)):(haystack.slice(pos));
+		return (pos == -1)?false:((bool)?haystack.substr(0, pos):haystack.slice(pos));
 	}
 
 	function createXMLHttpObj(){

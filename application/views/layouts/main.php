@@ -112,13 +112,17 @@
                 <?php echo $content; ?>
             </div>
 
-            <!-- Footer -->
-            <footer id="footer" style="left:0px; bottom:0px;">
-                <div class="container">
-                    &copy; Nosco Systems 2014
-                </div>
-            </footer>
-
+            
         </div>
+        <!-- Footer -->
+            <div class="panel-footer" align="center">
+                    
+                <!-- <footer id="footer" > -->
+                    <div class="row" align="center">
+                        &copy; Nosco Systems 2014
+                    </div>
+                <!-- </footer> -->
+            </div>
+
     </body>
 </html>

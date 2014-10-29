@@ -32,7 +32,8 @@
 
 <?php if(empty($question)):?>
     <div align="center">
-        <h3>No surveys available currently</h3>
+        <h1>Welcome to rate us to win!</h1>
+        <p>Please contact Clive for further assistance on: 01443400998</p>
     </div>
 <?php else: ?>
 <div class="row" align="center">
@@ -183,11 +184,77 @@
         </div>
     </div>
 </div>
-
+            <div class="container" style="left:0; bottom:0; position:relative;margin-top:50px;"> 
+                <div class="col-xs-offset-1 col-xs-2">
+                    <button type="button"
+                        id="aboutus"
+                        class="btn btn-default btn-md"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="<?php echo$aboutus; ?>"
+                    >
+                        About Us
+                    </button>
+                </div>
+                <div class="col-xs-2"align="center" >
+                    <button type="button"
+                        id="rateus"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                    >
+                        Rate Us to Win
+                    </button>
+                </div>
+                <div class="col-xs-2"align="center" >
+                    <button type="button"
+                        id="privacy"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="<?php echo$aboutus; ?>"
+                    >
+                        Privacy policy
+                    </button>
+                </div>
+                <div class="col-xs-2"align="center" >
+                    <button type="button"
+                        id="cookies"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                    >
+                        Use of cookies
+                    </button>
+                </div>
+                <div class="col-xs-2"align="center" >
+                    <button type="button"
+                        id="dataProt"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                    >
+                        Data Protection
+                    </button>
+                </div>
+            </div>
 <script>
 
 $(function(){
-    $("#pop").popover('hide'); 
+    $("#pop").popover('hide');
+    $("#aboutus").popover('hide'); 
+    $("#rateus").popover('hide');
+    $("#privacy").popover('hide');
+    $("#cookies").popover('hide');
+    $("#dataProt").popover('hide');
 });
 
     var answers = {};

@@ -5,6 +5,7 @@
     use Yii;
     use CException as Exception;
     use application\components\Controller;
+    use application\components\helpers\Replacer;
 
     class HomeController extends Controller
     {
@@ -33,6 +34,7 @@
             // $options = \application\models\db\Option::model()->findAllByAttributes(array('column' => array('sex','ageGroup') ));
             $ageGroup = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'ageGroup' ));
             $sex = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'sex' ));
+            $aboutus = Replacer::swap($organisation->id);
 
             $question = Yii::app()->db->createCommand()
                             ->select('q.id, q.questTxt, anstyp.type, s.id as surveyId')
@@ -51,7 +53,8 @@
                                         'logoImg' => $logoImg,
                                         'question' => $question,
                                         'sex' => $sex,
-                                        'ageGroup' => $ageGroup
+                                        'ageGroup' => $ageGroup,
+                                        'aboutus' => $aboutus
                                     )
             );
         }
