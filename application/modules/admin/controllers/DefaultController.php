@@ -121,6 +121,7 @@
 				$survey->active = 0;
 				$survey->save();
 				$questionsCount = count($_POST['question']);
+				//$error = [];
 
 				for ($i=0; $i<$questionsCount; $i++){
 					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!='' && $_POST['answerType'][$i]!='Please select' ){
@@ -130,8 +131,16 @@
 						$question->answerType = $_POST['answerType'][$i];
 						if ($question->validate())
 							$question->save();
+						else
+							$error[$question[$i]] = $question->error;
 					}
 				}
+
+				//if (empty($error))
+					Yii::app()->user->setFlash('surveyAdded', 'Survey added successfully.');
+				// else{
+				// 	$formSurvey->model->AddErrors($error);
+				// }
 			}
 
 			$organisation = \application\models\db\Organisation::model()->findAll();
@@ -194,15 +203,13 @@
 
 			$this->render('index', array(
 									'form'=>$form,
-									'formBranch' => $formBranch,
+									'formBranch' => $formBranch,									
 									'formSurvey' => $formSurvey,
 									'formOrgEdit' => isset($formOrgEdit)?$formOrgEdit:null,
 									'organisation' => $organisation
 								   )
 			);
 		}
-
-
 
 		public function actionSendarray(){
 			$this->renderPartial('sendarray');

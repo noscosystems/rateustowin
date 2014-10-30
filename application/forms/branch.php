@@ -17,7 +17,8 @@
             ),
             'name' => array(
                 'type' => 'text',
-                'maxlength' => 30
+                'maxlength' => 30,
+                'hint' => 'Only small character letters allowed !'
             ),
             'address' => array(
                 'type' => 'text',

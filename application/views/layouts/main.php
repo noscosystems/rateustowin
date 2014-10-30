@@ -115,14 +115,9 @@
             
         </div>
         <!-- Footer -->
-            <div class="panel-footer" align="center">
-                    
-                <!-- <footer id="footer" > -->
-                    <div class="row" align="center">
-                        &copy; Nosco Systems 2014
-                    </div>
-                <!-- </footer> -->
+            <div class="container" align="center" style="left:0; bottom:0; position:relative;">
+                        © Nosco Systems 2014
             </div>
-
+        <!-- End of Footer -->
     </body>
 </html>

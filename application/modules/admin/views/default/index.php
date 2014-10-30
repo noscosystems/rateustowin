@@ -112,50 +112,51 @@
         echo '<div class="alert alert-danger">' . $widget->errorSummary($formBranch) . '</div>';
     } ?>
 <div class="row">
-    <div class="col-sm-1 control-label">Organisation the branch belongs to:</div>
+    <div class="col-sm-2 control-label">Organisation the branch belongs to:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'organisationId', array('class' => 'form-control') ); ?>
     </div>
-    <div class="col-sm-1 control-label">Name</div>
+    <div class="col-sm-2 control-label">Name</div>
     <div class="col-sm-3">
-        <?php echo $widget->input($formBranch, 'name', array('class' => 'form-control') ); ?>
+        <?php echo $widget->input($formBranch, 'name', array('class' => 'form-control') );
+        echo $widget->hint($formBranch, 'name', 'div', array('class' => 'help-block', 'style' => 'color:red;')); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-1 control-label">Address:</div>
+    <div class="col-sm-2 control-label">Address:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'address', array('class' => 'form-control') ); ?>
     </div>
-    <div class="col-sm-1 control-label">Town</div>
+    <div class="col-sm-2 control-label">Town</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'town', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-1 control-label">County:</div>
+    <div class="col-sm-2 control-label">County:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'county', array('class' => 'form-control') ); ?>
     </div>
-    <div class="col-sm-1 control-label">Postcode:</div>
+    <div class="col-sm-2 control-label">Postcode:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'postcode', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-1 control-label">Phone Number:</div>
+    <div class="col-sm-2 control-label">Phone Number:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'phoneNum', array('class' => 'form-control') ); ?>
     </div>
-    <div class="col-sm-1 control-label">Email:</div>
+    <div class="col-sm-2 control-label">Email:</div>
     <div class="col-sm-3">
         <?php echo $widget->input($formBranch, 'email', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <div class="col-sm-3 col-sm-offset-1">
-        <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
+        <?php echo $widget->button($formBranch, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
     </div>
 	<?php echo $formBranch->renderEnd(); ?>
   </div>
@@ -166,11 +167,11 @@
 		$formSurvey->attributes = array('class' => 'form-horizontal');
 		echo $formSurvey->renderBegin();
 		$widget = $formSurvey->activeFormWidget;
-		if(Yii::app()->user->hasFlash('addSurveySucc')):
+		if(Yii::app()->user->hasFlash('surveyAdded')):
 	?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo Yii::app()->user->getFlash('addSurveySucc'); ?>
+        <?php echo Yii::app()->user->getFlash('surveyAdded'); ?>
     </div>
     <?php endif; ?>
     <?php if($widget->errorSummary($formSurvey)){

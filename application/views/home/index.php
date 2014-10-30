@@ -36,7 +36,7 @@
         <p>Please contact Clive for further assistance on: 01443400998</p>
     </div>
 <?php else: ?>
-<div class="row" align="center">
+<!-- <div class="row" align="center"> -->
     <div id="myDiv" class="col-sm-12 col-xs-12">
     <?php $path = Yii::getPathOfAlias('application.views.Uploads.images');
         
@@ -47,7 +47,7 @@
         );
     ?>
     </div>
-    <div class="col-sm-offset-4 col-sm-8 col-xs-8">
+    <div class="col-sm-offset-4 col-sm-8 col-xs-8">  
         <h1 style="font-weight: bold; text-decoration: underline;">RATE US TO WIN !</h1>
     </div>
     <div class="col-sm-4 col-xs-4" align="center">
@@ -58,6 +58,9 @@
             array('class' => 'img-responsive')
         );
         ?>
+        <div class="col-sm-offset-3 col-sm-6 col-xs-6" style="border:1px solid black; word-wrap:break-word; border-radius:2px;">
+            Basic Draw details here. Every month there is a winner. For full details see Terms & conditions below.
+        </div>
 
                     <button
                         type="button"
@@ -93,7 +96,7 @@
             
         </div>
         <?php for ($i=0; $i<$questlength; $i++):?>
-        <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" id="<?php echo$i; ?>">
+        <div class="tab-pane fade <?php echo($i==0)?('active in'):('');?> clicked" id="<?php echo$i; ?>" align="center">
             <h1 style="text-decoration:underline;"><?php echo $question[$i]['questTxt'] ; ?></h1>
             <?php if($question[$i]['type'] == 'freetext'): ?>
                 <div class="col-sm-12">
@@ -184,7 +187,9 @@
         </div>
     </div>
 </div>
-            <div class="container" style="left:0; bottom:0; position:relative;margin-top:50px;"> 
+<div class="row"></div><br>
+        <!-- <div class="row"> -->
+            <div class="container"> 
                 <div class="col-xs-offset-1 col-xs-2">
                     <button type="button"
                         id="aboutus"
@@ -246,6 +251,8 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <br>
 <script>
 
 $(function(){

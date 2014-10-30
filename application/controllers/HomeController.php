@@ -26,7 +26,7 @@
                 $organisation = $search->Organisation;
             }
             else{
-                $organisation = \application\models\db\Organisation::model()->findByPk(5);
+                $organisation = \application\models\db\Organisation::model()->findByPk(3);
             }
 
             $logoImg = $organisation->LogoImg;
