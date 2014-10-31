@@ -58,7 +58,7 @@
             array('class' => 'img-responsive')
         );
         ?>
-        <div class="col-sm-offset-3 col-sm-6 col-xs-6" style="border:1px solid black; word-wrap:break-word; border-radius:2px;">
+        <div class="col-sm-12 col-xs-12" style="border:1px solid black; word-wrap:break-word; border-radius:2px;">
             Basic Draw details here. Every month there is a winner. For full details see Terms & conditions below.
         </div>
 
