@@ -115,15 +115,15 @@
 			}
 
 			if ($formSurvey->submitted() && $formSurvey->validate()){
-
+				
 				$survey = new SurveyDB;
 				$survey->attributes = $formSurvey->model->attributes;
 				$survey->active = 0;
 				$survey->save();
 				$questionsCount = count($_POST['question']);
-				//$error = [];
 
 				for ($i=0; $i<$questionsCount; $i++){
+					
 					if ($_POST['question'][$i]!='' && $_POST['answerType'][$i]!='' && $_POST['answerType'][$i]!='Please select' ){
 						$question = new QuestionDB;
 						$question->questTxt = $_POST['question'][$i];
@@ -131,8 +131,6 @@
 						$question->answerType = $_POST['answerType'][$i];
 						if ($question->validate())
 							$question->save();
-						else
-							$error[$question[$i]] = $question->error;
 					}
 				}
 

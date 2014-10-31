@@ -11,7 +11,7 @@
     	public static function swap($id){
 
     		$path = Yii::getPathOfAlias('application.views.Uploads');
-			$str = file_exists($path)?file_get_contents($path.'\aboutus.txt'):'';
+			$str = file_exists($path)?file_get_contents($path.'/aboutus.txt'):'';
 
 			$organisation = Organisation::model()->findByPk($id);
 

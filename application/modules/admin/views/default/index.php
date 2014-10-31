@@ -213,7 +213,7 @@
 
 	<div class="col-sm-3 col-sm-offset-1">
         <?php echo $widget->button($formSurvey, 'submit', array('class' => 'btn btn-sm btn-success') ); ?>
-    </div>it 
+    </div>
 <?php echo $formSurvey->renderEnd(); ?>
 </div>
   <div class="tab-pane" id="selectedSurvey" style="padding:7px;">

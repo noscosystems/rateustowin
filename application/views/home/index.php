@@ -47,7 +47,7 @@
         );
     ?>
     </div>
-    <div class="col-sm-offset-4 col-sm-8 col-xs-8">  
+    <div class="col-sm-offset-4 col-sm-8 col-xs-8" align="center">  
         <h1 style="font-weight: bold; text-decoration: underline;">RATE US TO WIN !</h1>
     </div>
     <div class="col-sm-4 col-xs-4" align="center">
@@ -62,16 +62,16 @@
             Basic Draw details here. Every month there is a winner. For full details see Terms & conditions below.
         </div>
 
-                    <button
+                    <a
                         type="button"
                         id="pop"
-                        class="btn btn-default"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="bottom"
                         data-content="<?php echo$terms;?>">
                       Terms & conditions
-                    </button>
+                    </a>
 
     </div>
     <?php $questlength = count($question); ?>
@@ -104,11 +104,12 @@
                     alt="<?php echo $question[$i]['id'];?>"
                     onchange="javascript:fillAnswers(this);"
                     class="form-control">
+                    <br>
                     <a 
                         href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>"
                         role="tab"
                         data-toggle="tab"
-                        class="btn btn-sm btn-xs btn-primary"
+                        class="btn btn-md btn-primary"
                     >Next
                     </a>
                 </div>
@@ -128,7 +129,7 @@
             <?php endif; ?>
         </div>
     <?php endfor; ?>
-    <div class="tab-pane fade" id="Credentials">
+    <div class="tab-pane fade" id="Credentials" align="center">
         <h3>Thank you for completing this survey.</h3>
         <h4>Please enter the following information so we can inform you if you win</h4>
         <div class="row">
@@ -180,7 +181,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-4 col-xs-4" align="center">
+            <div class="col-sm-12 col-xs-12" align="center">
                 <input type="hidden" value="<?php echo$question[0]['surveyId']; ?>" id="surveyId">
                 <button class="btn btn-primary btn-md" onclick="javascript:save();"id="saveButt">Save</button>
             </div>
@@ -189,66 +190,66 @@
 </div>
 <div class="row"></div><br>
         <!-- <div class="row"> -->
-            <div class="container"> 
+            <div class="container" style="border-top:3px solid  #999999;"> 
                 <div class="col-xs-offset-1 col-xs-2">
-                    <button type="button"
+                    <a type="button"
                         id="aboutus"
-                        class="btn btn-default btn-md"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="top"
                         data-content="<?php echo$aboutus; ?>"
                     >
                         About Us
-                    </button>
+                    </a>
                 </div>
                 <div class="col-xs-2"align="center" >
-                    <button type="button"
+                    <a type="button"
                         id="rateus"
-                        class="btn btn-default"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="top"
                         data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                     >
                         Rate Us to Win
-                    </button>
+                    </a>
                 </div>
                 <div class="col-xs-2"align="center" >
-                    <button type="button"
+                    <a type="button"
                         id="privacy"
-                        class="btn btn-default"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="top"
                         data-content="<?php echo$aboutus; ?>"
                     >
                         Privacy policy
-                    </button>
+                    </a>
                 </div>
                 <div class="col-xs-2"align="center" >
-                    <button type="button"
+                    <a type="button"
                         id="cookies"
-                        class="btn btn-default"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="top"
                         data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                     >
                         Use of cookies
-                    </button>
+                    </a>
                 </div>
                 <div class="col-xs-2"align="center" >
-                    <button type="button"
+                    <a type="button"
                         id="dataProt"
-                        class="btn btn-default"
+                        class="btn"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="top"
                         data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                     >
                         Data Protection
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
