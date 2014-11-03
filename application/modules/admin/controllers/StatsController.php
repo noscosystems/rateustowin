@@ -24,7 +24,8 @@
                             ->queryAll();
 
                 foreach ($branch as $k => $v){
-                    $enquiryForm->elements['branch']->items = array($v['id'] => $v['name']);
+                    $enquiryForm->elements['branch']->items[$v['id']] = $v['name'];
+
                 }
 
                 if ($enquiryForm->submitted() && $enquiryForm->validate()){
