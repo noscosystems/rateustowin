@@ -5,6 +5,7 @@
     use \Yii;
     use \CException as Exception;
     use \application\components\db\ActiveRecord;
+
 /**
  * This is the model class for table "answersheet".
  *
@@ -13,12 +14,13 @@
  * @property integer $customerId
  * @property integer $branchId
  * @property integer $surveyId
+ * @property integer $created
  *
  * The followings are the available model relations:
  * @property Answer[] $answers
- * @property Survey $survey
  * @property Branches $branch
- * @property Users $customer
+ * @property Customer $customer
+ * @property Survey $survey
  */
 class Answersheet extends ActiveRecord
 {
@@ -38,11 +40,11 @@ class Answersheet extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('customerId, branchId, surveyId', 'required'),
-			array('customerId, branchId, surveyId', 'numerical', 'integerOnly'=>true),
+			array('customerId, branchId, surveyId, created', 'required'),
+			array('customerId, branchId, surveyId, created', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, customerId, branchId, surveyId', 'safe', 'on'=>'search'),
+			array('id, customerId, branchId, surveyId, created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,7 +59,7 @@ class Answersheet extends ActiveRecord
 			'Answers' => array(self::HAS_MANY, '\\application\\models\\db\\Answer', 'ansSheetId'),
 			'Survey' => array(self::BELONGS_TO, '\\application\\models\\db\\Survey', 'surveyId'),
 			'Branch' => array(self::BELONGS_TO, '\\application\\models\\db\\Branches', 'branchId'),
-			'Customer' => array(self::BELONGS_TO, '\\application\\models\\db\\Users', 'customerId'),
+			'Customer' => array(self::BELONGS_TO, '\\application\\models\\db\\Users', 'customerId')
 		);
 	}
 
@@ -71,6 +73,7 @@ class Answersheet extends ActiveRecord
 			'customerId' => 'Customer',
 			'branchId' => 'Branch',
 			'surveyId' => 'Survey',
+			'created' => 'Created',
 		);
 	}
 
@@ -96,6 +99,7 @@ class Answersheet extends ActiveRecord
 		$criteria->compare('customerId',$this->customerId);
 		$criteria->compare('branchId',$this->branchId);
 		$criteria->compare('surveyId',$this->surveyId);
+		$criteria->compare('created',$this->created);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

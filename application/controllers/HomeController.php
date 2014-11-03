@@ -6,6 +6,7 @@
     use CException as Exception;
     use application\components\Controller;
     use application\components\helpers\Replacer;
+    use \application\models\db\Branch;
 
     class HomeController extends Controller
     {
@@ -22,7 +23,7 @@
             $branch = substr($url, 0, strpos($url, '.'));
 
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
-                $search = \application\models\db\Branch::model()->findByAttributes(array ('name' => $branch));
+                $search = Branch::model()->findByAttributes(array ('name' => $branch));
                 $organisation = $search->Organisation;
             }
             else{
@@ -102,7 +103,13 @@
             if($customer->validate()){
                 if ($customer->save()){
                     $ansSheet->customerId = $customer->id;
-                    $ansSheet->branchId = 1;
+                    $ansSheet->created = date('Now');
+                    $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                    $branch = substr($url, 0, strpos($url, '.'));
+                    if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww')
+                        $search = Branch::model()->findByAttributes(array ('name' => $branch));
+                    if($search)
+                        $ansSheet->branchId = $search->id;
 
                     if ($ansSheet->validate()){
                         if ($ansSheet->save()){
