@@ -13,11 +13,11 @@
  * @property integer $id
  * @property integer $questId
  * @property integer $ansSheetId
- * @property integer $answerTxt
+ * @property string $answerTxt
  *
  * The followings are the available model relations:
- * @property Question $quest
  * @property Answersheet $ansSheet
+ * @property Question $quest
  */
 class Answer extends ActiveRecord
 {
@@ -38,7 +38,8 @@ class Answer extends ActiveRecord
 		// will receive user inputs.
 		return array(
 			array('questId, ansSheetId, answerTxt', 'required'),
-			array('questId, ansSheetId, answerTxt', 'numerical', 'integerOnly'=>true),
+			array('questId, ansSheetId', 'numerical', 'integerOnly'=>true),
+			array('answerTxt', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, questId, ansSheetId, answerTxt', 'safe', 'on'=>'search'),
@@ -54,7 +55,7 @@ class Answer extends ActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'Quest' => array(self::HAS_ONE, '\\application\\models\\db\\Question', 'questId'),
-			'AnsSheet' => array(self::HAS_ONE, '\\application\\models\\db\\Answersheet', 'ansSheetId'),
+			'AnsSheet' => array(self::HAS_ONE, '\\application\\models\\db\\Answersheet', 'ansSheetId')
 		);
 	}
 
@@ -92,7 +93,7 @@ class Answer extends ActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('questId',$this->questId);
 		$criteria->compare('ansSheetId',$this->ansSheetId);
-		$criteria->compare('answerTxt',$this->answerTxt);
+		$criteria->compare('answerTxt',$this->answerTxt,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
