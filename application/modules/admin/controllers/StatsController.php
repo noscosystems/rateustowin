@@ -29,7 +29,20 @@
                 }
 
                 if ($enquiryForm->submitted() && $enquiryForm->validate()){
-                    // $sql =   SELECT customer.firstName, survey.name, question.questTxt, answer.answerTxt FROM answer JOIN answersheet ON answer.ansSheetId = answersheet.id JOIN branches as br ON `answersheet`.`branchId` = `br`.`id` JOIN customer ON answersheet.customerId = customer.id JOIN organisation ON `br`.organisationId = organisation.id JOIN survey ON survey.orgId = organisation.id JOIN question ON survey.id = question.surveyId WHERE `br`.`id` = 2
+                    // SELECT `cust`.`firstName`, `br`.`name`, `surv`.`name`,`surv`.`id`, `quest`.`questTxt`, `ans`.`answerTxt`
+                    //     FROM `customer` AS `cust`
+                    //     JOIN `answersheet` AS `ansSheet`
+                    //     ON `ansSheet`.`customerId` = `cust`.`id`
+                    //     JOIN `branches` AS `br`
+                    //     ON `ansSheet`.`branchId` = `br`.`id`
+                    //     JOIN `survey` AS `surv`
+                    //     ON `surv`.`id` = `ansSheet`.`surveyId`
+                    //     JOIN `answer` AS `ans`
+                    //     ON `ansSheet`.`id` = `ans`.`ansSheetId`
+                    //     JOIN `question` AS `quest`
+                    //     ON `quest`.`id` = `ans`.`questId`
+                    //     WHERE `br`.`id` = 2 AND `ansSheet`.`created` BETWEEN :startDate AND :endDate
+                    
                 }
 
                 // $form->elements['name']->items = array();
