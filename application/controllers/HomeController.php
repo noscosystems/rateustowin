@@ -21,41 +21,42 @@
         {
             $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $branch = substr($url, 0, strpos($url, '.'));
-
+            $organisation = '';
             if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww'){
                 $search = Branch::model()->findByAttributes(array ('name' => $branch));
-                $organisation = $search->Organisation;
-            }
-            else{
-                $organisation = \application\models\db\Organisation::model()->findByPk(3);
+                if (isset($search) && !empty($search))
+                    $organisation = $search->Organisation;
             }
 
-            $logoImg = $organisation->LogoImg;
-            $prizeImg = $organisation->PrizeImg;
-            // $options = \application\models\db\Option::model()->findAllByAttributes(array('column' => array('sex','ageGroup') ));
-            $ageGroup = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'ageGroup' ));
-            $sex = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'sex' ));
-            $aboutus = Replacer::swap($organisation->id);
+                if ($organisation){
+                    $logoImg = $organisation->LogoImg;
+                    $prizeImg = $organisation->PrizeImg;
+                    // $options = \application\models\db\Option::model()->findAllByAttributes(array('column' => array('sex','ageGroup') ));
+                    $ageGroup = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'ageGroup' ));
+                    $sex = \application\models\db\Option::model()->findAllByAttributes( array( 'column' => 'sex' ));
+                    $aboutus = Replacer::swap($organisation->id);
 
-            $question = Yii::app()->db->createCommand()
-                            ->select('q.id, q.questTxt, anstyp.type, s.id as surveyId')
-                            ->from('question q')
-                            ->join('survey s', 'q.surveyId=s.id')
-                            ->join('answertype anstyp', 'q.answerType=anstyp.id')
-                            ->join('organisation org', 's.orgId=org.id')
-                            ->where('s.active=1', array())
-                            ->andWhere('org.id=:orgId', array(':orgId' => $organisation->id))
-                            ->order('q.id')
-                            ->queryAll();
-
+                    $question = Yii::app()->db->createCommand()
+                                    ->select('q.id, q.questTxt, anstyp.type, s.id as surveyId')
+                                    ->from('question q')
+                                    ->join('survey s', 'q.surveyId=s.id')
+                                    ->join('answertype anstyp', 'q.answerType=anstyp.id')
+                                    ->join('organisation org', 's.orgId=org.id')
+                                    ->where('s.active=1', array())
+                                    ->andWhere('org.id=:orgId', array(':orgId' => $organisation->id))
+                                    ->order('q.id')
+                                    ->queryAll();
+                }
+            else
+                $question = '';
             $this->render('index', array(
-                                        'terms' => $organisation->terms,
-                                        'prizeImg' => $prizeImg,
-                                        'logoImg' => $logoImg,
+                                        'terms' => ($organisation)?$organisation->terms:null,
+                                        'prizeImg' => (isset($prizeImg))?$prizeImg:null,
+                                        'logoImg' => (isset($logoImg))?$logoImg:null,
                                         'question' => $question,
-                                        'sex' => $sex,
-                                        'ageGroup' => $ageGroup,
-                                        'aboutus' => $aboutus
+                                        'sex' => (isset($sex))?$sex:null,
+                                        'ageGroup' => (isset($ageGroup))?$ageGroup:null,
+                                        'aboutus' => (isset($aboutus))?$aboutus:null
                                     )
             );
         }
