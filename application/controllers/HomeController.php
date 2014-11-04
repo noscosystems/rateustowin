@@ -103,7 +103,7 @@
             if($customer->validate()){
                 if ($customer->save()){
                     $ansSheet->customerId = $customer->id;
-                    $ansSheet->created = date('Now');
+                    $ansSheet->created = strtotime('Today');
                     $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                     $branch = substr($url, 0, strpos($url, '.'));
                     if ($branch!='' && $branch!='127' && $branch!='$branch' && $branch!='rateustowin' && $branch!='wwww')

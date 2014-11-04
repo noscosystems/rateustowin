@@ -25,6 +25,9 @@
 		echo $enquiryForm->renderBegin();
 		$enquiryFormWidget = $enquiryForm->activeFormWidget;
 ?>
+<?php if($widget->errorSummary($enquiryForm)){
+        echo '<div class="alert alert-danger">' . $widget->errorSummary($enquiryForm) . '</div>';
+    } ?>
 <div class="row">
 	<h2 align="center">Time period the enquiry is for</h2>
 		<div class="control-label col-sm-3">Select start date:</div>
@@ -50,10 +53,37 @@
 		<?php echo $enquiryFormWidget->button($enquiryForm, 'submit', array('class' => 'btn btn-success btn-md')); ?>
 	</div>
 </div>
+<br>
 <?php
 		echo $enquiryForm->renderEnd(); 
 	endif;
 ?>
+<?php if (isset($report) && !empty($report)): ?>
+	<div class="row">
+		<div class="col-sm-12">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Customer name</th>
+				<th>Branch name</th>
+				<th>Survey name</th>
+				<th>question</th>
+				<th>answer</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($report as $row): ?>
+			<tr>
+				<?php foreach ($row as $col): ?>
+				<td><?php echo $col ?></td>
+				<?php endforeach; ?>
+			</tr> 
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+<?php endif; ?>
+</div>
+</div>
 <?php $path = Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist')); ?>
 <script type="text/javascript" src="<?php echo $path;?>/js/jquery-ui.js"></script>
 <link href="<?php echo $path; ?>/js/jquery-ui.css" rel="stylesheet" type="text/css" />
