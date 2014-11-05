@@ -51,7 +51,7 @@
                     //     WHERE `br`.`id` = 2 AND `ansSheet`.`created` BETWEEN :startDate AND :endDate
                     if (empty($frm->errors)){
                         $report = Yii::app()->db->createCommand()
-                                ->select('cust.firstName, br.name branchName,surv.name surveyName, ans.answerTxt')
+                                ->select('cust.id, cust.firstName, br.name branchName,surv.name surveyName, ans.answerTxt')
                                 ->from('customer cust')
                                 ->join('answersheet ansSheet', 'ansSheet.customerId=cust.id')
                                 ->join('branches br', 'ansSheet.branchId=br.id')
@@ -70,13 +70,14 @@
                     foreach ($report as $ind => $row){
                         if ($ind==0 || isset($report[($ind-1)])){
 
-                            if ($report[($ind-1)]['firstName'] == $report[$ind]['firstName']){
+                            if ($report[($ind-1)]['id'] == $report[$ind]['id']){
                                 $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
                             }
                             else{
-                            $report_transp[$ind]  = $row;
-                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
-                        }
+                                unset($row['id']);
+                                $report_transp[$ind]  = $row;
+                                $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                            }
                             
                         }
                         
