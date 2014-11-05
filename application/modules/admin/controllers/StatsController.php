@@ -51,26 +51,65 @@
                     //     WHERE `br`.`id` = 2 AND `ansSheet`.`created` BETWEEN :startDate AND :endDate
                     if (empty($frm->errors)){
                         $report = Yii::app()->db->createCommand()
-                                ->select('cust.firstName, br.name branchName,surv.name surveyName, quest.questTxt, ans.answerTxt')
+                                ->select('cust.firstName, br.name branchName,surv.name surveyName, ans.answerTxt')
                                 ->from('customer cust')
                                 ->join('answersheet ansSheet', 'ansSheet.customerId=cust.id')
                                 ->join('branches br', 'ansSheet.branchId=br.id')
                                 ->join('survey surv', 'surv.id=ansSheet.surveyId')
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
-                                ->join('question quest', 'quest.id=ans.questId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
+                                                array(':startDate'=>1, ':endDate'=>4)
                                            )
                                 ->queryAll();
                     }
                 }
+
+                $report_transp = [];
+/**************************************************************************************************************
+                foreach ($report as $ind => $row){
+                        $report_transp[] = $row;
+                        break;
+                    if (isset($report[($ind - 1)]['firstName'])){
+                        echo'<br>DA!';
+                        if ($report[($ind - 1)]['firstName'] == $report[$ind]['firstName']){
+                            echo'<br>Da na kwadrat';
+                            foreach($row as $ind2 => $col){
+                                if ($ind2 == 'answerTxt'){
+                                    echo'<br>Da na kub!';
+                                    $report_transp[$ind]['Q'.$ind] = $col;
+                                    // echo'<bqr>';
+                                    // var_dump($row);
+                                    // unset($row[$ind2]);
+                                }
+                            }
+                        }
+                    }
+                    else
+                        echo'<br>Ne!';
+                }
+**************************************************************************************************************/
+                foreach ($report as $ind => $row){
+                    if ( $ind==0){
+
+                        $report_transp[$ind]  = $row;
+                        $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                        
+                    }
+                    else{
+                        if ($report[($ind-1)]['firstName'] == $report[$ind]['firstName']){
+                            $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
+                        }
+                        
+                    }
+                }
+
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
         	$this->render('index', array(
                                         'orgSelect' => $orgSelect,
                                         'enquiryForm' => isset($enquiryForm)?$enquiryForm:'',
-                                        'report' => isset($report)?$report:''
+                                        'report' => isset($report_transp)?$report_transp:''
                                    )
             );
         }

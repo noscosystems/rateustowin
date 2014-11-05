@@ -67,8 +67,12 @@
 				<th>Customer name</th>
 				<th>Branch name</th>
 				<th>Survey name</th>
-				<th>question</th>
-				<th>answer</th>
+				<th>Q1</th>
+				<th>Q2</th>
+				<th>Q3</th>
+				<th>Q4</th>
+				<th>Q5</th>
+				<th>Q6</th>
 			</tr>
 		</thead>
 		<tbody>
