@@ -93,11 +93,12 @@
                         
                     }
                 }
-
-                echo'<pre>';
-                var_dump($report_transp);
-                echo'</pre>';
-                exit;
+                if (!empty($report_transp)){
+                    echo'<pre>';
+                    var_dump($report_transp);
+                    echo'</pre>';
+                    exit;
+                }
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
