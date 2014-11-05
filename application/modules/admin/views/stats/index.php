@@ -79,7 +79,11 @@
 		<?php foreach ($report as $row): ?>
 			<tr>
 				<?php foreach ($row as $col): ?>
-				<td><?php echo $col ?></td>
+					<?php if((bool)$col == false): ?>
+						<?php continue; ?>
+					<?php else: ?>
+						<td><?php echo $col ?></td>
+					<?php endif;?>
 				<?php endforeach; ?>
 			</tr> 
 		<?php endforeach; ?>
