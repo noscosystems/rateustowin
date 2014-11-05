@@ -70,21 +70,24 @@
                     foreach ($report as $ind => $row){
                         if ($ind == 0 ){
                             unset($row['id']);
+                            $answer = $row['answerTxt'];
                             unset($row['answerTxt']);
                             $report_transp[$ind]  = $row;
-                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                            $report_transp[$ind]['Q'.$ind] = $answer;
                         }
                         elseif (isset($report[($ind-1)])){
 
                             if ($report[($ind-1)]['id'] == $report[$ind]['id']){
+                                $answer = $row['answerTxt'];
                                 unset($row['answerTxt']);
-                                $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
+                                $report_transp[$ind-$ind]['Q'.$ind] = $answer;
                             }
                             else{
                                 unset($row['id']);
+                                $answer = $row['answerTxt'];
                                 unset($row['answerTxt']);
                                 $report_transp[$ind]  = $row;
-                                $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                                $report_transp[$ind]['Q'.$ind] = $answer;
                             }
                             
                         }
