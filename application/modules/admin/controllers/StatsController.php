@@ -67,21 +67,33 @@
 
                 $report_transp = [];
                 if (isset($report) && !empty($report)){
+/***********************************************************************************************
+                    foreach($report as $ind => $row){
+                        $report_transp[$ind] = $row;
+
+                        foreach($row as $ind2 => $col){
+                            if ($ind2 == 'answerTxt' && $report_transp[$ind-1]){
+                                $report_transp[$ind]['Q'.$ind] = $col;
+                            }
+                        }
+
+                    }
+***********************************************************************************************/
                     foreach ($report as $ind => $row){
 
                         
                         $answer = $row['answerTxt'];
                         unset($row['answerTxt']);
 
-                        // if ($ind == 0 ){
-                        //     //unset($row['id']); 
-                        //     $report_transp[$ind]  = $row;
-                        //     $report_transp[$ind]['Q'.$ind] = $answer;
-                        // }
-                        // elseif (isset($report_transp[$ind-($ind-1)])){
+                        if ($ind == 0 ){
+                            //unset($row['id']); 
+                            $report_transp[$ind]  = $row;
+                            $report_transp[$ind]['Q'.$ind] = $answer;
+                        }
+                        elseif (isset($report_transp[$ind-($ind-1)])){
 
-                            if ($report_transp[$ind]['id'] == $report[$ind]['id']){
-                                $report_transp[$ind]['Q'.$ind] = $answer;
+                            if ($report_transp[$ind-1]['id'] == $report[$ind]['id']){
+                                $report_transp[$ind-1]['Q'.$ind] = $answer;
                             }
                             else{
                                 //unset($row['id']);
@@ -89,9 +101,9 @@
                                 $report_transp[$ind]['Q'.$ind] = $answer;
                             }
                             
-                        // }
-                        
+                        }
                     }
+
                 }
                 if (!empty($report_transp)){
                     echo'<pre>';
