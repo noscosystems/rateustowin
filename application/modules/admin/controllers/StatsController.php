@@ -59,48 +59,27 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>1, ':endDate'=>4)
+                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
                                            )
                                 ->queryAll();
                     }
                 }
 
                 $report_transp = [];
-/**************************************************************************************************************
-                foreach ($report as $ind => $row){
-                        $report_transp[] = $row;
-                        break;
-                    if (isset($report[($ind - 1)]['firstName'])){
-                        echo'<br>DA!';
-                        if ($report[($ind - 1)]['firstName'] == $report[$ind]['firstName']){
-                            echo'<br>Da na kwadrat';
-                            foreach($row as $ind2 => $col){
-                                if ($ind2 == 'answerTxt'){
-                                    echo'<br>Da na kub!';
-                                    $report_transp[$ind]['Q'.$ind] = $col;
-                                    // echo'<bqr>';
-                                    // var_dump($row);
-                                    // unset($row[$ind2]);
-                                }
-                            }
-                        }
-                    }
-                    else
-                        echo'<br>Ne!';
-                }
-**************************************************************************************************************/
-                foreach ($report as $ind => $row){
-                    if ( $ind==0){
+                if (isset($report) && !empty($report)){
+                    foreach ($report as $ind => $row){
+                        if ( $ind==0){
 
-                        $report_transp[$ind]  = $row;
-                        $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
-                        
-                    }
-                    else{
-                        if ($report[($ind-1)]['firstName'] == $report[$ind]['firstName']){
-                            $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
+                            $report_transp[$ind]  = $row;
+                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                            
                         }
-                        
+                        else{
+                            if ($report[($ind-1)]['firstName'] == $report[$ind]['firstName']){
+                                $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
+                            }
+                            
+                        }
                     }
                 }
 
