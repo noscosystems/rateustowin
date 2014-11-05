@@ -68,18 +68,18 @@
                 $report_transp = [];
                 if (isset($report) && !empty($report)){
                     foreach ($report as $ind => $row){
-                        if ( $ind==0){
+                        if ($ind==0 || isset($report[($ind-1)])){
 
-                            $report_transp[$ind]  = $row;
-                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
-                            
-                        }
-                        else{
                             if ($report[($ind-1)]['firstName'] == $report[$ind]['firstName']){
                                 $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
                             }
+                            else{
+                            $report_transp[$ind]  = $row;
+                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                        }
                             
                         }
+                        
                     }
                 }
 
