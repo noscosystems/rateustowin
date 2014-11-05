@@ -78,7 +78,7 @@
                             $report_transp[$ind]  = $row;
                             $report_transp[$ind]['Q'.$ind] = $answer;
                         }
-                        elseif (isset($report[($ind-1)])){
+                        elseif (isset($report_transp[($ind-1)])){
 
                             if ($report_transp[($ind-1)]['id'] == $report[$ind]['id']){
                                 $report_transp[$ind-1]['Q'.$ind] = $answer;
