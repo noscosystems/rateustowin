@@ -81,13 +81,13 @@
                         elseif (isset($report_transp[($ind-1)])){
 
                             if ($report_transp[($ind-1)]['id'] == $report[$ind]['id']){
-                                $report_transp[$ind-1]['Q'.$ind] = $answer;
+                                $report_transp[$ind-1]['Q'.($ind-1)] = $answer;
                             }
-                            // else{
-                            //     //unset($row['id']);
-                            //     $report_transp[$ind] = $row;
-                            //     $report_transp[$ind]['Q'.$ind] = $answer;
-                            // }
+                            else{
+                                //unset($row['id']);
+                                $report_transp[$ind-1] = $row;
+                                $report_transp[$ind-1]['Q'.($ind-1)] = $answer;
+                            }
                             
                         }
                         
