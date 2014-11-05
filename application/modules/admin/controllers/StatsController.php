@@ -59,7 +59,7 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
+                                                array(':startDate'=>1, ':endDate'=>99999999999999999999999)
                                            )
                                 ->queryAll();
                     }
@@ -68,7 +68,12 @@
                 $report_transp = [];
                 if (isset($report) && !empty($report)){
                     foreach ($report as $ind => $row){
-                        if ($ind==0 || isset($report[($ind-1)])){
+                        if ($ind == 0 ){
+                            unset($row['id']);
+                            $report_transp[$ind]  = $row;
+                            $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
+                        }
+                        elseif (isset($report[($ind-1)])){
 
                             if ($report[($ind-1)]['id'] == $report[$ind]['id']){
                                 $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
