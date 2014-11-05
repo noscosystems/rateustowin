@@ -70,16 +70,19 @@
                     foreach ($report as $ind => $row){
                         if ($ind == 0 ){
                             unset($row['id']);
+                            unset($row['answerTxt']);
                             $report_transp[$ind]  = $row;
                             $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
                         }
                         elseif (isset($report[($ind-1)])){
 
                             if ($report[($ind-1)]['id'] == $report[$ind]['id']){
+                                unset($row['answerTxt']);
                                 $report_transp[$ind-$ind]['Q'.$ind] = $row['answerTxt'];
                             }
                             else{
                                 unset($row['id']);
+                                unset($row['answerTxt']);
                                 $report_transp[$ind]  = $row;
                                 $report_transp[$ind]['Q'.$ind] = $row['answerTxt'];
                             }
@@ -93,7 +96,7 @@
                 var_dump($report_transp);
                 echo'</pre>';
                 exit;
-                
+
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
         	$this->render('index', array(
