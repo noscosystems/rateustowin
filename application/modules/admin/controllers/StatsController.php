@@ -67,18 +67,7 @@
 
                 $report_transp = [];
                 if (isset($report) && !empty($report)){
-/***********************************************************************************************
-                    foreach($report as $ind => $row){
-                        $report_transp[$ind] = $row;
 
-                        foreach($row as $ind2 => $col){
-                            if ($ind2 == 'answerTxt' && $report_transp[$ind-1]){
-                                $report_transp[$ind]['Q'.$ind] = $col;
-                            }
-                        }
-
-                    }
-***********************************************************************************************/
                     $i=1;
                     foreach ($report as $ind => $row){
 
@@ -110,6 +99,10 @@
                             
                         }
                         $i++;
+                    }
+
+                    foreach ($report_transp as $ind => $row){
+                        unset($report_transp[$ind]['id']);
                     }
 
                 }
