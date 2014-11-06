@@ -79,6 +79,7 @@
 
                     }
 ***********************************************************************************************/
+                    $i=1;
                     foreach ($report as $ind => $row){
 
                         $answer = $row['answerTxt'];
@@ -91,21 +92,24 @@
                         if ($ind == 0 ){
                             //unset($row['id']); 
                             $report_transp[$ind]  = $row;
-                            $report_transp[$ind]['Q'.$ind] = $answer;
+                            $i=1;
+                            $report_transp[$ind]['Q'.$i] = $answer;
                         
                         }
                         elseif (isset($report_transp[$last])){
 
                             if ($report_transp[$last]['id'] == $report[$ind]['id']){
-                                $report_transp[$last]['Q'.$ind] = $answer;
+                                $report_transp[$last]['Q'.$i] = $answer;
                             }
                             else{
                                 //unset($row['id']);
                                 $report_transp[] = $row;
-                                $report_transp[(count($report_transp)-1)]['Q'.$ind] = $answer;
+                                $i=1;
+                                $report_transp[(count($report_transp)-1)]['Q'.$i] = $answer;
                             }
                             
                         }
+                        $i++;
                     }
 
                 }
