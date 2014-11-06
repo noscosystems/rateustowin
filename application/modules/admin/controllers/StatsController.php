@@ -51,7 +51,7 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>1, ':endDate'=>4)
+                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
                                            )
                                 ->queryAll();
                     }
