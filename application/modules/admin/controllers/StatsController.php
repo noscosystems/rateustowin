@@ -89,7 +89,7 @@
                             $last = count($report_transp)-1;
 
                         if ($ind == 0 ){
-                            //unset($row['id']); 
+                            unset($row['id']); 
                             $report_transp[$ind]  = $row;
                             $report_transp[$ind]['Q'.$ind] = $answer;
                         
@@ -97,13 +97,12 @@
                         elseif (isset($report_transp[$last])){
 
                             if ($report_transp[$last]['id'] == $report[$ind]['id']){
-                                $report_transp[$last]['Q'.$last] = $answer;
+                                $report_transp[$last]['Q'.$ind] = $answer;
                             }
                             else{
-                                //unset($row['id']);
+                                unset($row['id']);
                                 $report_transp[] = $row;
-                                $currInd = count($report_transp)-1;
-                                $report_transp[$currInd]['Q'.$currInd] = $answer;
+                                $report_transp[(count($report_transp)-1)]['Q'.$ind] = $answer;
                             }
                             
                         }
