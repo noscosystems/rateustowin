@@ -4,8 +4,10 @@
     use \CException as Exception;
     use \application\components\form\Form;
     use \application\components\Controller;
+    use \application\components\helpers\Excel_XML;
     use \application\models\form\Orgselect;
     use \application\models\form\Answersenquiry;
+
 
     class StatsController extends Controller
     {        
@@ -110,6 +112,12 @@
                         }
                     }
 
+                }
+
+                if (isset($report_transp) && !empty($report_transp)){
+                    $xls = new Excel_XML();
+                    $xls->addArray($report_transp);
+                    $xls->generateXML('EXCEL'.date('Today'));
                 }
 
                 // if (isset($_POST['Export'])){
