@@ -90,8 +90,8 @@
 
                         if ($ind == 0 ){
                             //unset($row['id']); 
-                            $report_transp[]  = $row;
-                            $report_transp[]['Q'.$ind] = $answer;
+                            $report_transp[$ind]  = $row;
+                            $report_transp[$ind]['Q'.$ind] = $answer;
                         
                         }
                         elseif (isset($report_transp[$last])){
