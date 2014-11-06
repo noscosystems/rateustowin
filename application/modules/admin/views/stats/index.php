@@ -79,6 +79,12 @@
 		<?php endforeach; ?>
 		</tbody>
 	</table>
+<?php elseif (!isset($report)): ?>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>We are sorry, but there are no surveys answered for this time period.</h1>
+		</div>
+	</div>
 <?php endif; ?>
 </div>
 </div>
