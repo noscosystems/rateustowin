@@ -59,7 +59,7 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>1, ':endDate'=>99999999999999999999999)
+                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
                                            )
                                 ->queryAll();
                     }
@@ -87,7 +87,7 @@
 
                         if (isset($report_transp[0]))
                             $last = count($report_transp)-1;
-                        
+
                         if ($ind == 0 ){
                             //unset($row['id']); 
                             $report_transp[$ind]  = $row;
