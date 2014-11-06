@@ -94,10 +94,10 @@
                             $report_transp[$ind]['Q'.$ind] = $answer;
                         
                         }
-                        elseif (isset($report_transp[$last])){
+                        elseif (isset($report_transp[$last-1])){
 
-                            if ($report_transp[$last]['id'] == $report[$ind]['id']){
-                                $report_transp[$last]['Q'.$ind] = $answer;
+                            if ($report_transp[$last-1]['id'] == $report[$ind]['id']){
+                                $report_transp[$last-1]['Q'.$ind] = $answer;
                             }
                             else{
                                 //unset($row['id']);
