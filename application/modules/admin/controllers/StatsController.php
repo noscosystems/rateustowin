@@ -89,7 +89,7 @@
                             $last = count($report_transp)-1;
 
                         if ($ind == 0 ){
-                            unset($row['id']); 
+                            //unset($row['id']); 
                             $report_transp[$ind]  = $row;
                             $report_transp[$ind]['Q'.$ind] = $answer;
                         
@@ -100,7 +100,7 @@
                                 $report_transp[$last]['Q'.$ind] = $answer;
                             }
                             else{
-                                unset($row['id']);
+                                //unset($row['id']);
                                 $report_transp[] = $row;
                                 $report_transp[(count($report_transp)-1)]['Q'.$ind] = $answer;
                             }
