@@ -102,7 +102,7 @@
                             else{
                                 //unset($row['id']);
                                 $report_transp[] = $row;
-                                $report_transp[]['Q'.$ind] = $answer;
+                                $report_transp[$last]['Q'.$ind] = $answer;
                             }
                             
                         }
