@@ -84,16 +84,21 @@
                         
                         $answer = $row['answerTxt'];
                         unset($row['answerTxt']);
-
+                        $last='';
+                        if (isset($report_transp[0])){
+                            $last = count($report_transp)-1;
+                            echo$last;
+                        }
                         if ($ind == 0 ){
                             //unset($row['id']); 
                             $report_transp[$ind]  = $row;
                             $report_transp[$ind]['Q'.$ind] = $answer;
+                        
                         }
-                        $last = count($report_transp);
                         elseif (isset($report_transp[$last])){
 
                             if ($report_transp[$last]['id'] == $report[$ind]['id']){
+                                echo'da';
                                 $report_transp[$last]['Q'.$ind] = $answer;
                             }
                             else{
@@ -110,8 +115,8 @@
                     echo'<pre>';
                     var_dump($report_transp);
                     echo'</pre>';
-                    exit;
                 }
+                exit;
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
