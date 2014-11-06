@@ -50,6 +50,11 @@
                     //     ON `quest`.`id` = `ans`.`questId`
                     //     WHERE `br`.`id` = 2 AND `ansSheet`.`created` BETWEEN :startDate AND :endDate
                     if (empty($frm->errors)){
+                        //Query that joins a couple of tables
+                        //and retrieves a customer's name,
+                        //survey that he completed and it's name,
+                        //branch that survey belongs to, the branch name,
+                        //and the customer's actual answers.
                         $report = Yii::app()->db->createCommand()
                                 ->select('cust.id, cust.firstName, br.name branchName,surv.name surveyName, ans.answerTxt')
                                 ->from('customer cust')
@@ -65,10 +70,11 @@
                     }
                 }
 
-                $report_transp = [];
-                if (isset($report) && !empty($report)){
+                $report_transp = []; //an array thatwould serv us for "transposing"
+                //the information we have in a more suitable for viewing by the admin format.
+                if (isset($report) && !empty($report)){ // if our query returned some rows 
 
-                    $i=1;
+                    $i=1; //a buffer variable that we use for the question numbering.
                     foreach ($report as $ind => $row){
 
                         $answer = $row['answerTxt'];
@@ -79,21 +85,18 @@
                             $last = count($report_transp)-1;
 
                         if ($ind == 0 ){
-                            //unset($row['id']); 
                             $report_transp[$ind]  = $row;
-                            $i=1;
+                            $i=1; // reset our buffer variable, everytime we create a new "row"
                             $report_transp[$ind]['Q'.$i] = $answer;
                         
                         }
                         elseif (isset($report_transp[$last])){
 
-                            if ($report_transp[$last]['id'] == $report[$ind]['id']){
+                            if ($report_transp[$last]['id'] == $report[$ind]['id'])
                                 $report_transp[$last]['Q'.$i] = $answer;
-                            }
                             else{
-                                //unset($row['id']);
                                 $report_transp[] = $row;
-                                $i=1;
+                                $i=1; // reset our buffer variable, everytime we create a new "row"
                                 $report_transp[(count($report_transp)-1)]['Q'.$i] = $answer;
                             }
                             

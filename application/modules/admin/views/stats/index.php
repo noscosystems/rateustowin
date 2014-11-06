@@ -80,7 +80,7 @@
 			<tr>
 				<?php foreach ($row as $col): ?>
 					<?php if((bool)$col == false): ?>
-						<?php echo'N/A';continue; ?>
+						<td><?php echo'N/A';continue; ?></td>
 					<?php else: ?>
 						<td><?php echo $col ?></td>
 					<?php endif;?>
