@@ -118,7 +118,7 @@
                     <div id="smiley" class="col-sm-4 col-xs-4">
                         <a href="#<?php echo($i+1==$questlength)?('Credentials'):($i+1); ?>" role="tab" data-toggle="tab" >
                             <input class="img-responsive"
-                            value="<?php echo($l==0)?('negative'):(($l==1)?('neutral'):('positive'));?>"
+                            value="<?php echo($l==0)?(1):(($l==1)?(2):(3));?>"
                             type="image"
                             src="<?php echo $assetMgr->publish( $pathSmileys . '/' . ($l == 0 ? 'negative.png' : ($l == 1 ? 'neutral.png' : 'positive.png')) );?>"
                             alt="<?php echo $question[$i]['id'];?>"

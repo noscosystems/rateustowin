@@ -36,19 +36,6 @@
                     $today = strtotime('Today');
                     if ($startDate>$endDate)
                         $frm->addError('startDate','Starting date greater than ending date.');
-                    // SELECT `cust`.`firstName`, `br`.`name`, `surv`.`name`,`surv`.`id`, `quest`.`questTxt`, `ans`.`answerTxt`
-                    //     FROM `customer` AS `cust`
-                    //     JOIN `answersheet` AS `ansSheet`
-                    //     ON `ansSheet`.`customerId` = `cust`.`id`
-                    //     JOIN `branches` AS `br`
-                    //     ON `ansSheet`.`branchId` = `br`.`id`
-                    //     JOIN `survey` AS `surv`
-                    //     ON `surv`.`id` = `ansSheet`.`surveyId`
-                    //     JOIN `answer` AS `ans`
-                    //     ON `ansSheet`.`id` = `ans`.`ansSheetId`
-                    //     JOIN `question` AS `quest`
-                    //     ON `quest`.`id` = `ans`.`questId`
-                    //     WHERE `br`.`id` = 2 AND `ansSheet`.`created` BETWEEN :startDate AND :endDate
                     if (empty($frm->errors)){
                         //Query that joins a couple of tables
                         //and retrieves a customer's name,
@@ -56,7 +43,7 @@
                         //branch that survey belongs to, the branch name,
                         //and the customer's actual answers.
                         $report = Yii::app()->db->createCommand()
-                                ->select('cust.id, cust.firstName, br.name branchName,surv.name surveyName, ans.answerTxt')
+                                ->select('cust.id, cust.firstName Customer name, br.name Branch name, surv.name Survey name, ans.answerTxt')
                                 ->from('customer cust')
                                 ->join('answersheet ansSheet', 'ansSheet.customerId=cust.id')
                                 ->join('branches br', 'ansSheet.branchId=br.id')
@@ -64,7 +51,7 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
+                                                array(':startDate'=>1, ':endDate'=>4)
                                            )
                                 ->queryAll();
                     }
@@ -75,24 +62,25 @@
                 if (isset($report) && !empty($report)){ // if our query returned some rows 
 
                     $i=1; //a buffer variable that we use for the question numbering.
-                    foreach ($report as $ind => $row){
+                    foreach ($report as $ind => $row){//A loop that cycles through all the rows from the query.
 
                         $answer = $row['answerTxt'];
                         unset($row['answerTxt']);
                         $last = '';
 
-                        if (isset($report_transp[0]))
+                        if (isset($report_transp[0])) // a checkup to get our newly rearranged array's last index.
                             $last = count($report_transp)-1;
 
-                        if ($ind == 0 ){
+                        if ($ind == 0 ){ //If we are pointing at row one of our query we create our first row
+                            //of our new rearranged array
                             $report_transp[$ind]  = $row;
                             $i=1; // reset our buffer variable, everytime we create a new "row"
                             $report_transp[$ind]['Q'.$i] = $answer;
                         
                         }
-                        elseif (isset($report_transp[$last])){
+                        elseif (isset($report_transp[$last])){//if we have an already created element.
 
-                            if ($report_transp[$last]['id'] == $report[$ind]['id'])
+                            if ($report_transp[$last]['id'] == $report[$ind]['id']) 
                                 $report_transp[$last]['Q'.$i] = $answer;
                             else{
                                 $report_transp[] = $row;
@@ -106,17 +94,27 @@
 
                     foreach ($report_transp as $ind => $row){
                         unset($report_transp[$ind]['id']);
+                        unset($row['id']);
+                        $sum ='';
+                        $rowLength = count($row)-1;
+                        $pointer = 0;
+
+                        foreach ($row as $ind2 => $col){
+                            
+                            if (preg_match('/^(1|2|3)$/', $col))
+                                $sum+=$col;
+                            if ($pointer == $rowLength)
+                                $report_transp[$ind]['Total'] = $sum;
+                        
+                            $pointer++;
+                        }
                     }
 
-                }
-                if (!empty($report_transp)){
-                    echo'<pre>';
-                    var_dump($report_transp);
-                    echo'</pre>';
                 }
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
+
         	$this->render('index', array(
                                         'orgSelect' => $orgSelect,
                                         'enquiryForm' => isset($enquiryForm)?$enquiryForm:'',

@@ -64,28 +64,18 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th>Customer name</th>
-				<th>Branch name</th>
-				<th>Survey name</th>
-				<th>Q1</th>
-				<th>Q2</th>
-				<th>Q3</th>
-				<th>Q4</th>
-				<th>Q5</th>
-				<th>Q6</th>
+				<?php foreach ($report[0] as $ind => $row): ?>
+				<th><?php echo $ind?></th>
+				<?php endforeach; ?>
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($report as $row): ?>
+		<?php foreach ($report as $ind => $row): ?>
 			<tr>
 				<?php foreach ($row as $col): ?>
-					<?php if((bool)$col == false): ?>
-						<td><?php echo'N/A';continue; ?></td>
-					<?php else: ?>
-						<td><?php echo $col ?></td>
-					<?php endif;?>
+					<td><?php echo $col ?></td>
 				<?php endforeach; ?>
-			</tr> 
+			</tr>
 		<?php endforeach; ?>
 		</tbody>
 	</table>
