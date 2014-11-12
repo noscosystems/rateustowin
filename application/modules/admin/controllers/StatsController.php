@@ -5,6 +5,7 @@
     use \application\components\form\Form;
     use \application\components\Controller;
     use \application\components\helpers\Excel_XML;
+    use \application\components\helpers\CsvExport;
     use \application\models\form\Orgselect;
     use \application\models\form\Answersenquiry;
 
@@ -114,26 +115,22 @@
 
                 }
 
-                if (isset($report_transp) && !empty($report_transp)){
-                    $xls = new Excel_XML();
-                    $xls->addArray($report_transp);
-                    $xls->generateXML('EXCEL'.date('Today'));
-                }
-
-                // if (isset($_POST['Export'])){
-                //     echo'<pre>';
-                //     var_dump($report_transp);
-                //     echo'</pre>';
-                // }
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
 
-        	$this->render('index', array(
-                                        'orgSelect' => $orgSelect,
-                                        'enquiryForm' => isset($enquiryForm)?$enquiryForm:'',
-                                        'report' => isset($report_transp)?$report_transp:''
-                                   )
-            );
+            if (isset($report_transp) && !empty($report_transp)){
+                $this->renderPartial('excel', array('report' => $report_transp));
+            }
+            else{
+            	$this->render('index', array(
+                                            'orgSelect' => $orgSelect,
+                                            'enquiryForm' => isset($enquiryForm)?$enquiryForm:'',
+                                            'report' => isset($report_transp)?$report_transp:''
+                                       )
+                );
+            }
+            
         }
+
     }

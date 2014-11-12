@@ -1,5 +1,6 @@
 <?php
- namespace application\components\helpers;
+    namespace application\components\helpers;
+ 
 /**
  * Simple excel generating from PHP5
  *
@@ -61,10 +62,10 @@ class Excel_XML
      * @var string
      */
     private $header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?\>
-    <Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\"
-    xmlns:x=\"urn:schemas-microsoft-com:office:excel\"
-    xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\"
-    xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
+<Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\"
+xmlns:x=\"urn:schemas-microsoft-com:office:excel\"
+xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\"
+xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
  
     /**
      * Footer of excel document (appended to the rows)
@@ -178,7 +179,7 @@ class Excel_XML
  
         // deliver header (as recommended in php manual)
         header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
-        header("Content-Disposition: attachment; filename=\"" . $filename . ".csv\"");
+        header("Content-Disposition: inline; filename=\"" . $filename . ".xls\"");
  
         // print out document to the browser
         // need to use stripslashes for the damn ">"

@@ -89,6 +89,14 @@
 </div>
 </div>
 <?php $path = Yii::app()->assetPublisher->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist')); ?>
+
+<?php 
+
+// if (isset($report) && !empty($report)){
+//     $this->render('excel', array('report' => $report));
+// }
+?>
+
 <script type="text/javascript" src="<?php echo $path;?>/js/jquery-ui.js"></script>
 <link href="<?php echo $path; ?>/js/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script>
