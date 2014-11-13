@@ -116,16 +116,17 @@
                     $headerArray = [];
                     foreach ($report_transp[0] as $ind => $row){
                         foreach ($row as $ind2 => $col){
-                            $headerArray[] = $ind2
+                            $headerArray[] = $ind2;
                         }
                     }
 
                 }
-                
-                echo'<pre>';
-                var_dump($headerArray);
-                echo'</pre>';
-                exit;
+                if (isset($headerArray) && !empty($headerArray)){
+                    echo'<pre>';
+                    var_dump($headerArray);
+                    echo'</pre>';
+                    exit;
+                }
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
