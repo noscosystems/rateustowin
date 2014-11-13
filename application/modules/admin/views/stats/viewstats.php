@@ -1,3 +1,7 @@
+<div class="row" align="center">
+<h3>Time period our enquiry is for: <?php echo date('d-m-Y',$startDate);?> : <?php echo date('d-m-Y',$endDate);?></h3>
+</div>
+<br>
 <?php if (isset($report) && !empty($report)): ?>
 	<div class="row">
 		<div class="col-sm-12">

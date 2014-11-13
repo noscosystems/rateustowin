@@ -120,14 +120,16 @@
 
                 }
 
-                $enquiryForm->model->startDate = date("m/d/Y");
-                $enquiryForm->model->endDate = date("m/d/Y");
+                $enquiryForm->model->startDate = date("ddMM/yyyy");
+                $enquiryForm->model->endDate = date("dd/MM/yyyy");
 
             if (isset($report_transp) && !empty($report_transp) && $choose == 'download' ){
                 $this->renderPartial('excel', array('report' => $report_transp, 'headerArray' => $headerArray));
             }
             elseif (isset($report_transp) && !empty($report_transp) && $choose == 'view' ){
             	$this->render('viewstats', array(
+                                            'startDate' => $startDate,
+                                            'endDate' => $endDate,
                                             'report' => isset($report_transp)?$report_transp:''
                                         )
                 );

@@ -15,8 +15,8 @@
         	return array(
 	        	array('startDate, endDate, branch', 'required'),
                 array('branch', 'numerical', 'integerOnly'=>true),
-                array('startDate', 'date', 'format' => 'MM/dd/yyyy', 'timestampAttribute' => 'startDate'),
-                array('endDate', 'date', 'format' => 'MM/dd/yyyy', 'timestampAttribute' => 'endDate')
+                array('startDate', 'date', 'format' => 'dd/MM/yyyy', 'timestampAttribute' => 'startDate'),
+                array('endDate', 'date', 'format' => 'dd/MM/yyyy', 'timestampAttribute' => 'endDate')
 			);
         }
     }
