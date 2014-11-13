@@ -10,7 +10,7 @@
 ?>
 <div class="row" align="right">
 	<?php echo CHtml::link('Download stats', array('/admin/stats', 'choose' => 'download' ), array('class'=>'btn btn-md btn-success')); ?>
-	<?php echo CHtml::link('View stats', array('/stats', 'choose' => 'view' ), array('class'=>'btn btn-md btn-primary')); ?>
+	<?php echo CHtml::link('View stats', array('/admin/stats', 'choose' => 'view' ), array('class'=>'btn btn-md btn-primary')); ?>
 </div>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist" id="tabBar">
