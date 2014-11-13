@@ -54,7 +54,7 @@
                                 ->join('answer ans', 'ansSheet.id=ans.ansSheetId')
                                 ->where('br.id=:id', array(':id' => $enquiryForm->model->branch))
                                 ->andWhere('ansSheet.created between :startDate and :endDate',
-                                                array(':startDate'=>$startDate, ':endDate'=>$endDate)
+                                                array(':startDate'=>1, ':endDate'=>9999999999999999999999)
                                            )
                                 ->queryAll();
                     }
@@ -115,17 +115,9 @@
 
                     $headerArray = [];
                     foreach ($report_transp[0] as $ind => $row){
-                        foreach ($row as $ind2 => $col){
-                            $headerArray[] = $ind2;
-                        }
+                        $headerArray[] = $ind;
                     }
 
-                }
-                if (isset($headerArray) && !empty($headerArray)){
-                    echo'<pre>';
-                    var_dump($headerArray);
-                    echo'</pre>';
-                    exit;
                 }
 
                 $enquiryForm->model->startDate = date("m/d/Y");

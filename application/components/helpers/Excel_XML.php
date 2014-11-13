@@ -174,7 +174,7 @@ xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
      * @access public
      * @param string $filename Name of excel file to generate (...xls)
      */
-    function generateXML ($filename)
+    public function generateXML ($filename)
     {
  
         // deliver header (as recommended in php manual)
