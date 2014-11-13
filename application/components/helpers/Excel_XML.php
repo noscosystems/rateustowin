@@ -191,6 +191,12 @@ xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
         echo $this->footer;
  
     }
+
+    public function XlsAttr($headerArray,$array,$filename){
+        $this->addRow($headerArray);
+        $this->addArray($array);
+        $this->generateXML($filename);
+    }
  
 }
  

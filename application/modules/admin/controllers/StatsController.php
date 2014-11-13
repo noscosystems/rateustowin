@@ -113,14 +113,25 @@
                         }
                     }
 
-                }
+                    $headerArray = [];
+                    foreach ($report_transp[0] as $ind => $row){
+                        foreach ($row as $ind2 => $col){
+                            $headerArray[] = $ind2
+                        }
+                    }
 
+                }
+                
+                echo'<pre>';
+                var_dump($headerArray);
+                echo'</pre>';
+                exit;
 
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
 
             if (isset($report_transp) && !empty($report_transp)){
-                $this->renderPartial('excel', array('report' => $report_transp));
+                $this->renderPartial('excel', array('report' => $report_transp, 'headerArray' => $headerArray));
             }
             else{
             	$this->render('index', array(
