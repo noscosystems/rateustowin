@@ -13,7 +13,7 @@
     class StatsController extends Controller
     {        
 
-        public function actionIndex()
+        public function actionIndex($choose)
         {
             $orgSelect = new Form('application.forms.orgselect', new Orgselect);
             $enquiryForm = new Form ('application.forms.answersenquiry', new Answersenquiry);
@@ -123,14 +123,19 @@
                 $enquiryForm->model->startDate = date("m/d/Y");
                 $enquiryForm->model->endDate = date("m/d/Y");
 
-            if (isset($report_transp) && !empty($report_transp)){
+            if (isset($report_transp) && !empty($report_transp) && $choose == 'download' ){
                 $this->renderPartial('excel', array('report' => $report_transp, 'headerArray' => $headerArray));
             }
-            else{
-            	$this->render('index', array(
-                                            'orgSelect' => $orgSelect,
-                                            'enquiryForm' => isset($enquiryForm)?$enquiryForm:'',
+            elseif (isset($report_transp) && !empty($report_transp) && $choose == 'view' ){
+            	$this->render('viewstats', array(
                                             'report' => isset($report_transp)?$report_transp:''
+                                        )
+                );
+            }
+            else{
+                $this->render('index', array(
+                                            'orgSelect' => $orgSelect,
+                                            'enquiryForm' => isset($enquiryForm)?$enquiryForm:''
                                        )
                 );
             }
