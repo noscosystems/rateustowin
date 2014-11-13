@@ -31,7 +31,33 @@
         <div id="wrapper">
             <div align="right">
                 <?php echo CHtml::link('Admin', array('/admin'), array('style'=>'color:#CCC;')); ?>
-            </div> 
+            </div>
+            <?php if(isset(Yii::app()->user->priv)): ?>
+            <?php if(Yii::app()->user->priv>0): ?>
+                <nav class="navbar navbar-default" role="navigation">
+                  <div class="container-fluid">
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                        <li><a href="admin">Admin</a></li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Stats <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="<?php echo Yii::app()->baseUrl; ?>/admin/stats/?choose=download">Download</a></li>
+                            <li><a href="<?php echo Yii::app()->baseUrl; ?>/admin/stats/?choose=view">View</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right">
+                        <li><a href="home">Home</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+                </nav>
+            <?php endif; ?>
+            <?php endif; ?>
             <!-- Navigation-- >
 <?php /****************************************************************************************************************
             <nav class="navbar navbar-default" role="navigation">

@@ -4,8 +4,6 @@
     use \CException as Exception;
     use \application\components\form\Form;
     use \application\components\Controller;
-    use \application\components\helpers\Excel_XML;
-    use \application\components\helpers\CsvExport;
     use \application\models\form\Orgselect;
     use \application\models\form\Answersenquiry;
 
@@ -120,8 +118,7 @@
 
                 }
 
-                $enquiryForm->model->startDate = date("ddMM/yyyy");
-                $enquiryForm->model->endDate = date("dd/MM/yyyy");
+                
 
             if (isset($report_transp) && !empty($report_transp) && $choose == 'download' ){
                 $this->renderPartial('excel', array('report' => $report_transp, 'headerArray' => $headerArray));
@@ -135,6 +132,8 @@
                 );
             }
             else{
+                $enquiryForm->model->startDate = date("d/m/Y");
+                $enquiryForm->model->endDate = date("d/m/Y");
                 $this->render('index', array(
                                             'orgSelect' => $orgSelect,
                                             'enquiryForm' => isset($enquiryForm)?$enquiryForm:''
