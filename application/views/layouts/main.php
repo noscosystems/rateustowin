@@ -29,9 +29,7 @@
 
     <body>
         <div id="wrapper">
-            <div align="right">
-                <?php echo CHtml::link('Admin', array('/admin'), array('style'=>'color:#CCC;')); ?>
-            </div>
+            
             <?php if(isset(Yii::app()->user->priv)): ?>
             <?php if(Yii::app()->user->priv>0): ?>
                 <nav class="navbar navbar-default" role="navigation">
@@ -40,7 +38,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
-                        <li><a href="admin">Admin</a></li>
+                        <li><a href="<?php echo Yii::app()->baseUrl; ?>/admin">Admin</a></li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Stats <span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
@@ -50,7 +48,7 @@
                         </li>
                       </ul>
                       <ul class="nav navbar-nav navbar-right">
-                        <li><a href="home">Home</a></li>
+                        <li><a href="<?php echo Yii::app()->baseUrl; ?>/home">Home</a></li>
                         <li><a href="/logout">Logout</a></li>
                       </ul>
                     </div><!-- /.navbar-collapse -->
@@ -58,6 +56,9 @@
                 </nav>
             <?php endif; ?>
             <?php endif; ?>
+            <div align="right">
+                <?php echo CHtml::link('Admin', array('/admin'), array('style'=>'color:#CCC;')); ?>
+            </div>
             <!-- Navigation-- >
 <?php /****************************************************************************************************************
             <nav class="navbar navbar-default" role="navigation">
