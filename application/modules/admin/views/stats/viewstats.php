@@ -8,34 +8,17 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th>Customer name</th>
-				<th>Branch name</th>
-				<th>Survey name</th>
-				<th>Q1</th>
-				<th>Q2</th>
-				<th>Q3</th>
-				<th>Q4</th>
-				<th>Q5</th>
-				<th>Q6</th>
-				<th>Total</th>
+				<?php foreach ($report[0] as $ind => $row): ?>
+				<th><?php echo $ind?></th>
+				<?php endforeach; ?>
 			</tr>
 		</thead>
 		<tbody>
 		<?php foreach ($report as $ind => $row): ?>
 			<tr>
-<?php 			$rowCount = count($row);
-				for ($i=0; $i<5; $i++)
-					if(isset($row[$i])){
-						if ($i+1 == $rowCount){
-							$toSpan = $rowCount - ($i+1);
-							echo'<td colspan='.$toSpan.'>'.$row[$i].'</td>';
-						}
-						else
-							echo'<td>'.$row[$i].'</td>';
-					}
-					
-				endfor;
-?>
+				<?php foreach ($row as $col): ?>
+					<td><?php echo $col ?></td>
+				<?php endforeach; ?>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
