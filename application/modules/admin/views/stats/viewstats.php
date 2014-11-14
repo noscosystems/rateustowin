@@ -27,7 +27,7 @@
 				$rowCount = count($row)-1;
 				foreach ($row as $col){
 					if ($i == $rowCount){
-						$toSpan = 9-$i;
+						$toSpan = 10-$i;
 						echo'<td colspan='.$toSpan.'>'.$col.'</td>';
 					}
 					else
