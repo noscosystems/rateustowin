@@ -111,10 +111,7 @@
                         }
                     }
 
-                    $headerArray = [];
-                    foreach ($report_transp[0] as $ind => $row){
-                        $headerArray[] = $ind;
-                    }
+                    $headerArray = array('Customer name','Branch name','Survey name','Q1','Q2','Q3','Q4','Q5','Q6','Total')
 
                 }
 
