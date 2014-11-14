@@ -13,7 +13,6 @@
 				<th>Survey name</th>
 				<th>Q1</th>
 				<th>Q2</th>
-				<th>Customer name</th>
 				<th>Q3</th>
 				<th>Q4</th>
 				<th>Q5</th>
