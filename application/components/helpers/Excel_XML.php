@@ -114,6 +114,7 @@ class Excel_XML
         foreach ($array as $k => $v):
             if ($i == $arrayCount){
                 $toSpan = 10-$i;
+                $cells .= "<Cell><Data ss:Type=\"String\">". $v ."</Data></Cell>\n";
                 for ($j=0; $j<$toSpan; $j++)
                     $cells .= "<Cell><Data ss:Type=\"String\"></Data></Cell>\n";
             }
