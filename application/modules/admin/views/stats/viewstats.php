@@ -8,9 +8,17 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<?php foreach ($report[0] as $ind => $row): ?>
-				<th><?php echo $ind?></th>
-				<?php endforeach; ?>
+				<th>Customer name</th>
+				<th>Branch name</th>
+				<th>Survey name</th>
+				<th>Q1</th>
+				<th>Q2</th>
+				<th>Customer name</th>
+				<th>Q3</th>
+				<th>Q4</th>
+				<th>Q5</th>
+				<th>Q6</th>
+				<th>Total</th>
 			</tr>
 		</thead>
 		<tbody>
