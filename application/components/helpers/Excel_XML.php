@@ -112,7 +112,7 @@ class Excel_XML
         $i=1;
         $arrayCount = count($array)-1;
         foreach ($array as $k => $v):
-            if ($i == $rowCount){
+            if ($i == $arrayCount){
                 $toSpan = 10-$i;
                 for ($j=0; $j<$toSpan; $j++)
                     $cells .= "<Cell><Data ss:Type=\"String\"></Data></Cell>\n";
