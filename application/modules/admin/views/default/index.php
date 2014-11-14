@@ -14,11 +14,11 @@
 </div>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist" id="tabBar">
-  <li class="active"><a href="#organisation" role="tab" data-toggle="tab">Organisation</a></li>
-  <li><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
-  <li><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
-  <li><a href="#selectedSurvey" role="tab" data-toggle="tab">Selected survey to make live</a></li>
-  <li><a href="#editOrg" role="tab" data-toggle="tab">Edit Organisation</a></li>
+  <li class="tabLi active"><a href="#organisation" role="tab" data-toggle="tab">Organisation</a></li>
+  <li class="tabLi"><a href="#branch" role="tab" data-toggle="tab">Branch</a></li>
+  <li class="tabLi"><a href="#survey" role="tab" data-toggle="tab">Survey</a></li>
+  <li class="tabLi"><a href="#selectedSurvey" role="tab" data-toggle="tab">Selected survey to make live</a></li>
+  <li class="tabLi"><a href="#editOrg" role="tab" data-toggle="tab">Edit Organisation</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -322,7 +322,7 @@
 	var body = document.getElementsByTagName('body');
 	var tabPane = document.getElementsByClassName('tab-pane');
 	var tabBar = document.getElementById('tabBar');
-	var li = document.getElementsByTagName('li');
+	var li = document.getElementsByClassName('tabLi');
 
 	mySelect.onchange = function(){
 
@@ -418,7 +418,7 @@
 				var child = li[i].childNodes;
 
 				tabPane[i].className = (tabId === tabPaneId?'tab-pane active':'tab-pane');
-				li[i].className = (strstr(child[0].href, tabId)?'active':'');
+				li[i].className = (strstr(child[0].href, tabId)?'tabLi  active':'tabLi');
 			}
 		}
 		
