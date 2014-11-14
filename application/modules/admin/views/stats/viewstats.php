@@ -24,7 +24,7 @@
 		<?php foreach ($report as $ind => $row): ?>
 			<tr>
 <?php 			$i=1;
-				$rowCount = count($row);
+				$rowCount = count($row)-1;
 				foreach ($row as $col){
 					if ($i == $rowCount){
 						$toSpan = 9-$i;
