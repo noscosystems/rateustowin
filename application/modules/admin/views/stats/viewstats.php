@@ -16,9 +16,18 @@
 		<tbody>
 		<?php foreach ($report as $ind => $row): ?>
 			<tr>
-				<?php foreach ($row as $col): ?>
-					<td><?php echo $col ?></td>
-				<?php endforeach; ?>
+<?php 			$i=1;
+				$rowCount = count($row);
+				foreach ($row as $col){
+					if ($i == $rowCount){
+						$toSpan = 9-$i;
+						echo'<td colspan='.$toSpan.'>'.$col.'</td>';
+					}
+					else
+						echo'<td>'.$col.'</td>';
+					$i++;
+				}
+?>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
