@@ -62,10 +62,10 @@ class Excel_XML
      * @var string
      */
     private $header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?\>
-<Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\"
-xmlns:x=\"urn:schemas-microsoft-com:office:excel\"
-xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\"
-xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
+    <Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\"
+    xmlns:x=\"urn:schemas-microsoft-com:office:excel\"
+    xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\"
+    xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
  
     /**
      * Footer of excel document (appended to the rows)
@@ -109,9 +109,18 @@ xmlns:html=\"http://www.w3.org/TR/REC-html40\">";
         $cells = "";
  
         // foreach key -> write value into cells
+        $i=1;
+        $arrayCount = count($array)-1;
         foreach ($array as $k => $v):
- 
-            $cells .= "<Cell><Data ss:Type=\"String\">" . $v . "</Data></Cell>\n";
+            if ($i == $rowCount){
+                $toSpan = 10-$i;
+                for ($j=0; $j<$toSpan; $j++)
+                    $cells .= "<Cell><Data ss:Type=\"String\"></Data></Cell>\n";
+            }
+            else
+                $cells .= "<Cell><Data ss:Type=\"String\">" . $v . "</Data></Cell>\n";
+            $i++;
+            
  
         endforeach;
  
