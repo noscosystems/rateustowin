@@ -67,15 +67,15 @@
 <link href="<?php echo $path; ?>/datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
 
 <script>
-$(function() {
-	$('#application_models_form_Answersenquiry_startDate').datepicker({});
-	$('#application_models_form_Answersenquiry_endDate').datepicker({});
- });
+// $(function() {
+// 	$('#application_models_form_Answersenquiry_startDate').datepicker({});
+// 	$('#application_models_form_Answersenquiry_endDate').datepicker({});
+//  });
 
-    // $(function() {
-    //     $( "#application_models_form_Answersenquiry_startDate" ).datepicker();
-    //     $( "#application_models_form_Answersenquiry_startDate" ).datepicker("option", "dateFormat", "dd/mm/yy");
-    //     $( "#application_models_form_Answersenquiry_endDate" ).datepicker();
-    //     $( "#application_models_form_Answersenquiry_endDate" ).datepicker("option", "dateFormat", "dd/mm/yy");
-    // });
+    $(function() {
+        $( "#application_models_form_Answersenquiry_startDate" ).datepicker();
+        $( "#application_models_form_Answersenquiry_startDate" ).datepicker("option", "dateFormat", "dd/mm/yy");
+        $( "#application_models_form_Answersenquiry_endDate" ).datepicker();
+        $( "#application_models_form_Answersenquiry_endDate" ).datepicker("option", "dateFormat", "dd/mm/yy");
+    });
 </script>
